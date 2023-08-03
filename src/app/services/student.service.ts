@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs'; 
+import { Student } from '../models/student.model';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +12,13 @@ export class StudentService {
   readonly ENDPOINT_STUDENTS = "/students";
 
   constructor(private httpClient: HttpClient) { }
-
   
-  getStudents(): Observable<any[]> {
-    console.log("requete ok")
-    return this.httpClient.get<any[]>(this.API_URL + this.ENDPOINT_STUDENTS);
+  getStudents(options?: { headers?: HttpHeaders }): Observable<Student[]> {
+    return this.httpClient.get<Student[]>(this.API_URL + this.ENDPOINT_STUDENTS, options);
+  
   }
 }
+
 
 
 

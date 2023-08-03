@@ -1,45 +1,41 @@
-import { Component, OnInit } from '@angular/core';
-import { StudentService } from './student.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, OnInit } from "@angular/core";
+import { StudentService } from "./services/student.service";
+import { HttpHeaders } from "@angular/common/http";
+import { Student } from "./models/student.model"
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
   providers: [StudentService]
 })
 export class AppComponent implements OnInit {
-  title = 'tajweed-front-web';
-  students: any[] = []; 
+  title = "tajweed-front-web";
+  students: Student[] = [];
 
-  constructor(private studentService: StudentService, private httpClient: HttpClient) { }
+  constructor(private studentService: StudentService) {}
 
   ngOnInit() {
-
-    //A REMPLACER PAR LA CHAINE GENEREE PAR LE BACK DEMANDER A ABD AR RAHMAN SI BESOIN
-    const password = '14ad7230-e45b-4e83-9c74-3c35317a4978';
-
-    
+    const password = "a2086833-13ae-4ecb-802b-c12ac3870d4b";
     this.performAuthorizedRequest(password);
   }
 
   private createAuthorizationHeader(password: string): HttpHeaders {
     const base64Auth = btoa(`user:${password}`);
     return new HttpHeaders({
-      'Authorization': 'Basic ' + base64Auth
+      Authorization: "Basic " + base64Auth
     });
   }
 
   private performAuthorizedRequest(password: string) {
     const headers = this.createAuthorizationHeader(password);
-    const url = 'http://localhost:8080/students'; 
-    this.httpClient.get(url, { headers, responseType: 'json' }).subscribe(
-      (response: any) => {
-        console.log('Réponse du backend:', response); 
-        this.students = response as any[]; 
+    this.studentService.getStudents({ headers }).subscribe(
+      (response: Student[]) => {
+        console.log("Réponse du backend pour students: ", response);
+        this.students = response;
       },
       (error) => {
-        console.log('Erreur lors de la requête:', error);
+        console.log("Erreur lors de la requête:", error);
       }
     );
   }
@@ -48,5 +44,135 @@ export class AppComponent implements OnInit {
 
 
 
+// import { Component, OnInit } from "@angular/core";
+// import { TeacherService } from "./services/teacher.service";
+// import { HttpHeaders } from "@angular/common/http";
+// import { Teacher } from "./models/teacher.model";
 
+// @Component({
+//   selector: "app-root",
+//   templateUrl: "./app.component.html",
+//   styleUrls: ["./app.component.scss"],
+//   providers: [TeacherService]
+// })
+// export class AppComponent implements OnInit {
+//   title = "tajweed-front-web";
+//   teachers: Teacher[] = [];
+
+//   constructor(private teacherService: TeacherService) {}
+
+//   ngOnInit() {
+//     const password = "a2086833-13ae-4ecb-802b-c12ac3870d4b";
+//     this.performAuthorizedRequest(password);
+//   }
+
+//   private createAuthorizationHeader(password: string): HttpHeaders {
+//     const base64Auth = btoa(`user:${password}`);
+//     return new HttpHeaders({
+//       Authorization: "Basic " + base64Auth
+//     });
+//   }
+
+//   private performAuthorizedRequest(password: string) {
+//     const headers = this.createAuthorizationHeader(password);
+//     this.teacherService.getTeachers({ headers }).subscribe(
+//       (response: Teacher[]) => {
+//         console.log("Réponse du backend pour teachers: ", response);
+//         this.teachers = response;
+//       },
+//       (error) => {
+//         console.log("Erreur lors de la requête:", error);
+//       }
+//     );
+//   }
+// }
+
+
+// import { Component, OnInit } from "@angular/core";
+// import { AudioService } from "./services/audio.service";
+// import { HttpHeaders } from "@angular/common/http";
+// import { Audio } from "./models/audio.model";
+
+// @Component({
+//   selector: "app-root",
+//   templateUrl: "./app.component.html",
+//   styleUrls: ["./app.component.scss"],
+//   providers: [AudioService]
+// })
+// export class AppComponent implements OnInit {
+//   title = "tajweed-front-web";
+//   audios: Audio[] = [];
+
+//   constructor(private audioService: AudioService) {}
+
+//   ngOnInit() {
+//     const password = "a2086833-13ae-4ecb-802b-c12ac3870d4b";
+//     this.performAuthorizedRequest(password);
+//   }
+
+//   private createAuthorizationHeader(password: string): HttpHeaders {
+//     const base64Auth = btoa(`user:${password}`);
+//     return new HttpHeaders({
+//       Authorization: "Basic " + base64Auth
+//     });
+//   }
+
+//   private performAuthorizedRequest(password: string) {
+//     const headers = this.createAuthorizationHeader(password);
+//     this.audioService.getAudios({ headers }).subscribe(
+//       (response: Audio[]) => {
+//         console.log("Réponse du backend pour audios: ", response);
+//         this.audios = response;
+//       },
+//       (error) => {
+//         console.log("Erreur lors de la requête:", error);
+//       }
+//     );
+//   }
+// }
+
+
+
+// import { Component, OnInit } from "@angular/core";
+// import { EntityService } from "./services/entity.service";
+// import { HttpHeaders } from "@angular/common/http"; 
+// import { Entity } from "./models/entity.model";
+
+// @Component({
+//   selector: "app-root",
+//   templateUrl: "./app.component.html",
+//   styleUrls: ["./app.component.scss"],
+//   providers: [EntityService],
+// })
+// export class AppComponent implements OnInit {
+//   title = "tajweed-front-web";
+//   entities: Entity[] = [];
+
+//   constructor(private entityService: EntityService) {}
+
+//   ngOnInit() {
+//     const password = "a2086833-13ae-4ecb-802b-c12ac3870d4b";
+//     this.performAuthorizedRequest(password);
+//   }
+
+//   private createAuthorizationHeader(password: string): HttpHeaders {
+//     const base64Auth = btoa(`user:${password}`);
+//     return new HttpHeaders({
+//       Authorization: "Basic " + base64Auth,
+//     });
+//   }
+
+//   private performAuthorizedRequest(password: string) {
+//     const headers = this.createAuthorizationHeader(password);
+//     this.entityService.getEntities({ headers }).subscribe(
+//       (response: Entity[]) => {
+//         console.log("Réponse du backend pour entities: ", response);
+//         this.entities = response;
+//       },
+//       (error) => {
+//         console.log("Erreur lors de la requête:", error);
+//       }
+//     );
+//   }
+// }
 
