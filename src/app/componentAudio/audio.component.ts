@@ -5,13 +5,13 @@ import { HttpHeaders } from "@angular/common/http";
 import { Audio } from "../models/audio.model";
 
 @Component({
-  selector: "app-root",
+  selector: "audios",
   templateUrl: "./audio.component.html",
   styleUrls: ["./audio.component.scss"],
   providers: [AudioService]
 })
-export class AppComponent implements OnInit {
-  title = "tajweed-front-web";
+export class AudioComponent implements OnInit {
+  
   audios: Audio[] = [];
 
   constructor(private audioService: AudioService) {}

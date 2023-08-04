@@ -4,13 +4,13 @@ import { HttpHeaders } from "@angular/common/http";
 import { Teacher } from "../models/teacher.model";
 
 @Component({
-  selector: "app-root",
+  selector: "teachers",
   templateUrl: "./teacher.component.html",
   styleUrls: ["./teacher.component.scss"],
   providers: [TeacherService]
 })
-export class AppComponent implements OnInit {
-  title = "tajweed-front-web";
+export class TeacherComponent implements OnInit {
+  
   teachers: Teacher[] = [];
 
   constructor(private teacherService: TeacherService) {}

@@ -5,13 +5,13 @@ import { HttpHeaders } from "@angular/common/http";
 import { Entity } from "../models/entity.model";
 
 @Component({
-  selector: "app-root",
+  selector: "entities",
   templateUrl: "./entity.component.html",
   styleUrls: ["./entity.component.scss"],
   providers: [EntityService],
 })
-export class AppComponent implements OnInit {
-  title = "tajweed-front-web";
+export class EntityComponent implements OnInit {
+
   entities: Entity[] = [];
 
   constructor(private entityService: EntityService) {}
