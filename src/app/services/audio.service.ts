@@ -8,8 +8,8 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AudioService {
-  readonly API_URL = "http://localhost:8080";
-  readonly ENDPOINT_AUDIOS = "/audio";
+  readonly API_URL = "http://localhost:8080/api";
+  readonly ENDPOINT_AUDIOS = "/audios";
 
   constructor(private httpClient: HttpClient) { }
 

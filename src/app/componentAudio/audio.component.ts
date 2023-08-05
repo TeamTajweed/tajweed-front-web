@@ -5,7 +5,7 @@ import { HttpHeaders } from "@angular/common/http";
 import { Audio } from "../models/audio.model";
 
 @Component({
-  selector: "audios",
+  selector: "app-audios",
   templateUrl: "./audio.component.html",
   styleUrls: ["./audio.component.scss"],
   providers: [AudioService]

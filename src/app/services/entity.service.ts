@@ -8,8 +8,8 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class EntityService {
-  readonly API_URL = "http://localhost:8080";
-  readonly ENDPOINT_ENTITYS = "/entity";
+  readonly API_URL = "http://localhost:8080/api";
+  readonly ENDPOINT_ENTITYS = "/entities";
 
   constructor(private httpClient: HttpClient) { }
 

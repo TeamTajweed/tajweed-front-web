@@ -1,0 +1,19 @@
+
+<form [formGroup]="form">
+    <fieldset>
+
+    <div class="flex flex-column gap-2">
+        <label htmlFor="email">Email</label>
+        <input pInputText id="email" aria-describedby="email-help" formControlName="email" />
+        <small id="email-help">Enter your email.</small>
+    </div>    
+    <div class="flex flex-column gap-2">
+        <label htmlFor="password">Password</label>
+        <input pInputText id="password" aria-describedby="password-help" formControlName="password" />
+        <small id="password-help">Enter your password.</small>
+    </div>    
+</fieldset>
+
+    <button pButton pRipple (click)="login()" label="Submit" class="p-button-success"></button>
+
+</form>

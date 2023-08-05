@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { StudentService } from "../services/student.service";
-import { HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Student } from "../models/student.model"
 
 @Component({
@@ -10,33 +10,26 @@ import { Student } from "../models/student.model"
   providers: [StudentService]
 })
 export class StudentComponent implements OnInit {
-  
+
   students: Student[] = [];
 
-  constructor(private studentService: StudentService) {}
+  constructor(private studentService: StudentService, private http: HttpClient) { }
 
   ngOnInit() {
-    const password = "a2086833-13ae-4ecb-802b-c12ac3870d4b";
-    this.performAuthorizedRequest(password);
+    this.performAuthorizedRequest();
   }
 
-  private createAuthorizationHeader(password: string): HttpHeaders {
-    const base64Auth = btoa(`user:${password}`);
-    return new HttpHeaders({
-      Authorization: "Basic " + base64Auth
-    });
-  }
 
-  private performAuthorizedRequest(password: string) {
-    const headers = this.createAuthorizationHeader(password);
-    this.studentService.getStudents({ headers }).subscribe(
-      (response: Student[]) => {
+  private performAuthorizedRequest() {
+    this.studentService.getStudents().subscribe({
+      next: (response: Student[]) => {
         console.log("Réponse du backend pour students: ", response);
         this.students = response;
       },
-      (error) => {
+      error: (error) => {
         console.log("Erreur lors de la requête:", error);
       }
-    );
+    });
+
   }
 }
