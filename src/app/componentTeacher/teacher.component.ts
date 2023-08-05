@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { TeacherService } from "../services/teacher.service";
 import { HttpHeaders } from "@angular/common/http";
+import { Component, OnInit } from "@angular/core";
 import { Teacher } from "../models/teacher.model";
+import { TeacherService } from "../services/teacher.service";
 
 @Component({
   selector: "teachers",
@@ -10,10 +10,10 @@ import { Teacher } from "../models/teacher.model";
   providers: [TeacherService]
 })
 export class TeacherComponent implements OnInit {
-  
+
   teachers: Teacher[] = [];
 
-  constructor(private teacherService: TeacherService) {}
+  constructor(private teacherService: TeacherService) { }
 
   ngOnInit() {
     const password = "a2086833-13ae-4ecb-802b-c12ac3870d4b";

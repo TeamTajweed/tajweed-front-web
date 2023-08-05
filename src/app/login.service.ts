@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, firstValueFrom, shareReplay } from 'rxjs';
+import { BehaviorSubject, Observable, shareReplay } from 'rxjs';
 import { User } from './models/user.model';
 
 @Injectable({

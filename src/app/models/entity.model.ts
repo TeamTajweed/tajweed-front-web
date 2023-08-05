@@ -1,4 +1,4 @@
 export interface Entity {
-    id: string;
-    isActive: boolean;
-  }
+  id: string;
+  isActive: boolean;
+}

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import { StudentComponent } from './componentStudent/student.component';
-import { AuthGuard } from './guard/auth.guard';
 import { AudioComponent } from './componentAudio/audio.component';
-import { TeacherComponent } from './componentTeacher/teacher.component';
 import { EntityComponent } from './componentEntity/entity.component';
+import { StudentComponent } from './componentStudent/student.component';
+import { TeacherComponent } from './componentTeacher/teacher.component';
+import { AuthGuard } from './guard/auth.guard';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [

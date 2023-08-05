@@ -1,7 +1,7 @@
 export interface Audio {
-    id: string;
-    idStudent: string;
-    idEntity: string;
-    chapter: string;
-    verse: string;
-  }
+  id: string;
+  idStudent: string;
+  idEntity: string;
+  chapter: string;
+  verse: string;
+}

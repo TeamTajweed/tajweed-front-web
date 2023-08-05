@@ -1,8 +1,8 @@
 
-import { Component, OnInit } from "@angular/core";
-import { AudioService } from "../services/audio.service";
 import { HttpHeaders } from "@angular/common/http";
+import { Component, OnInit } from "@angular/core";
 import { Audio } from "../models/audio.model";
+import { AudioService } from "../services/audio.service";
 
 @Component({
   selector: "app-audios",
@@ -11,10 +11,10 @@ import { Audio } from "../models/audio.model";
   providers: [AudioService]
 })
 export class AudioComponent implements OnInit {
-  
+
   audios: Audio[] = [];
 
-  constructor(private audioService: AudioService) {}
+  constructor(private audioService: AudioService) { }
 
   ngOnInit() {
     const password = "a2086833-13ae-4ecb-802b-c12ac3870d4b";

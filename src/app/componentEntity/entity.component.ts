@@ -1,8 +1,8 @@
 
+import { HttpHeaders } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import { EntityService } from "../services/entity.service";
-import { HttpHeaders } from "@angular/common/http"; 
 import { Entity } from "../models/entity.model";
+import { EntityService } from "../services/entity.service";
 
 @Component({
   selector: "entities",
@@ -14,7 +14,7 @@ export class EntityComponent implements OnInit {
 
   entities: Entity[] = [];
 
-  constructor(private entityService: EntityService) {}
+  constructor(private entityService: EntityService) { }
 
   ngOnInit() {
     const password = "a2086833-13ae-4ecb-802b-c12ac3870d4b";
