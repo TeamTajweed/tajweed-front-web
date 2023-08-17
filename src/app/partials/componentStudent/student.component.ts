@@ -1,19 +1,19 @@
 import { Component, OnInit } from "@angular/core";
-import { TeacherService } from "../services/teacher.service";
+import { StudentService } from "../../services/student.service";
 import { HttpHeaders } from "@angular/common/http";
-import { Teacher } from "../models/teacher.model";
+import { Student } from "../../models/student.model"
 
 @Component({
-  selector: "teachers",
-  templateUrl: "./teacher.component.html",
-  styleUrls: ["./teacher.component.scss"],
-  providers: [TeacherService]
+  selector: "students",
+  templateUrl: "./student.component.html",
+  styleUrls: ["./student.component.scss"],
+  providers: [StudentService]
 })
-export class TeacherComponent implements OnInit {
+export class StudentComponent implements OnInit {
   
-  teachers: Teacher[] = [];
+  students: Student[] = [];
 
-  constructor(private teacherService: TeacherService) {}
+  constructor(private studentService: StudentService) {}
 
   ngOnInit() {
     const password = "a2086833-13ae-4ecb-802b-c12ac3870d4b";
@@ -29,10 +29,10 @@ export class TeacherComponent implements OnInit {
 
   private performAuthorizedRequest(password: string) {
     const headers = this.createAuthorizationHeader(password);
-    this.teacherService.getTeachers({ headers }).subscribe(
-      (response: Teacher[]) => {
-        console.log("Réponse du backend pour teachers: ", response);
-        this.teachers = response;
+    this.studentService.getStudents({ headers }).subscribe(
+      (response: Student[]) => {
+        console.log("Réponse du backend pour students: ", response);
+        this.students = response;
       },
       (error) => {
         console.log("Erreur lors de la requête:", error);

@@ -1,0 +1,77 @@
+.navbarContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.containerLogoNavabar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width:12%;
+}
+.logoNavbar {
+    width: 50px;
+    height: 50px;
+    border-radius:5px;
+    background-color: #006492;
+    cursor: pointer;
+}
+.nameApplication {
+    color:white;
+    text-decoration: none;
+}
+.nameApplication:hover {
+    color:#006492;
+}
+.containerLinksNavigation {
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    width:30%;
+}
+
+.containerLinksLogin {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width:20%;
+}
+.linksNavigation {
+    color:white;
+    text-decoration: none;
+    cursor: pointer;
+}
+.linksNavigation:hover {
+    border:1px solid white;
+    border-radius:20px;
+    padding:5px 10px 5px 10px;
+}
+.pointLinksNavigation {
+    width: 3px;
+    height: 3px;
+    border-radius:25px;
+    background-color: rgb(255, 255, 255);
+}
+.linkSignIn {
+    color:white;
+    text-decoration: none;
+    padding-right:1%;
+}
+.linkSignIn:hover {
+    border:1px solid white;
+    border-radius:20px;
+    padding:5px 10px 5px 10px;
+    margin-right:1%;
+    
+}
+.linkLogin {
+    color:white;
+    text-decoration: none;
+    border-radius: 12px;
+    padding: 9px 18px 10px 18px;
+    background-color: #006492;
+}
+.linkLogin:hover{
+    background-color: black;
+    border:1px solid white;
+}

@@ -1,8 +1,8 @@
 
 import { Component, OnInit } from "@angular/core";
-import { AudioService } from "../services/audio.service";
+import { AudioService } from "../../services/audio.service";
 import { HttpHeaders } from "@angular/common/http";
-import { Audio } from "../models/audio.model";
+import { Audio } from "../../models/audio.model";
 
 @Component({
   selector: "audios",

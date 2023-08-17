@@ -1,0 +1,149 @@
+//container entier du component validation
+
+.containerTotalValidation{
+width:750px;
+border: 2px solid white;
+border-radius: 5px;
+padding: 3% 4% 5% 4%;
+}
+
+//container des noms et date
+.containerNameDate {
+    display: flex;
+    justify-content:space-between;
+    margin-top:2%;
+    padding:0 5% 1% 5%;
+}
+.containerNameStudent {
+    background-color: gainsboro;
+    display: flex;
+    align-items: center;
+    padding:0px 20px 0px 20px;
+    border-radius:5px;
+}
+.containerDate {
+    background-color: rgb(189, 227, 249);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius:5px;
+    padding:0px 20px 0px 20px;
+}
+
+
+
+// tout les container ou rapport avec l'audio :
+
+
+.containerValidations {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-top:3%;
+   max-height: 500px;
+   overflow-y: scroll;
+}
+.containerStudentCompleteAudio {
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: gainsboro;
+    width:85%;
+    border-radius:0px 10px 10px 10px;
+    margin:3% 5% 0% 0%;
+}
+.containerVocalStudent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:85%;
+    padding-top:1%;
+}
+.containerTeacherCompleteAudio {
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(189, 227, 249);
+    width:85%;
+    border-radius:10px 0px 10px 10px;
+    margin:3% 0% 0% 5%;
+}
+.containerVocalTeacher {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:85%;
+    padding-top:1%;
+    background-color: rgb(189, 227, 249);
+}
+.containerVocal {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width:100%;
+    
+}
+.containerButtonValidation {
+    display: flex;
+    justify-content: space-around;
+    width:100%;
+
+}
+
+//tout les bouttons
+
+.buttonPauseStudent {
+    border:none;
+    background-color: gainsboro;
+    cursor:pointer;
+    padding-left:9%;
+}
+.buttonPlayStudent {
+    border:none;
+    background-color: gainsboro;
+    cursor:pointer;
+    padding-left:9%;
+}
+.buttonPlayTeacher {
+    border:none;
+    background-color: rgb(189, 227, 249);
+    cursor:pointer;
+    padding-left:9%;
+}
+.buttonMicroStudent {
+    border:none;
+    background-color: gainsboro;
+    margin-right:2%;
+    cursor:pointer;
+}
+.buttonMicroTeacher {
+    border:none;
+    background-color: rgb(189, 227, 249);
+    margin-right:2%;
+    cursor:pointer;
+}
+
+.buttonCorrection {
+    cursor:pointer;
+    border: none;
+    background-color: gainsboro;
+    margin: 1% 0 1.5% 0;
+}
+.buttonRefuser {
+    color:rgb(192, 3, 3);
+}
+.titreVocal{
+    font-weight: 600;
+}
+
+//progress-bar
+
+progress::-webkit-progress-value {
+    background: #006492;
+  }
+  progress::-webkit-progress-bar {
+    border-radius:5px;
+  }
+  .teacherButton {
+    background-color: rgb(189, 227, 249);
+  }

@@ -1,0 +1,44 @@
+.containerTotalSearchBar {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.divSearchBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+legend {
+    color: white;
+    padding:5px;
+}
+.fieldsetClass {
+    width:70%;
+    border:2px solid white;
+    border-radius: 5px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left:4%;
+}
+.inputSearchBar {
+    padding:10px 15px 10px 15px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    border: none;
+    color:black;
+}
+::placeholder {
+    color:rgb(65, 64, 64);
+}
+.searchButton {
+    background-color: #006492;
+    color:white;
+    height:50px;
+    width:50px;
+    border-radius:25px;
+    cursor: pointer;
+    border:none;
+}
+

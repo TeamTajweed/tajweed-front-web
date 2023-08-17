@@ -1,0 +1,74 @@
+.login-container {
+    text-align: center;
+    margin-top:4%;
+  }
+  .imageLogoInstitutTabib{
+    height: 10vw;
+  }
+  .input-group {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .inputConnexion {
+    width:300px;
+    padding:15px;
+    border:1px solid white;
+    border-radius: 5px;
+    margin-top:2%;
+    background-color: black;
+    color:white;
+  }
+  
+  .login-button {
+    margin-top: 2%;
+    padding:9px 25px 9px 25px;
+    border:1px solid #006492;
+    border-radius: 25px;
+    background-color: #006492;
+    color:white;
+    cursor: pointer;
+  }
+  hr {
+    width: 40%;
+    margin-top:2%;
+  }
+  .OtherConnexionContainer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  .ButtonOtherConnexion {
+    padding: 9px 25px 9px 0px;
+    border:1px solid #006492;
+    border-radius:25px;
+    color: #006492;
+    margin-top:1.5%;
+    background-color: black;
+    width:250px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  //fleche vers la droite dans le boutton se connecter
+  .fa-arrow-right{
+    margin-left:20px !important;
+    padding-top:5px;
+  }
+
+  //logo microsoft,apple et google de font awesome
+  .fa-google{
+    margin-right:8%;
+  }
+  .fa-apple {
+    margin-right: 12%;
+  }
+  .fa-microsoft {
+    margin-right: 8%;
+    margin-left:14px;
+  }
+
+  
