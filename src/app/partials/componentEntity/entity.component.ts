@@ -1,8 +1,8 @@
 
 import { Component, OnInit } from "@angular/core";
-import { EntityService } from "../services/entity.service";
+import { EntityService } from "../../services/entity.service";
 import { HttpHeaders } from "@angular/common/http"; 
-import { Entity } from "../models/entity.model";
+import { Entity } from "../../models/entity.model";
 
 @Component({
   selector: "entities",

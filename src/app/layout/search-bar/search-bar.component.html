@@ -1,0 +1,34 @@
+<div class="containerTotalSearchBar">
+  <fieldset class="fieldsetClass">
+    <legend>Chercher le profil d'un élève</legend>
+    <div class="divSearchBar">
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+      </button>
+
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
+
+          <input
+            type="text"
+            [formControl]="myControl"
+            [matAutocomplete]="auto"
+            class="inputSearchBar"
+          />
+          <mat-autocomplete
+            #auto="matAutocomplete"
+            (optionSelected)="onFilterOptionSelected($event.option.value)"
+          >
+            <mat-option
+              *ngFor="let option of filteredOptions | async"
+              [value]="option"
+            >
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+    </div>
+  </fieldset>
+</div>
