@@ -10,10 +10,8 @@ import { HomeComponent } from './views/home/home.component';
 import { NavbarComponent } from './layout/navbar/navbar.component'; 
 import { MenuModule } from 'primeng/menu';
 import { FormsModule } from '@angular/forms';
-import { SearchBarComponent } from './layout/search-bar/search-bar.component';
 import { RouterModule } from '@angular/router';
 import { DropdownModule } from 'primeng/dropdown';
-import { NotificationHomePageComponent } from './layout/notification-home-page/notification-home-page.component';
 import { ValidationComponent } from './layout/validation/validation.component';
 import { StatistiquesComponent } from './views/statistiques/statistiques.component';
 import { PublicationsComponent } from './views/publications/publications.component';
@@ -28,6 +26,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SigninComponent } from './views/signin/signin.component';
 import { LandingComponent } from './views/landing/landing.component';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 
 @NgModule({
@@ -36,8 +35,6 @@ import { LandingComponent } from './views/landing/landing.component';
     LoginComponent,
     HomeComponent,  
     NavbarComponent,
-    SearchBarComponent,
-    NotificationHomePageComponent,
     ValidationComponent,
     StatistiquesComponent,
     VerticalBarStatistiqueComponent,
@@ -66,6 +63,7 @@ import { LandingComponent } from './views/landing/landing.component';
     MatIconModule,
     ReactiveFormsModule,
     RouterModule,
+    AutoCompleteModule
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

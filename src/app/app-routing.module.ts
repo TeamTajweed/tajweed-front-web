@@ -15,8 +15,8 @@ export const routerConfig: Routes = [
   { path: 'validation', component: ValidationComponent },
   { path: 'statistiques', component: StatistiquesComponent },
   { path: 'publications', component: PublicationsComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', redirectTo: '/home', pathMatch: 'full'}
+  { path: '', redirectTo: '/landing', pathMatch: 'full' },
+  { path: '**', redirectTo: '/landing', pathMatch: 'full'}
 ];
 
 @NgModule({
