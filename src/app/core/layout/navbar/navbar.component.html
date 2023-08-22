@@ -1,0 +1,30 @@
+<!-- barre nav pour l'application ,quand l'utilisateurs est connecté les bouttons de connexion et inscription n'existe plus -->
+
+<nav class="navbarContainer" *ngIf="currentPage !== 'landing'">
+    <div class="containerLogoNavabar" routerLinkActive="active">
+        <a routerLink="/home"><p src="" alt="" class="logoNavbar"></p></a>
+        <a><p class="nameApplication">TajweedPro</p></a>
+    </div>
+    <ul class="containerLinksNavigation" routerLinkActive="active">
+        <li><a routerLink="/home" class="linksNavigation">Accueil</a></li><div class="pointLinksNavigation"></div>      
+        <li><a routerLink="/publications" class="linksNavigation">Publications</a></li><div class="pointLinksNavigation"></div>
+        <li><a routerLink="/statistiques" class="linksNavigation">Statistiques</a></li>
+    </ul>
+    <ul class="containerLinksLogin" routerLinkActive="active">
+        
+    </ul>
+</nav>
+
+<!-- barre nav pour la page landing ,quand l'utilisateurs est pas connecté les bouttons d'accueil , publications , statistiques n'existe plus -->
+
+<nav class="navbarContainer" *ngIf="currentPage == 'landing'" style="box-shadow: none;">
+    <div class="containerLogoNavabar" routerLinkActive="active">
+        <a routerLink="/home"><p src="" alt="" class="logoNavbar"></p></a>
+        <a><p class="nameApplication">TajweedPro</p></a>
+    </div>
+  
+    <ul class="containerLinksLogin" routerLinkActive="active">
+        <li><a routerLink="/signin" class="linkSignIn">S'inscrire</a></li>
+        <li><a routerLink="/login" class="linkLogin">Se connecter</a></li>
+    </ul>
+</nav>

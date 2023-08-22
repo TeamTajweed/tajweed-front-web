@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './views/login/login.component'; 
-import { HomeComponent } from './views/home/home.component';
-import { ValidationComponent } from './layout/validation/validation.component';
-import { StatistiquesComponent } from './views/statistiques/statistiques.component';
-import { PublicationsComponent } from './views/publications/publications.component';
-import { LandingComponent } from './views/landing/landing.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { ValidationComponent } from './core/layout/validation/validation.component';
+import { StatistiquesComponent } from './statistiques/statistiques.component';
+import { PublicationsComponent } from './publications/publications.component';
+import { LandingComponent } from './landing/landing.component';
 
 
 export const routerConfig: Routes = [
