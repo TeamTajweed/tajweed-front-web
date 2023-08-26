@@ -1,60 +1,7 @@
-//container qui place les 2 containers qui on le border noir sur la page home.
-
-.containerNotificationWithValidationApp
-{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 4%;
+:host::ng-deep .p-card {
+    background-color: #93C5FD;
+    margin-top:10px; 
 }
-
-//fin du container
-
-//début du container notification avec le border black et tout ce qui se rapporte aux notifications.
-
-.containerSearchBarWithNotificationsBorderBlack {
-    display: flex;
-    flex-direction: column;
-    align-items: center !important;
-    border:1px solid #ececec;
-    border-radius: 5px;
-    padding: 50px 4% 50px 4%;
-    box-shadow: rgb(0 0 0 / 20%) 0px 60px 40px -7px;
-
+:host::ng-deep .p-autocomplete-dropdown {
+    background-color: #3B82F6;
 }
-.containerNotification {
-    background-color: #004F8C;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    border-radius: 10px;
-    margin-top: 4%;
-    
-}
-.containerNomNotification {
-    display: flex;
-    flex:1;
-    height:30px;
-}
-.containerSourateNotification {
-    height:40px;
-    display:flex;
-}
-.nameStudentAndSourate {
-    padding-left:12px;
-    color: white;
-}
-.hourNotification {
-    padding-right:10px;
-    color: white;
-}
-.imageNotification {
-    padding-left:7px;
-}
-.IconNotificationViewValidation {
-    color:white;
-    padding-right:20px;
-    padding-left: 10px;
-}
-
-//fin de ce qui se rapporte aux notifications.

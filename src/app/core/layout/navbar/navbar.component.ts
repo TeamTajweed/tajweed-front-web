@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {Router, RouterLink, RouterLinkActive} from '@angular/router';
 import {NgIf} from "@angular/common";
-
+import { MenuItem } from 'primeng/api';
+import { MenubarModule } from 'primeng/menubar';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
     selector: 'app-navbar',
@@ -10,18 +12,36 @@ import {NgIf} from "@angular/common";
     imports: [
         NgIf,
         RouterLink,
-        RouterLinkActive
+        RouterLinkActive,
+        MenubarModule,
+        ButtonModule
     ],
     standalone: true
 })
 export class NavbarComponent {
-    
-    currentPage!: string; // Utilisation de l'opérateur de non-nullabilité
-
-    constructor(private router: Router) { }
-
-    ngOnInit(): void {
-        // Obtenez le nom du composant en cours
-        this.currentPage = this.router.url.split('/').pop() || ''; // Utilisation de '||' pour une valeur par défaut
+    items: MenuItem[] | undefined;
+    isConnected = false;
+    router: Router = inject(Router);
+    ngOnInit() {
+        if(this.router.url===`/home`){
+            this.items = [
+                {
+                    label: 'Accueil',
+                    icon: 'pi pi-fw pi-file',
+                    
+                },
+                {
+                    label: 'Publications',
+                    icon: 'pi pi-fw pi-pencil',
+                    
+                },
+                {
+                    label: 'Statistiques',
+                    icon: 'pi pi-fw pi-user',
+                    
+                },           
+            ];
+            this.isConnected=true;
+        }
     }
 }

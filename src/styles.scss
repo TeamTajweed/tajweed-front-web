@@ -3,8 +3,14 @@
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 body {
     background-color: white;
   }
 html, body { height: 100%; }
 body { margin: 0; font-family: "Montserrat", "Helvetica Neue", sans-serif; }
+
