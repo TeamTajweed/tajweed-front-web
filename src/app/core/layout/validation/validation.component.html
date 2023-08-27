@@ -1,128 +1,111 @@
-<div class="containerTotalValidation">
-
-<div class="containerNameDate">
-  <div class="containerNameStudent">
-    <p class="NameStudent">Abd ar Rahman abou Zaynab</p>
+<!-- ci dessous voici le container entier du component validation , il est visible grace au box-shadow -->
+<div
+  class="shadow-2xl rounded-md border border-solid border-gray-200 py-14 px-12 mb-12"
+>
+  <!-- si le professeur n'a pas encore choisit un étudiant alors le message ci dessous sera afficher -->
+  <div *ngIf="!selectedStudent?.name">
+    <p class="text-center">
+      Veuillez sélectionner un étudiant pour écouter ses vocaux...
+    </p>
   </div>
-  <div class="containerDate">
-    <p>Correction du</p>
-    <p class="date">&nbsp;1 Janvier 2024</p>
-  </div>
-</div>
-
-
-
-
-<div class="containerValidations">
-
-  <div class="containerStudentCompleteAudio">
-
-    <div class="containerVocalStudent">
-      <div class="containerVocal">
-        <p class="titreVocal">Vocal 1</p>
-        <progress min="0" max="100" value="70">70%</progress>
-        <button class="buttonPauseStudent"><i class="pi pi-pause"></i></button>
+  <!-- si un etudiant est selectionner alors le modal avec les audio s'ouvrira   -->
+  <div *ngIf="selectedStudent?.name">
+    <div class="flex justify-between">
+      <div
+        class="flex items-center bg-gray-300 border-none rounded-md py-3 px-8 mr-28"
+      >
+        <p class="NameStudent">{{ selectedStudent?.name }}</p>
       </div>
-      <div class="containerButtonValidation">
-        <button class="buttonCorrection buttonRefuser">Refuser</button>
-        <p>|</p>
-        <button class="buttonCorrection">Semi-Valider</button>
-        <p>|</p>
-        <button class="buttonCorrection">Valider</button>
+      <div
+        class="flex items-center justify-center bg-blue-300 rounded-md py-3 px-8 ml-28"
+      >
+        <p>Correction du</p>
+        <ng-container *ngFor="let audio of audiosStudent;">
+        <p class="date">&nbsp;{{ audio.date }}</p>
+      </ng-container>
       </div>
     </div>
 
-    <button class="buttonMicroStudent"><i class="pi pi-microphone"></i></button>
-  </div>
-  <div class="containerStudentCompleteAudio">
-    <div class="containerVocalStudent">
-      <div class="containerVocal">
-        <p class="titreVocal">Vocal 2</p>
-        <progress min="0" max="100" value="70">70%</progress>
-        <button class="buttonPauseStudent"><i class="pi pi-pause"></i></button>
-      </div>
-      <div class="containerButtonValidation">
-        <button class="buttonCorrection buttonRefuser">Refuser</button>
-        <p>|</p>
-        <button class="buttonCorrection">Semi-Valider</button>
-        <p>|</p>
-        <button class="buttonCorrection">Valider</button>
-      </div>
-    </div>
+    <div class="containerValidations flex flex-col items-center mt-6">
+      <!-- ci dessous les audio étudiants-->
 
-    <button class="buttonMicroStudent"><i class="pi pi-microphone"></i></button>
-  </div>
-  <div class="containerStudentCompleteAudio">
-    <div class="containerVocalStudent">
-      <div class="containerVocal">
-        <p class="titreVocal">Vocal 3</p>
-        <progress min="0" max="100" value="70">70%</progress>
-        <button class="buttonPlayStudent"><i class="pi pi-caret-right"></i></button>
-      </div>
-      <div class="containerButtonValidation">
-        <button class="buttonCorrection buttonRefuser">Refuser</button>
-        <p>|</p>
-        <button class="buttonCorrection">Semi-Valider</button>
-        <p>|</p>
-        <button class="buttonCorrection">Valider</button>
-      </div>
+      <ng-container *ngFor="let audio of audiosStudent;">
+      <!-- ci dessous div contenant tout l audio student -->
+        <div
+          class="mt-5 mr-20 rounded-tl-none rounded-tr-3xl rounded-bl-3xl rounded-br-3xl w-10/12 flex justify-around items-center bg-gray-300"
+        >
+          <div class="w-full flex flex-col items-center pt-2">
+            <div class="flex justify-around items-center w-full">
+              <p class="font-semibold">Vocal <span>{{ audio.id }}</span></p>
+              <progress min="0" max="100" value="70" class="bg-green-200 w-4/12">
+                70%
+              </progress>
+              <!-- ci dessous le boutton pause pour l'audio student -->
+              <button class="bg-gray-300 border-none cursor-pointer">
+                <i class="pi pi-pause"></i>
+              </button>
+              <!-- ci dessous le boutton play pour l'audio student , je l'ai mit en commentaire en attendant de mettre les audio en dynamique-->
+              <!-- <button class="bg-gray-300 border-none cursor-pointer">
+                <i class="pi pi-caret-right"></i>
+              </button> -->
+            </div>
+            <div class="flex justify-around w-full">
+              <button
+                class="cursor-pointer border-none my-1 md:my-1.5 text-red-600 bg-gray-300"
+              >
+                Refuser
+              </button>
+              <p>|</p>
+              <button
+                class="cursor-pointer border-none my-1 md:my-1.5 bg-gray-300"
+              >
+                Semi-Valider
+              </button>
+              <p>|</p>
+              <button
+                class="cursor-pointer border-none my-1 md:my-1.5 bg-gray-300"
+              >
+                Valider
+              </button>
+            </div>
+          </div>
+<!-- ci dessous le boutton du micro pour l'audio sutdent -->
+          <button class="bg-gray-300 border-none cursor-pointer mr-8 ml-6">
+            <i class="pi pi-microphone"></i>
+          </button>
+        </div>
+      </ng-container>
+<!-- ci dessous les audios Teachers -->
+      <ng-container *ngFor="let audio of audiosTeacher;">
+         <!-- ci dessous div contenant tout l audio teacher -->
+        <div
+          class="containerTeacherCompleteAudi mt-5 ml-20 rounded-tl-3xl rounded-tr-none rounded-bl-3xl rounded-br-3xl w-10/12 flex justify-around items-center bg-blue-300"
+        >
+          <div
+            class="w-full flex flex-col items-center bg-blue-300 pt-2 rounded-bl-3xl rounded-tl-3xl"
+          >
+            <div class="flex justify-around items-center w-full">
+              <p class="font-semibold">Vocal <span>{{ audio.id }}</span></p>
+              <progress min="0" max="100" value="70">70%</progress>
+              <!-- ci dessous boutton play pour laudio teacher -->
+              <button class="buttonPlayTeacher bg-blue-300">
+                <i class="pi pi-caret-right border-none cursor-pointer"></i>
+              </button>
+            </div>
+            <div class="flex justify-around w-full">
+              <button
+                class="cursor-pointer border-none my-1 md:my-1.5 bg-blue-300"
+              >
+                Supprimer
+              </button>
+            </div>
+          </div>
+<!-- ci dessous le boutton du micro pour l'audio teacher -->
+          <button class="bg-blue-300 border-none cursor-pointer ml-8 mr-6">
+            <i class="pi pi-microphone"></i>
+          </button>
+        </div>
+      </ng-container>
     </div>
-
-    <button class="buttonMicroStudent"><i class="pi pi-microphone"></i></button>
   </div>
-  <div class="containerTeacherCompleteAudio">
-    <div class="containerVocalTeacher">
-      <div class="containerVocal">
-        <p class="titreVocalTeacher">Vocal 3</p>
-        <progress min="0" max="100" value="70">70%</progress>
-        <button class="buttonPlayTeacher"><i class="pi pi-caret-right"></i></button>
-      </div>
-      <div class="containerButtonValidation">
-        <button class="buttonCorrection buttonRefuser teacherButton"></button>
-        <p>|</p>
-        <button class="buttonCorrection teacherButton">Supprimer</button>
-        <p>|</p>
-        <button class="buttonCorrection teacherButton"></button>
-      </div>
-    </div>
-
-    <button class="buttonMicroTeacher"><i class="pi pi-microphone"></i></button>
-  </div>
-  <div class="containerTeacherCompleteAudio">
-    <div class="containerVocalTeacher">
-      <div class="containerVocal">
-        <p class="titreVocalTeacher">Vocal 3</p>
-        <progress min="0" max="100" value="70">70%</progress>
-        <button class="buttonPlayTeacher"><i class="pi pi-caret-right"></i></button>
-      </div>
-      <div class="containerButtonValidation">
-        <button class="buttonCorrection buttonRefuser teacherButton"></button>
-        <p>|</p>
-        <button class="buttonCorrection teacherButton">Supprimer</button>
-        <p>|</p>
-        <button class="buttonCorrection teacherButton"></button>
-      </div>
-    </div>
-
-    <button class="buttonMicroTeacher"><i class="pi pi-microphone"></i></button>
-  </div>
-  <div class="containerTeacherCompleteAudio">
-    <div class="containerVocalTeacher">
-      <div class="containerVocal">
-        <p class="titreVocalTeacher">Vocal 3</p>
-        <progress min="0" max="100" value="70">70%</progress>
-        <button class="buttonPlayTeacher"><i class="pi pi-caret-right"></i></button>
-      </div>
-      <div class="containerButtonValidation">
-        <button class="buttonCorrection buttonRefuser teacherButton"></button>
-        <p>|</p>
-        <button class="buttonCorrection teacherButton">Supprimer</button>
-        <p>|</p>
-        <button class="buttonCorrection teacherButton"></button>
-      </div>
-    </div>
-
-    <button class="buttonMicroTeacher"><i class="pi pi-microphone"></i></button>
-  </div>
-</div>
 </div>

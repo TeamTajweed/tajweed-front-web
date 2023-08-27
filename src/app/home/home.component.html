@@ -1,150 +1,105 @@
-<app-navbar></app-navbar> 
-<div class="containerNotificationWithValidationApp">
-<div class="containerSearchBarWithNotificationsBorderBlack">
+<app-navbar></app-navbar>
+<!-- ci-dessous voici le container qui contient le container notification et le  container validation sur la page d'accueil-->
+<div
+  class="flex justify-around items-start mt-14"
+>
+<!-- ci dessous voici le container notification visible grace au shadow sur la page d'accueil , il contient la search-bar et le block de notifications -->
+  <div class="grow-0 flex flex-col items-center mb-10 shadow-2xl rounded-md border border-solid border-gray-200 py-14 px-12">
     <div style="margin-bottom: 20px; display: flex; justify-content: center">
-        <p-autoComplete
-          [(ngModel)]="selectedStudent"
-          [dropdown]="true"
-          [suggestions]="filteredStudents!"
-          (completeMethod)="filterStudents($event)"
-          field="name"
-        ></p-autoComplete>
-      </div>
-      <div class="containerNotification">
-        <img
-          src="../../assets/images/Avatar.png"
-          alt="Coran avec de la lumière"
-          class="imageNotification"
-        />
-        <div>
-          <div class="containerNomNotification">
-            <p class="nameStudentAndSourate">Abd ar Rahman abou Zaynab</p>
-            <p style="color: white;">&nbsp;&nbsp; . &nbsp;&nbsp;</p>
-            <p style="color: white;">3 voc</p>
-            <p style="color: white;">&nbsp;&nbsp; . &nbsp;&nbsp;</p>
-            <p class="hourNotification">23h</p>
+      <!-- ci dessous la search-bar autoComplete -->
+      <p-autoComplete
+        [(ngModel)]="selectedStudent"
+        [dropdown]="true"
+        [suggestions]="filteredStudents"
+        (completeMethod)="filterStudents($event)"
+        (click)="showStudentCard(selectedStudent)"
+        field="name"
+        [disabled]="students.length === 0"
+      ></p-autoComplete>
+    </div>
+<!-- ci dessous voici une condition au cas ou la search-bar serait valider sans étudiant , avec une valeur vide. -->
+    <div class="noStudentSelectedMessage" *ngIf="showNoStudentMessage">
+      <p>Veuillez sélectionner un étudiant.</p>
+      <br />
+    </div>
+<!-- ci dessous le block de notifications avec une condition pour l'affichage -->
+    <ng-container *ngIf="displayStudentCard; else allCards">
+      <p-card header="" subheader="" [style]="{ width: '460px' }" class="mt-5">
+        <ng-template pTemplate="header">
+          <div class="flex items-center pt-5">
+            <img
+              alt="Coran avec de la lumière"
+              src="/assets/images/Avatar.png"
+              [style]="{ width: '50px', height: '50px' }"
+              class="ml-5"
+            />
+            <p class="ml-3 font-bold">Vocal <span>1</span></p>
           </div>
-          <div class="containerSourateNotification">
-            <p class="nameStudentAndSourate">Al Fatiha</p>
-            <p style="color: white;">&nbsp;&nbsp; - &nbsp;&nbsp;</p>
-            <p style="color: white;">1&nbsp; à &nbsp;3</p>
-          </div>
+        </ng-template>
+        <div class="flex justify-start">
+          <p>{{ selectedStudent.name }}</p>
+          <p class="ml-3">3 voc</p>
+          <p class="ml-3">Le <span>1 Janvier 2023</span> à <span>23h</span></p>
         </div>
-        <i class="pi pi-angle-right IconNotificationViewValidation"></i>
-      </div>
-      <div class="containerNotification">
-          <img
-            src="../../assets/images/Avatar.png"
-            alt="Coran avec de la lumière"
-            class="imageNotification"
-          />
-          <div>
-            <div class="containerNomNotification">
-              <p class="nameStudentAndSourate">Abd ar Rahman abou Zaynab</p>
-              <p style="color: white;">&nbsp;&nbsp; . &nbsp;&nbsp;</p>
-              <p style="color: white;">3 voc</p>
-              <p style="color: white;">&nbsp;&nbsp; . &nbsp;&nbsp;</p>
-              <p class="hourNotification">23h</p>
-            </div>
-            <div class="containerSourateNotification">
-              <p class="nameStudentAndSourate">Al Fatiha</p>
-              <p style="color: white;">&nbsp;&nbsp; - &nbsp;&nbsp;</p>
-              <p style="color: white;">1&nbsp; à &nbsp;3</p>
-            </div>
-          </div>
-          <i class="pi pi-angle-right IconNotificationViewValidation"></i>
+        <div class="flex justify-start">
+          <p>Al Fathia</p>
+          <p class="ml-3">-</p>
+          <p class="ml-3"><span>1</span> à <span>3</span></p>
         </div>
-        <div class="containerNotification">
-          <img
-            src="../../assets/images/Avatar.png"
-            alt="Coran avec de la lumière"
-            class="imageNotification"
-          />
-          <div>
-            <div class="containerNomNotification">
-              <p class="nameStudentAndSourate">Abd ar Rahman abou Zaynab</p>
-              <p style="color: white;">&nbsp;&nbsp; . &nbsp;&nbsp;</p>
-              <p style="color: white;">3 voc</p>
-              <p style="color: white;">&nbsp;&nbsp; . &nbsp;&nbsp;</p>
-              <p class="hourNotification">23h</p>
+        <ng-template pTemplate="footer">
+          <p-button
+            label="ECOUTER L'AUDIO"
+            icon="pi pi-angle-right"
+            styleClass="p-button-info"
+          ></p-button>
+        </ng-template>
+      </p-card>
+    </ng-container>
+    <ng-template #allCards>
+      <ng-container *ngIf="students.length > 0; else noNotifications">
+        <ng-container *ngFor="let student of students">
+          <p-card
+            header=""
+            subheader=""
+            [style]="{ width: '460px' }"
+            class="mt-5"
+          >
+            <ng-template pTemplate="header">
+              <div class="flex items-center pt-5">
+                <img
+                  alt="Coran avec de la lumière"
+                  src="/assets/images/Avatar.png"
+                  [style]="{ width: '50px', height: '50px' }"
+                  class="ml-5"
+                />
+                <p class="ml-3 font-bold">Vocal <span>1</span></p>
+              </div>
+            </ng-template>
+            <div class="flex justify-start">
+              <p>{{ student.name }}</p>
+              <p class="ml-3">3 voc</p>
+              <p class="ml-3">Le <span></span> à <span>23h</span></p>
             </div>
-            <div class="containerSourateNotification">
-              <p class="nameStudentAndSourate">Al Fatiha</p>
-              <p style="color: white;">&nbsp;&nbsp; - &nbsp;&nbsp;</p>
-              <p style="color: white;">1&nbsp; à &nbsp;3</p>
+            <div class="flex justify-start">
+              <p>Al Fathia</p>
+              <p class="ml-3">-</p>
+              <p class="ml-3"><span>1</span> à <span>3</span></p>
             </div>
-          </div>
-          <i class="pi pi-angle-right IconNotificationViewValidation"></i>
-        </div>
-        <div class="containerNotification">
-          <img
-            src="../../assets/images/Avatar.png"
-            alt="Coran avec de la lumière"
-            class="imageNotification"
-          />
-          <div>
-            <div class="containerNomNotification">
-              <p class="nameStudentAndSourate">Abd ar Rahman abou Zaynab</p>
-              <p style="color: white;">&nbsp;&nbsp; . &nbsp;&nbsp;</p>
-              <p style="color: white;">3 voc</p>
-              <p style="color: white;">&nbsp;&nbsp; . &nbsp;&nbsp;</p>
-              <p class="hourNotification">23h</p>
-            </div>
-            <div class="containerSourateNotification">
-              <p class="nameStudentAndSourate">Al Fatiha</p>
-              <p style="color: white;">&nbsp;&nbsp; - &nbsp;&nbsp;</p>
-              <p style="color: white;">1&nbsp; à &nbsp;3</p>
-            </div>
-          </div>
-          <i class="pi pi-angle-right IconNotificationViewValidation"></i>
-        </div>
-        <div class="containerNotification">
-          <img
-            src="../../assets/images/Avatar.png"
-            alt="Coran avec de la lumière"
-            class="imageNotification"
-          />
-          <div>
-            <div class="containerNomNotification">
-              <p class="nameStudentAndSourate">Abd ar Rahman abou Zaynab</p>
-              <p style="color: white;">&nbsp;&nbsp; . &nbsp;&nbsp;</p>
-              <p style="color: white;">3 voc</p>
-              <p style="color: white;">&nbsp;&nbsp; . &nbsp;&nbsp;</p>
-              <p class="hourNotification">23h</p>
-            </div>
-            <div class="containerSourateNotification">
-              <p class="nameStudentAndSourate">Al Fatiha</p>
-              <p style="color: white;">&nbsp;&nbsp; - &nbsp;&nbsp;</p>
-              <p style="color: white;">1&nbsp; à &nbsp;3</p>
-            </div>
-          </div>
-          <i class="pi pi-angle-right IconNotificationViewValidation"></i>
-        </div>
-        <div class="containerNotification">
-          <img
-            src="../../assets/images/Avatar.png"
-            alt="Coran avec de la lumière"
-            class="imageNotification"
-          />
-          <div>
-            <div class="containerNomNotification">
-              <p class="nameStudentAndSourate">Abd ar Rahman abou Zaynab</p>
-              <p style="color: white;">&nbsp;&nbsp; . &nbsp;&nbsp;</p>
-              <p style="color: white;">3 voc</p>
-              <p style="color: white;">&nbsp;&nbsp; . &nbsp;&nbsp;</p>
-              <p class="hourNotification">23h</p>
-            </div>
-            <div class="containerSourateNotification">
-              <p class="nameStudentAndSourate">Al Fatiha</p>
-              <p style="color: white;">&nbsp;&nbsp; - &nbsp;&nbsp;</p>
-              <p style="color: white;">1&nbsp; à &nbsp;3</p>
-            </div>
-          </div>
-          <i class="pi pi-angle-right IconNotificationViewValidation"></i>
-        </div>    
+            <ng-template pTemplate="footer">
+              <p-button
+                label="ECOUTER L'AUDIO"
+                icon="pi pi-angle-right"
+                styleClass="p-button-info"
+                (click)="showStudentCard(student)"
+              ></p-button>
+            </ng-template>
+          </p-card>
+        </ng-container>
+      </ng-container>
+      <ng-template #noNotifications>
+        <p class="text-center mt-3">Il n'y a pas de nouvelles notifications.</p>
+      </ng-template>
+    </ng-template>
+  </div>
+  <app-validation [selectedStudent]="selectedStudent"></app-validation>
 </div>
-<app-validation></app-validation>
-</div>
-
-
-

@@ -1,13 +1,30 @@
 <app-navbar></app-navbar>
 <main>
-    <div class="containerTitrePhraseAndImage">
-    <h1 class="titleLandingPage">ENREGISTRER , ECOUTER , PARTAGER SANS LIMITE</h1>
-    <h2 class="catchPhrase">Explorez une nouvelle dimension d'échange sonore et laissez votre voix résonner à travers le monde.</h2>
-
-    <div class="divImage"><img src="../../assets/images/headsetWhite.png" alt="livre avec un casque" class="imageLanding"></div>
+  <div class="flex flex-col justify-center items-center mt-5 lg:mt-10 sm:mt-5">
+    <h1 class="text-transparent bg-gradient-to-t from-gray-300 to-black bg-clip-text lg:text-3xl text-center sm:text-xl">
+      ENREGISTRER , ECOUTER , PARTAGER SANS LIMITE
+    </h1>
+    <h2 class="text-transparent bg-gradient-to-t from-gray-300 to-black bg-clip-text lg:text-2xl text-center sm:text-base mt-3 px-2">
+      Explorez une nouvelle dimension d'échange sonore et laissez votre voix
+      résonner à travers le monde.
+    </h2>
+    <!-- ci dessous dans la div se trouve l'image onde sonore bleu -->
+    <div
+      class="bg-[url('/assets/images/bleuprimary.jpg')] bg-center bg-cover flex justify-center items-center lg:h-96 w-2/5 sm:h-2/5"
+    >
+   <!-- ci dessous image du casque blanc avec les livres -->
+      <img
+        src="/assets/images/headsetWhite.png"
+        alt="livre avec un casque"
+        class="lg:h-96 w-96 sm:h1/5"
+      />
     </div>
-    <div class="containerButton">
-        <button class="buttonCommencer">COMMENCER</button>
-        <button class="buttonEnSavoirPlus">EN SAVOIR PLUS</button>
-    </div>
+  </div>
+  <div class="flex justify-center mt-2">
+    <p-button label="COMMENCER" styleClass="p-button-info mr-3"></p-button>
+    <p-button
+      label="EN SAVOIR PLUS"
+      styleClass="p-button-outlined p-button-info ml-3"
+    ></p-button>
+  </div>
 </main>

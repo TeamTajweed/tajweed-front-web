@@ -4,6 +4,9 @@ import {AutoCompleteModule} from "primeng/autocomplete";
 import {ValidationComponent} from "../core/layout/validation/validation.component";
 import {FormsModule} from "@angular/forms";
 import {DropdownModule} from "primeng/dropdown";
+import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
+import { CommonModule } from '@angular/common';
 
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
@@ -20,16 +23,19 @@ interface AutoCompleteCompleteEvent {
     AutoCompleteModule,
     FormsModule,
     DropdownModule,
-
+    CardModule,
+    ButtonModule,
+    CommonModule
   ],
   standalone: true
 })
 export class HomeComponent {
-  students: any[] | undefined;
+  
+  students: any[] = [];
 
   selectedStudent: any;
 
-  filteredStudents: any[] | undefined;
+  filteredStudents: any[] = [];
   //Le code commenté va etre utilisé une fois que le WS sera implémenté en attendant on mock la liste des étudiants
   //constructor(private studentService: CountryService) {}
 
@@ -86,5 +92,19 @@ export class HomeComponent {
 
       this.filteredStudents = filtered;
   }
-}
+  displayStudentCard = false; // Nouvelle propriété pour gérer l'affichage de la carte
+  
+  showNoStudentMessage = false; 
 
+showStudentCard(student: any) {
+  if (student) {
+    this.selectedStudent = student;
+    this.displayStudentCard = true;
+    this.showNoStudentMessage = false; // Cacher le message lorsqu'un étudiant est sélectionné
+  } else {
+    this.selectedStudent = null; // Réinitialiser la sélection d'étudiant
+    this.displayStudentCard = false; // Cacher la carte
+    this.showNoStudentMessage = true; // Afficher le message lorsqu'aucun étudiant n'est sélectionné
+  }
+}
+}
