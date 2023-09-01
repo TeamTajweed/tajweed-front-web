@@ -1,43 +1,88 @@
 <!-- ci dessous voici le container entier du component validation , il est visible grace au box-shadow -->
 <div
-  class="shadow-2xl rounded-md border border-solid border-gray-200 py-14 px-12 mb-12"
+  class="shadow-xl rounded-md border border-solid border-gray-200 pb-14 pt-10 px-12 w-full"
 >
   <!-- si le professeur n'a pas encore choisit un étudiant alors le message ci dessous sera afficher -->
   <div *ngIf="!selectedStudent?.name">
-    <p class="text-center">
+    <p *ngIf="!selectedStudent?.name" class="text-center px-10 py-5">
       Veuillez sélectionner un étudiant pour écouter ses vocaux...
     </p>
+    <!-- si un etudiant est selectionner alors le modal avec les audio s'ouvrira   -->
   </div>
-  <!-- si un etudiant est selectionner alors le modal avec les audio s'ouvrira   -->
   <div *ngIf="selectedStudent?.name">
-    <div class="flex justify-between">
+    <div
+      class="flex justify-between border-2 border-gray-200 mb-10 p-5 rounded-md shadow-lg"
+    >
       <div
         class="flex items-center bg-gray-300 border-none rounded-md py-3 px-8 mr-28"
       >
         <p class="NameStudent">{{ selectedStudent?.name }}</p>
       </div>
+      <button
+        class="bg-yellow-100 border-none cursor-pointer mr-8 ml-6 py-3 px-5 rounded flex items-center"
+        (click)="showQuran = !showQuran"
+      >
+        <i class="pi pi-angle-right pr-2" *ngIf="!showQuran"></i>
+        <i class="pi pi-angle-down pr-2" *ngIf="showQuran"></i>
+        Qur'an
+      </button>
+
       <div
         class="flex items-center justify-center bg-blue-300 rounded-md py-3 px-8 ml-28"
       >
         <p>Correction du</p>
-        <ng-container *ngFor="let audio of audiosStudent;">
-        <p class="date">&nbsp;{{ audio.date }}</p>
-      </ng-container>
+        <ng-container *ngFor="let audio of audiosStudent">
+          <p class="date">&nbsp;{{ audio.date }}</p>
+        </ng-container>
+      </div>
+    </div>
+    <div>
+      <div *ngIf="!showQuran">
+        <!-- Contenu de la première div -->
+      </div>
+      <div
+        *ngIf="showQuran"
+        class="bg-yellow-50 mb-10 border-2 border-gray-300 pb-5"
+      >
+        <!-- Contenu du Coran -->
+
+        <div *ngFor="let sourate of Coran">
+          <ng-container *ngIf="sourate.ayahs[0].page === 1">
+            <p class="text-center mb-6 pt-3 text-2xl">{{ sourate.name }}</p>
+            <ul>
+              <li
+                *ngFor="let ayah of sourate.ayahs"
+                class="text-center text-2xl pb-1"
+              >
+                {{ ayah.text }}
+              </li>
+            </ul>
+          </ng-container>
+        </div>
       </div>
     </div>
 
-    <div class="containerValidations flex flex-col items-center mt-6">
+    <div
+      class="containerValidations flex flex-col items-center mt-6 bg-zinc-100"
+    >
       <!-- ci dessous les audio étudiants-->
 
-      <ng-container *ngFor="let audio of audiosStudent;">
-      <!-- ci dessous div contenant tout l audio student -->
+      <ng-container *ngFor="let audio of audiosStudent">
+        <!-- ci dessous div contenant tout l audio student -->
         <div
           class="mt-5 mr-20 rounded-tl-none rounded-tr-3xl rounded-bl-3xl rounded-br-3xl w-10/12 flex justify-around items-center bg-gray-300"
         >
           <div class="w-full flex flex-col items-center pt-2">
             <div class="flex justify-around items-center w-full">
-              <p class="font-semibold">Vocal <span>{{ audio.id }}</span></p>
-              <progress min="0" max="100" value="70" class="bg-green-200 w-4/12">
+              <p class="font-semibold">
+                Vocal <span>{{ audio.id }}</span>
+              </p>
+              <progress
+                min="0"
+                max="100"
+                value="70"
+                class="bg-green-200 w-4/12"
+              >
                 70%
               </progress>
               <!-- ci dessous le boutton pause pour l'audio student -->
@@ -69,15 +114,15 @@
               </button>
             </div>
           </div>
-<!-- ci dessous le boutton du micro pour l'audio sutdent -->
+          <!-- ci dessous le boutton du micro pour l'audio sutdent -->
           <button class="bg-gray-300 border-none cursor-pointer mr-8 ml-6">
-            <i class="pi pi-microphone"></i>
+            <i class="pi pi-fast-forward"></i>
           </button>
         </div>
       </ng-container>
-<!-- ci dessous les audios Teachers -->
-      <ng-container *ngFor="let audio of audiosTeacher;">
-         <!-- ci dessous div contenant tout l audio teacher -->
+      <!-- ci dessous les audios Teachers -->
+      <ng-container *ngFor="let audio of audiosTeacher">
+        <!-- ci dessous div contenant tout l audio teacher -->
         <div
           class="containerTeacherCompleteAudi mt-5 ml-20 rounded-tl-3xl rounded-tr-none rounded-bl-3xl rounded-br-3xl w-10/12 flex justify-around items-center bg-blue-300"
         >
@@ -85,7 +130,9 @@
             class="w-full flex flex-col items-center bg-blue-300 pt-2 rounded-bl-3xl rounded-tl-3xl"
           >
             <div class="flex justify-around items-center w-full">
-              <p class="font-semibold">Vocal <span>{{ audio.id }}</span></p>
+              <p class="font-semibold">
+                Vocal <span>{{ audio.id }}</span>
+              </p>
               <progress min="0" max="100" value="70">70%</progress>
               <!-- ci dessous boutton play pour laudio teacher -->
               <button class="buttonPlayTeacher bg-blue-300">
@@ -100,7 +147,7 @@
               </button>
             </div>
           </div>
-<!-- ci dessous le boutton du micro pour l'audio teacher -->
+          <!-- ci dessous le boutton du micro pour l'audio teacher -->
           <button class="bg-blue-300 border-none cursor-pointer ml-8 mr-6">
             <i class="pi pi-microphone"></i>
           </button>

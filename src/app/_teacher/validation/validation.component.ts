@@ -1,4 +1,5 @@
-import { Component,Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { QuranService } from '../../quran.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,55 +9,58 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule
   ],
-  standalone: true
+  standalone: true 
 })
 export class ValidationComponent {
-
-  @Input() selectedStudent: any;  
-
+  @Input() selectedStudent: any;
   audiosStudent: any[] = [];
-
   audiosTeacher: any[] = [];
+  Coran: any[] = [];
+  selectedSurahText: string | undefined;
+  showQuran: boolean = false;
 
-  //Le code commenté va etre utilisé une fois que le WS sera implémenté en attendant on mock la liste des audios
-  //constructor(private studentService: CountryService) {}
-  // la mise en place dynamique des éléments reste à voir avec l'équipe afin de mettre au clair le modele de donnée pour les dates , heures , ect.
+  constructor(private quranService: QuranService) {}
+
   ngOnInit() {
-      
-      this.audiosStudent = [
-        {
-          name: "AbdAllah",
-          id: "1",
-          date:"1 Janvier 2023"
-        },
-        {
-          name: "Adam",
-          id: "2",
-          
-        },
-        {
-          name: "Yassir",
-          id: "3",
-          
-        }
-      ];
-      this.audiosTeacher = [
-        {
-          name: "AbdAllah",
-          id: "1",
-          
-        },
-        {
-          name: "Adam",
-          id: "2",
-          
-        },
-        {
-          name: "Yassir",
-          id: "3",
-          
-        }
-      ];
+    this.audiosStudent = [
+      {
+        name: "AbdAllah",
+        id: "1",
+        date: "1 Janvier 2023"
+      },
+      {
+        name: "Adam",
+        id: "2",
+      },
+      {
+        name: "Yassir",
+        id: "3",
+      }
+    ];
+    this.audiosTeacher = [
+      {
+        name: "AbdAllah",
+        id: "1",
+      },
+      {
+        name: "Adam",
+        id: "2",
+      },
+      {
+        name: "Yassir",
+        id: "3",
+      }
+    ];
+    this.getLanguages();
   }
-  
+
+  getLanguages() {
+    this.quranService.getLanguages().subscribe((data: any) => {
+      this.Coran = data.data.surahs;
+    });
+  }
+
+  showSurahText(sourate: any) {
+    this.selectedSurahText = sourate.text;
+  } 
 }

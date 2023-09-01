@@ -1,7 +1,10 @@
-:host::ng-deep .p-card {
-    background-color: #93C5FD;
-    margin-top:10px; 
-}
-:host::ng-deep .p-autocomplete-dropdown {
-    background-color: #3B82F6;
-}
+.page-change {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  .page-number {
+    margin-left: 10px;
+    font-size: 0.8em;
+    color: #777;
+  }

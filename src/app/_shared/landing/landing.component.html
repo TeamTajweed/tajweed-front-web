@@ -1,30 +1,29 @@
 <app-navbar></app-navbar>
 <main>
-  <div class="flex flex-col justify-center items-center mt-5 lg:mt-10 sm:mt-5">
-    <h1 class="text-transparent bg-gradient-to-t from-gray-300 to-black bg-clip-text lg:text-3xl text-center sm:text-xl">
+  <div class="flex flex-col justify-center items-center md:mt-5">
+    <h1 class="md:text-transparent bg-gradient-to-t from-gray-300 to-black bg-clip-text md:text-3xl md:mt-2 text-center sm:mt-7 mb-4 mt-10">
       ENREGISTRER , ECOUTER , PARTAGER SANS LIMITE
     </h1>
-    <h2 class="text-transparent bg-gradient-to-t from-gray-300 to-black bg-clip-text lg:text-2xl text-center sm:text-base mt-3 px-2">
+    <h2 class="text-transparent bg-gradient-to-t from-gray-300 to-black bg-clip-text md:text-2xl text-center mt-3 mb-14 px-2 md:mb-9 sm:text-base sm:mb-10">
       Explorez une nouvelle dimension d'échange sonore et laissez votre voix
       résonner à travers le monde.
     </h2>
     <!-- ci dessous dans la div se trouve l'image onde sonore bleu -->
     <div
-      class="bg-[url('/assets/images/bleuprimary.jpg')] bg-center bg-cover flex justify-center items-center lg:h-96 w-2/5 sm:h-2/5"
+      class="bg-[url('/assets/images/audioVibration.jpg')] bg-center bg-cover flex justify-center items-center md:h-96 md:w-2/6 sm:w-7/12 w-11/12 "
     >
    <!-- ci dessous image du casque blanc avec les livres -->
       <img
         src="/assets/images/headsetWhite.png"
         alt="livre avec un casque"
-        class="lg:h-96 w-96 sm:h1/5"
+        class="md:h-96 md:w-96 h-60 w-60"
       />
     </div>
   </div>
-  <div class="flex justify-center mt-2">
-    <p-button label="COMMENCER" styleClass="p-button-info mr-3"></p-button>
+  <div class="flex justify-center mt-9">
+    <p-button label="COMMENCER" styleClass="bg-blue-900 md:mr-5 sm:mr-5 border-blue-900 mr-2"></p-button>
     <p-button
-      label="EN SAVOIR PLUS"
-      styleClass="p-button-outlined p-button-info ml-3"
-    ></p-button>
+      label="EN SAVOIR PLUS" styleClass="border-blue-900 text-blue-900 md:ml-5 sm:ml-5 ml-2">
+    </p-button>
   </div>
 </main>
