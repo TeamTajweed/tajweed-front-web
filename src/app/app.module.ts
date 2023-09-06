@@ -5,10 +5,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
+import { HomeComponent } from './_teacher/home/home.component';
+import { HomestudentsComponent } from './_students/homestudents/homestudents.component';
+import { FeedstudentsComponent } from './_students/feedstudents/feedstudents.component';
+import { StatsstudentsComponent } from './_students/statsstudents/statsstudents.component';
+import { NavbarstudentsComponent } from './_students/navbarstudents/navbarstudents.component';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HomestudentsComponent, FeedstudentsComponent, StatsstudentsComponent, NavbarstudentsComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {NavbarComponent} from "../core/layout/navbar/navbar.component";
+import {NavbarComponent} from "../navbar/navbar.component";
 import {AutoCompleteModule} from "primeng/autocomplete";
-import {ValidationComponent} from "../core/layout/validation/validation.component";
+import {ValidationComponent} from "../validation/validation.component";
 import {FormsModule} from "@angular/forms";
 import {DropdownModule} from "primeng/dropdown";
 import { CardModule } from 'primeng/card';

@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { ValidationComponent } from './core/layout/validation/validation.component';
-import { StatistiquesComponent } from './statistiques/statistiques.component';
-import { PublicationsComponent } from './publications/publications.component';
-import { LandingComponent } from './landing/landing.component';
+import { LoginComponent } from './_shared/login/login.component';
+import { HomeComponent } from './_teacher/home/home.component';
+import { ValidationComponent } from './_teacher/validation/validation.component';
+import { StatistiquesComponent } from './_teacher/statistiques/statistiques.component';
+import { PublicationsComponent } from './_teacher/publications/publications.component';
+import { LandingComponent } from './_shared/landing/landing.component';
+import { HomestudentsComponent } from './_students/homestudents/homestudents.component';
+import { FeedstudentsComponent } from './_students/feedstudents/feedstudents.component';
+import { StatsstudentsComponent } from './_students/statsstudents/statsstudents.component';
 
 
 export const routerConfig: Routes = [
@@ -15,6 +18,9 @@ export const routerConfig: Routes = [
   { path: 'validation', component: ValidationComponent },
   { path: 'statistiques', component: StatistiquesComponent },
   { path: 'publications', component: PublicationsComponent },
+  { path: 'homestudents', component: HomestudentsComponent },
+  { path: 'statsstudents', component: StatsstudentsComponent },
+  { path: 'feedstudents', component: FeedstudentsComponent },
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
   { path: '**', redirectTo: '/landing', pathMatch: 'full'}
 ];
