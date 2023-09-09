@@ -1,19 +1,19 @@
-
-<div class="md:flex flex-col items-center ml-1 mt-1"  [style]="{'border': '2px solid blue'}" >
-    
-        <div class="flex justify-center">
-            <img src="assets/images/logoInstitutTabib2.png"  class="mr-2 h-14 w-24" /> 
+<div class="card"  [class.shadow-lg]="isConnected">
+    <p-menubar [model]="items">
+        <ng-template pTemplate="start">
+            <div class="flex md:flex-row flex-col justify-start items-center ml-1 mt-1">
+                <img src="assets/images/logoInstitutTabib2.png"  class="mr-2 h-14 w-24" />                
         </div>
-    <p-menubar [model]="items" class="flex"  [style]="{'border': '2px solid yellow'}" >
-      
-        <div *ngIf="!isConnected" class="flex flex-col items-center justify-center md:flex-row mt-2" [style]="{'border': '2px solid green'}">
-            <p-button label="S'inscrire" styleClass="border-blue-900 text-blue-900 md:py-2 md:mr-3 md:mb-0 py-2 px-8 mb-2"></p-button>
-            <p-button label="Se connecter" styleClass="bg-blue-900 border-blue-900 md:py-2 md:mr-2 py-2"></p-button>
-        </div>
+        </ng-template>
+        <ng-template pTemplate="end" *ngIf="!isConnected">
+            <div class="flex flex-col items-center justify-center md:flex-row mt-2">
+                <p-button label="S'inscrire" styleClass="border-blue-900 text-blue-900 md:py-2 md:mr-3 md:mb-0 py-2 px-8 mb-2"></p-button>
+                <p-button label="Se connecter" styleClass="bg-blue-900 border-blue-900 md:py-2 md:mr-2 py-2"></p-button>
+            </div>
+        </ng-template>
     </p-menubar>
-       
-</div>
-
+ </div>
+ 
 
 
       
