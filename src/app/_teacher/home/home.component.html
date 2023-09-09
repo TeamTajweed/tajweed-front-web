@@ -8,10 +8,10 @@
 
 
 <!-- ci-dessous voici le container qui contient le container notification et le  container validation sur la page d'accueil-->
-<div class="flex">
+<div class="flex md:flex-row flex-col">
   <!-- ci dessous voici le container notification visible grace au shadow sur la page d'accueil , il contient la search-bar et le block de notifications -->
   <div
-    class="flex flex-col items-center shadow-xl rounded-md border border-solid border-gray-200 pb-14 px-12 pt-5"
+    class="flex flex-col items-center shadow-xl rounded-md border border-solid border-gray-200 pb-9 px-10 pt-5"
   >
     <!-- ci dessous voici une condition au cas ou la search-bar serait valider sans étudiant , avec une valeur vide. -->
     <div class="noStudentSelectedMessage w-full" *ngIf="showNoStudentMessage">
@@ -21,7 +21,7 @@
 
     <!-- ci dessous le block de notifications avec une condition pour l'affichage -->
     <div
-      class="mt-3 text-center text-red-950 flex items-center mb-1"
+      class="mt-3 text-center text-red-950 flex items-center pb-7"
       *ngIf="students.length > 0"
     >
       <i class="fa-regular fa-bell text-yellow-500"></i>
@@ -29,11 +29,12 @@
         {{ this.students.length }} étudiant(s) ont envoyé des audio.
       </p>
     </div>
+
+    <div class="containerValidation flex-col bg-gray-100 md:px-5">
     <ng-container *ngIf="displayStudentCard; else allCards">
       <!-- Nouvelle card avec une div , sans primeNg -->
-
       <div
-        class="bg-blue-300 w-72 mt-5 rounded-md flex flex-col items-start justify-between py-4 px-4"
+        class=" bg-blue-300 w-72 mt-5 rounded-md flex flex-col items-start justify-between py-4 px-4 snap-center"
       >
         <div class="flex items-center mb-3">
           <img
@@ -42,18 +43,18 @@
             [style]="{ width: '50px', height: '50px' }"
             class="ml-5"
           />
-          <p class="ml-3">Vocal <span>1</span></p>
+          <p class="ml-3 md:text-base text-sm">Vocal <span>1</span></p>
         </div>
 
         <div class="flex justify-start">
           <p>{{ selectedStudent.name }}</p>
-          <p class="ml-3">3 voc</p>
-          <p class="ml-3">Le <span>1 Janvier 2023</span> à <span>23h</span></p>
+          <p class="ml-3 md:text-base text-sm">3 voc</p>
+          <p class="ml-3 md:text-base text-sm">Le <span>1 Janvier 2023</span> à <span>23h</span></p>
         </div>
         <div class="flex justify-start mb-3">
-          <p>Al Fathia</p>
-          <p class="ml-3">-</p>
-          <p class="ml-3"><span>1</span> à <span>3</span></p>
+          <p class="md:text-base text-sm">Al Fathia</p>
+          <p class="ml-3 md:text-base text-sm">-</p>
+          <p class="ml-3 md:text-base text-sm"><span>1</span> à <span>3</span></p>
         </div>
 
         <p-button
@@ -63,6 +64,7 @@
         ></p-button>
       </div>
     </ng-container>
+  </div>
     <ng-template #allCards>
       <ng-container *ngIf="students.length > 0; else noNotifications">
         <ng-container *ngFor="let student of students">
@@ -77,27 +79,27 @@
                 [style]="{ width: '50px', height: '50px' }"
                 class=""
               />
-              <p class="ml-3">Vocal <span>1</span></p>
+              <p class="ml-3 md:text-base text-sm">Vocal <span>1</span></p>
             </div>
 
             <div class="flex flex-col justify-start w-full">
               <div class="flex justify-between mb-2">
-                <p>{{ student.name }}</p>
-                <p class="">3 audio(s)</p>
+                <p class="md:text-base text-sm">{{ student.name }}</p>
+                <p class="md:text-base text-sm">3 audio(s)</p>
               </div>
-              <p class="">Le <span>1 Janvier 2023</span> à <span>23h</span></p>
+              <p class="md:text-base text-sm">Le <span>1 Janvier 2023</span> à <span>23h</span></p>
             </div>
 
             <div class="flex justify-start mb-3">
-              <p>Al Fathia</p>
-              <p class="ml-3">-</p>
-              <p class="ml-3"><span>1</span> à <span>3</span></p>
+              <p class="md:text-base text-sm">Al Fathia</p>
+              <p class="ml-3 md:text-base text-sm">-</p>
+              <p class="ml-3 md:text-base text-sm"><span>1</span> à <span>3</span></p>
             </div>
 
             <p-button
               label="ECOUTER L'AUDIO"
               icon="pi pi-angle-right"
-              styleClass="p-button-info"
+              styleClass="p-button-info md:text-base text-sm"
               [class.hidden]="selectedStudentId === student.id"
               (click)="showStudentCard(student)"
             ></p-button>
@@ -111,6 +113,6 @@
   </div>
   <app-validation
     [selectedStudent]="selectedStudent"
-    class="w-full"
+    ngClass="w-full"
   ></app-validation>
 </div>

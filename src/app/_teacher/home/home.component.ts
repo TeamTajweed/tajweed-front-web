@@ -10,6 +10,7 @@ import { QuranService } from '../../quran.service';
 
 
 
+
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
   query: string;
@@ -38,7 +39,6 @@ export class HomeComponent implements OnInit {
  
   students: any[] = [];
   selectedStudent: any;
-
   selectedStudentId: string | null = null;
   buttonDisplayed: boolean = false;
   showNoStudentMessage = false;

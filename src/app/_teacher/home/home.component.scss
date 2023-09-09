@@ -1,10 +1,16 @@
-.page-change {
-    margin-top: 10px;
-    font-weight: bold;
-  }
-  
-  .page-number {
-    margin-left: 10px;
-    font-size: 0.8em;
-    color: #777;
-  }
+.containerValidation {
+    max-height: 560px;
+    overflow-y: scroll;
+    border-radius: 5px;
+    border: 2px solid rgb(225, 225, 225);
+ }
+
+@media (max-width:765px){
+  .containerValidation   
+  {
+  max-width: 310px !important;
+  overflow-x: scroll !important;
+}
+}
+
+
