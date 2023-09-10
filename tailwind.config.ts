@@ -9,5 +9,7 @@ export default {
       xl: '1440px',
     },
     extend: {} },
-  plugins: [],
+  plugins: [  require('flowbite/plugin')({
+    charts: true,
+})],
 } satisfies Config;

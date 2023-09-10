@@ -10,6 +10,8 @@ import { HomestudentsComponent } from './_students/homestudents/homestudents.com
 import { FeedstudentsComponent } from './_students/feedstudents/feedstudents.component';
 import { StatsstudentsComponent } from './_students/statsstudents/statsstudents.component';
 import { NavbarstudentsComponent } from './_students/navbarstudents/navbarstudents.component';
+import { AudioRecordingService } from './_students/homestudents/audio-recording.service';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,9 +22,10 @@ import { NavbarstudentsComponent } from './_students/navbarstudents/navbarstuden
     HttpClientModule,
     AppRoutingModule,
     RouterModule,
+    FormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: [AudioRecordingService],
   exports: [],
   bootstrap: [AppComponent]
 })
