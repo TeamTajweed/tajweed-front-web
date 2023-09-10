@@ -22,41 +22,15 @@ export class ValidationComponent implements OnInit {
   selectedSurahText: string | undefined;
   showQuran: boolean = false;
   totalSourate: boolean[][] = [];
- 
+  selectedStudentId: string | null = null;
+  students: any[] = [];
   
   constructor(private quranService: QuranService) {}
  
   
   ngOnInit() {
-    this.audiosStudent = [
-      {
-        name: 'AbdAllah',
-        id: '1',
-        date: '1 Janvier 2023',
-      },
-      {
-        name: 'Adam',
-        id: '2',
-      },
-      {
-        name: 'Yassir',
-        id: '3',
-      },
-    ];
-    this.audiosTeacher = [
-      {
-        name: 'AbdAllah',
-        id: '1',
-      },
-      {
-        name: 'Adam',
-        id: '2',
-      },
-      {
-        name: 'Yassir',
-        id: '3',
-      },
-    ];
+    
+    
     this.getLanguages();
   }
 
@@ -76,5 +50,9 @@ export class ValidationComponent implements OnInit {
     }
     this.totalSourate[sourateIndex][ayahIndex] = !this.totalSourate[sourateIndex][ayahIndex];
     console.log('Numéro du verset cliqué :', ayahIndex);
+  }
+  showStudentCard(student: any) {
+    // Implémentez la logique pour afficher la carte de l'étudiant ici
+    console.log('Afficher la carte de l\'étudiant :', student);
   }
 }

@@ -18,7 +18,7 @@
     >
 
       <div
-        class="flex items-center justify-center"
+        class="flex items-center justify-center" 
       >
         <p class="NameStudent text-center md:text-base text-sm bg-gray-300 border-none rounded-md md:py-3 md:px-8  py-3 px-5 md:mb-0 my-2">{{ selectedStudent?.name }}</p>
       </div>
@@ -33,23 +33,32 @@
       </button>
 
         <div>
-        <ng-container *ngIf="audiosStudent.length > 0">
-          <p class="date bg-blue-300 rounded-md md:py-3 md:px-8 text-center md:text-base text-sm py-3 px-5 my-2"><span>Le </span>{{ audiosStudent[0].date }}</p>
+          
+        <ng-container>
+          <p class="date bg-blue-300 rounded-md md:py-3 md:px-8 text-center md:text-base text-sm py-3 px-5 my-2"><span>Le </span>{{ selectedStudent.date }}</p>
         </ng-container>
       </div>
 
     </div>
   
+
+
+
     <!-- container contenant le container de tout les audios et le contenair du Qur'an -->
     <div class="md:flex md:flex-row flex-col">
       <!-- container de toute la partie audio -->
       <div
-        class="containerValidations flex flex-col items-center bg-zinc-100 px-1"
-        [ngClass]="{ 'w-full': !showQuran, 'md:w-1/2 sm:w-full md:mb-0 mb-10 ': showQuran }"
+        class="containerValidations flex flex-col items-center px-1 md:px-0" style=" background: rgb(255,255,255);
+        background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(59,130,246,1) 100%);"
+        [ngClass]="{ 'w-full': !showQuran, 'md:w-1/2 sm:w-full md:mb-0 mb-10 justify-between'  : showQuran }"
         >
         <!-- ci dessous les audio étudiants-->
 
-        <ng-container *ngFor="let audio of audiosStudent">
+        
+        <div class="w-full">
+        
+        <ng-container *ngFor="let audio of selectedStudent.audio">
+          
           <!-- ci dessous div contenant tout l audio student -->
           <div
             class="mt-5 mr-20 rounded-tl-none rounded-tr-3xl rounded-bl-3xl rounded-br-3xl w-10/12 flex justify-around items-center bg-gray-300"
@@ -103,6 +112,7 @@
           </div>
         </ng-container>
         <!-- ci dessous les audios Teachers -->
+
         <ng-container *ngFor="let audio of audiosTeacher">
           <!-- ci dessous div contenant tout l audio teacher -->
           <div
@@ -135,6 +145,12 @@
             </button>
           </div>
         </ng-container>
+      
+      </div>
+        
+        <div class="flex justify-center items-center w-full mt-10 bg-white border-blue-100 border-2">
+          <button class="rounded-full px-5 py-4 shadow-lg border-blue-300 border-2 bg-white"><i class="pi pi-microphone text-blue-600"></i></button>
+        </div>
       </div>
       <!-- debut du container du Qur'an et la logique d'affichage -->
       <div *ngIf="!showQuran">

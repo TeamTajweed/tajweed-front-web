@@ -31,78 +31,38 @@
     </div>
 
     <div class="containerValidation flex-col bg-gray-100 md:px-5">
-    <ng-container *ngIf="displayStudentCard; else allCards">
-      <!-- Nouvelle card avec une div , sans primeNg -->
-      <div
-        class=" bg-blue-300 w-72 mt-5 rounded-md flex flex-col items-start justify-between py-4 px-4 snap-center"
-      >
-        <div class="flex items-center mb-3">
-          <img
-            alt="Coran avec de la lumière"
-            src="/assets/images/Avatar.png"
-            [style]="{ width: '50px', height: '50px' }"
-            class="ml-5"
-          />
-          <p class="ml-3 md:text-base text-sm">Vocal <span>1</span></p>
-        </div>
-
-        <div class="flex justify-start">
-          <p>{{ selectedStudent.name }}</p>
-          <p class="ml-3 md:text-base text-sm">3 voc</p>
-          <p class="ml-3 md:text-base text-sm">Le <span>1 Janvier 2023</span> à <span>23h</span></p>
-        </div>
-        <div class="flex justify-start mb-3">
-          <p class="md:text-base text-sm">Al Fathia</p>
-          <p class="ml-3 md:text-base text-sm">-</p>
-          <p class="ml-3 md:text-base text-sm"><span>1</span> à <span>3</span></p>
-        </div>
-
-        <p-button
-          label="ECOUTER L'AUDIO"
-          icon="pi pi-angle-right"
-          styleClass="p-button-info"
-        ></p-button>
-      </div>
+    <ng-container *ngIf="displayStudentCard; else allCards"> 
     </ng-container>
   </div>
     <ng-template #allCards>
       <ng-container *ngIf="students.length > 0; else noNotifications">
         <ng-container *ngFor="let student of students">
+          <!-- Nouvelle card avec une div , sans primeNg --> 
           <div
             class="bg-blue-300 w-72 mt-5 rounded-md flex flex-col items-start justify-between py-4 px-4"
             [class.bg-gray-300]="selectedStudentId === student.id"
           >
             <div class="flex items-center mb-3">
-              <img
-                alt="Coran avec de la lumière"
-                src="/assets/images/Avatar.png"
-                [style]="{ width: '50px', height: '50px' }"
-                class=""
-              />
-              <p class="ml-3 md:text-base text-sm">Vocal <span>1</span></p>
+              <div class=" bg-gray-300 border-blue-600 rounded-full px-3 py-2 ">
+              <i class="pi pi-user text-blue-600"></i>
+            </div>
+              <p class="md:text-base text-sm pl-3">{{ student.name }}</p>
             </div>
 
             <div class="flex flex-col justify-start w-full">
-              <div class="flex justify-between mb-2">
-                <p class="md:text-base text-sm">{{ student.name }}</p>
-                <p class="md:text-base text-sm">3 audio(s)</p>
+              <div class="flex justify-between">
+                
+                <p class=" text-sm">{{ student.audio.length }} audio(s)</p><p class="text-sm">{{ student.sourate }}<span class="text-sm"> - </span><span> {{ student.DebutVerset }}</span> à <span>{{ student.FinVerset }}</span></p>
               </div>
-              <p class="md:text-base text-sm">Le <span>1 Janvier 2023</span> à <span>23h</span></p>
+              <p class=" text-sm mb-3">Le <span>{{ student.date }}</span> à <span>{{ student.heure }}</span></p>
             </div>
-
-            <div class="flex justify-start mb-3">
-              <p class="md:text-base text-sm">Al Fathia</p>
-              <p class="ml-3 md:text-base text-sm">-</p>
-              <p class="ml-3 md:text-base text-sm"><span>1</span> à <span>3</span></p>
-            </div>
-
-            <p-button
-              label="ECOUTER L'AUDIO"
-              icon="pi pi-angle-right"
-              styleClass="p-button-info md:text-base text-sm"
+            
+            <button
+            class="bg-blue-600 py-2 pl-5 pr-4 text-white flex items-center rounded"
               [class.hidden]="selectedStudentId === student.id"
               (click)="showStudentCard(student)"
-            ></p-button>
+            ><span class="text-sm">ÉCOUTER</span><i class="pi pi-angle-right pl-3"></i></button>
+          
           </div>
         </ng-container>
       </ng-container>
@@ -111,6 +71,7 @@
       </ng-template>
     </ng-template>
   </div>
+  
   <app-validation
     [selectedStudent]="selectedStudent"
     ngClass="w-full"

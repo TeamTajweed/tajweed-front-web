@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {NavbarComponent} from "../../_teacher/navbar/navbar.component";
 import {ValidationComponent} from "../../_teacher/validation/validation.component";
+
 import {FormsModule} from "@angular/forms";
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
@@ -36,7 +38,8 @@ interface AutoCompleteCompleteEvent {
 
 export class HomeComponent implements OnInit {
   
- 
+  @ViewChild(ValidationComponent)
+  validationComponent!: ValidationComponent;
   students: any[] = [];
   selectedStudent: any;
   selectedStudentId: string | null = null;
@@ -58,39 +61,98 @@ export class HomeComponent implements OnInit {
   getStudents() {
       /*this.studentService.getListStudents().then((students) => {
           this.students = students;
+          
       });*/
+
       this.students = [
         {
+          id: "1",
+          id_student: "64",
           name: "AbdAllah",
-          id: "1"
+          date: "16 janvier 2023",
+          audio: [1, 2, 3],
+          heure: "21H20",
+          sourate:"Al faatiha",
+          DebutVerset:"1",
+          FinVerset:"4",
         },
+
         {
+          id: "3",
+          id_student: "65",
           name: "Adam",
-          id: "2"
+          date: "17 janvier 2023",
+          audio: [1, 2],
+          heure: "19H20",
+          sourate:"Al baqarah",
+          DebutVerset:"20",
+          FinVerset:"30",
         },
         {
+          id: "4",
+          id_student: "66",
           name: "Yassir",
-          id: "3"
+          date: "21 janvier 2023",
+          audio: [1, 2, 3, 4, 5, 6, 7, 8],
+          heure: "18H00",
+          sourate:"Al jinn",
+          DebutVerset:"1",
+          FinVerset:"15",
         },
         {
+          id: "5",
+          id_student: "67",
           name: "Mohammad",
-          id: "4"
+          date: "20 janvier 2023",
+          audio: [1, 2, 3, 4, 5],
+          heure: "20H20",
+          sourate:"Al Muzzammil",
+          DebutVerset:"1",
+          FinVerset:"15",
         },
         {
+          id: "6",
+          id_student: "68",
           name: "Moussa",
-          id: "5"
+          date: "21 janvier 2023",
+          audio: [1, 2, 3, 4],
+          heure: "06H20",
+          sourate:"Al faatiha",
+          DebutVerset:"1",
+          FinVerset:"7",
         },
         {
-          name: "Dorian",
-          id: "6"
-        },
-        {
-          name: "Fadil",
           id: "7",
+          id_student: "70",
+          name: "Dorian",
+          date: "18 janvier 2023",
+          audio: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+          heure: "21H20",
+          sourate:"Al falaq",
+          DebutVerset:"1",
+          FinVerset:"5",
         },
         {
-          name: "AbdaRahman",
           id: "8",
+          id_student: "55",
+          name: "Fadil",
+          date: "20 janvier 2023",
+          audio: [1, 2, 3],
+          heure: "16H20",
+          sourate:"Al Qariah",
+          DebutVerset:"1",
+          FinVerset:"7",
+        },
+        {
+          id: "9",
+          id_student: "70",
+          name: "AbdaRahman",
+          date: "2 janvier 2023",
+          audio: [1, 2],
+          heure: "21H10",
+          sourate:"Al fath",
+          DebutVerset:"1",
+          FinVerset:"15",
         }
       ];
   }
@@ -102,7 +164,8 @@ showStudentCard(student: any) {
     this.selectedStudentId = student.id;
     this.buttonDisplayed = true;
     this.showNoStudentMessage = false; // Cacher le message lorsqu'un étudiant est sélectionné
-    this.students.length 
+    this.students.length; 
+    this.validationComponent.showStudentCard(student); 
   } else {
     this.selectedStudent = null; // Réinitialiser la sélection d'étudiant
     this.selectedStudentId = null;
