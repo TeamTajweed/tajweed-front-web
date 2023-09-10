@@ -25,7 +25,6 @@ export class HomestudentsComponent {
 
   //Audio
   isRecording = false;
-  canRecord = true;
   recordedTime: string | undefined;
   blobUrl: SafeUrl | null | undefined;
   teste: any;
@@ -48,7 +47,6 @@ export class HomestudentsComponent {
   startRecording() {
     if (!this.isRecording) {
       this.isRecording = true;
-      this.canRecord = false;
       this.audioRecordingService.startRecording();
     }
   }
@@ -68,9 +66,9 @@ export class HomestudentsComponent {
   }
 
   clearRecordedData() {
+    this.stopRecording();
     this.blobUrl = null;
     this.audioRecordingService.resetTimer();
-    this.canRecord = true;
   }
 
   ngOnDestroy(): void {
@@ -92,11 +90,15 @@ export class HomestudentsComponent {
     audio.play();
   }
 
-  addRecordToRecords() {
+  async addRecordToRecords() {
+    //j'ai honte de faire ca mais les promesses et les observables font n'imp 
+    this.stopRecording();
+    await this.delay(250);
     const url = window.URL.createObjectURL(this.teste.blob);
     var audioForTransit = new AudioforTransit;
     audioForTransit.url = url;
     audioForTransit.numberVerse = this.currentVerse;
+    audioForTransit.duration = this.recordedTime;
     this.audioList?.push(audioForTransit);
     this.currentVerse++;
   }
@@ -115,9 +117,9 @@ export class HomestudentsComponent {
   }
 
   onVerseSelect(_selectedVerse: number) {
-    //TO DO MM gérer le cas de la sélection du dernier verset
     this.currentVerse = _selectedVerse;
-    var chopchop = this.listVersesStart.length - _selectedVerse;
+    //On rajoute 1 pour le cas de la selection du dernier verset d'une sourate par exemple
+    var chopchop = this.listVersesStart.length - _selectedVerse + 1;
     this.fillArray(this.listVersesStart.length, this.listVersesEnd!);
 
     while (this.listVersesEnd.length > chopchop) {
@@ -136,6 +138,15 @@ export class HomestudentsComponent {
     while (array.length > 0) {
       array.pop();
     }
+  }
+
+  delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  //Fcts de requetes
+  submitAudios(array: AudioforTransit[]) {
+    console.log(array);
   }
 
   ngOnInit() {

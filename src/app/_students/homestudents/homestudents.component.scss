@@ -28,7 +28,7 @@ body {
   position: relative;
   transition: all 0.2s ease-in-out;
   
-  p {
+  .paragraphe {
     font-weight: bold;
     color: #fff;
     opacity: 0.7;
@@ -93,10 +93,10 @@ body {
         box-shadow: 4px 4px 60px 8px rgba(0,0,0,0.2);
       }
     }
-    
+    /*
     &[type="button"] {
       margin-top: 10px;
-      width: 150px;
+      width: 120px;
       font-size: 1rem;
       
       &:hover {
@@ -106,7 +106,7 @@ body {
       &:active {
         background: rgba(255,255,255,0.2);
       }
-    }
+    }*/
   }
   
   &:hover {
@@ -189,42 +189,52 @@ button:focus {
 	font-family: "Roboto Mono", monospace;
 	color: #ffffff;
 }
-.timeBox {
-	position: absolute;
-	-webkit-transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-	top: 50%;
-	left: 50%;
-}
-.sizeTimeBox {
-	width: 320px;
-}
-.clock {
-	height: 100%;
-	width: 100%;
-	background-color: rgba(255, 255, 255, 0.06);
-	-webkit-backdrop-filter: blur(15px);
-	backdrop-filter: blur(15px);
-	padding: 50px 25px;
-	-webkit-box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
-	box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
-	border: 1.5px solid rgba(255, 255, 255, 0.06);
-	border-radius: 8px;
-}
 
 .center {
 	text-align: center;
 }
-#time {
-	font-size: 40px;
-	display: inline-block;
-}
-#legend {
-	position: relative;
-	font-size: 16px;
-	letter-spacing: 2px;
-	text-transform: uppercase;
-	color: #c5c5c5;
+
+.time {
 	text-align: center;
+  font-size: 80px;
+  font-family: 'Orbitron', sans-serif;
 }
+
+.recordContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5em;
+  background-color: transparent;
+  border-radius: 0.25em;
+}
+
+.recording-circle {
+  background-color: red;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  animation: ease pulse 2s infinite;
+  margin-right: 0.25em;
+}
+
+.recording-text {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 0.95em;
+  color: white;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: red;
+  }
+  50% {
+    background-color: #f06c6c;
+  }
+  100% {
+    background-color: red;
+  }
+}
+

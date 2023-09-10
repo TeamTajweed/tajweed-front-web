@@ -1,5 +1,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet"> 
+<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 
 <div class="h-screen w-full relative flex overflow-hidden">  
     <div class="w-full h-full ">
@@ -21,7 +22,7 @@
               <div class="massiveForm gap-8 columns-3">
                         <!-- Composant de sélection -->
                   <div class=" shadow-2xl flex flex-col grow">
-                    <p>Sélection</p>   
+                    <p class="paragraphe">Sélection</p>   
                     <div class="pb-10">
                       <label for="verseEnd" class="block mb-2 text-bg font-medium text-white">Choix de la sourate</label>
                       <div class="relative inline-flex">
@@ -51,28 +52,36 @@
                    </div>
                   </div>
 
-                   <!-- Composant d'enregistrement 
-                  *ngIf="canRecord"
-                  *ngIf="isRecording && !blobUrl"
-                  *ngIf="!isRecording && blobUrl" 
-                  *ngIf="!isRecording && blobUrl" 
-                  -->
+                   <!-- Composant d'enregistrement -->
                   <div class="shadow-2xl grow">
-                    <p>Enregistrement</p>               
-                    <div>
-                      <button class=" border-solid"  (click)="startRecording()">Enregistrer</button>
-                      <button class="buttonGlass border-solid"  (click)="stopRecording()">Stop</button>
-                      <button class="buttonGlass border-solid" (click)="clearRecordedData()">Effacer</button>   
-                      <button class="buttonGlass border-solid" (click)="addRecordToRecords()">Ajouter</button>
-
-                      <p>{{recordedTime}} </p>
+                    <p class="paragraphe">Enregistrement</p>   
+                    <div class="inline-flex rounded-md shadow-sm" role="group">
+                      <button type="button" [disabled]="isRecording" (click)="startRecording()" class="group inline-flex items-center px-4 py-2 text-md font-medium text-blue-700 border border-gray-200 rounded-l-lg hover:bg-white hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="group-hover:fill-blue-700" height="1.25em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M96 96V256c0 53 43 96 96 96s96-43 96-96H208c-8.8 0-16-7.2-16-16s7.2-16 16-16h80V192H208c-8.8 0-16-7.2-16-16s7.2-16 16-16h80V128H208c-8.8 0-16-7.2-16-16s7.2-16 16-16h80c0-53-43-96-96-96S96 43 96 96zM320 240v16c0 70.7-57.3 128-128 128s-128-57.3-128-128V216c0-13.3-10.7-24-24-24s-24 10.7-24 24v40c0 89.1 66.2 162.7 152 174.4V464H120c-13.3 0-24 10.7-24 24s10.7 24 24 24h72 72c13.3 0 24-10.7 24-24s-10.7-24-24-24H216V430.4c85.8-11.7 152-85.3 152-174.4V216c0-13.3-10.7-24-24-24s-24 10.7-24 24v24z"/></svg>
+                        <span class="ml-1 group-hover:text-blue-700">Enregistrer</span> 
+                      </button>
+                      <button type="button" [disabled]="!isRecording" (click)="addRecordToRecords()" class="group inline-flex items-center px-4 py-2 text-md font-medium text-blue-700 border border-gray-200 hover:bg-white hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="group-hover:fill-blue-700" height="1.25em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M48 96V416c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V170.5c0-4.2-1.7-8.3-4.7-11.3l33.9-33.9c12 12 18.7 28.3 18.7 45.3V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H309.5c17 0 33.3 6.7 45.3 18.7l74.5 74.5-33.9 33.9L320.8 84.7c-.3-.3-.5-.5-.8-.8V184c0 13.3-10.7 24-24 24H104c-13.3 0-24-10.7-24-24V80H64c-8.8 0-16 7.2-16 16zm80-16v80H272V80H128zm32 240a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z"/></svg>
+                        <span class="ml-1 group-hover:text-blue-700">Sauvegarder</span>
+                      </button>
+                      <button type="button" (click)="clearRecordedData()" class="group inline-flex items-center px-4 py-2 text-md font-medium text-blue-700 border border-gray-200 rounded-r-md  hover:bg-white hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="group-hover:fill-blue-700" height="1.25em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z"/></svg>
+                        <span class="ml-1 group-hover:text-blue-700">Supprimer</span>
+                      </button>
+                    </div>  
+                    <div *ngIf="isRecording" class="content-center">
+                      <div class="recordContainer">
+                        <div class="recording-circle"></div>
+                        <div class="recording-text">Enregistrement</div>
+                      </div>
+                      <p class="time">{{recordedTime}}</p>
                     </div>
                   </div>
 
                    <!-- Composant d'envoi -->
                   <div class="shadow-2xl grow">
-                    <p>Envoi</p>               
-                    <div class="flex flex-col items-center justify-center">
+                    <p class="paragraphe">Envoi</p>               
+                    <div *ngIf="audioList.length != 0" class="flex flex-col items-center justify-center">
                       <div class="max-w-xl bg-green rounded-lg shadow-lg overflow-hidden">
                         <div class="relative">
                           <img src="../../assets/images/sourahBG.jpg" class="object-cover flex">
@@ -80,30 +89,6 @@
                             <h3 class="font-bold">Sourate {{selectedSourateName}}</h3>
                             <span class="opacity-70">Versets de {{selectedVerseStart}} à {{selectedVerseEnd}}</span>
                           </div>
-                        </div>
-                        <div>
-                          <div class="relative h-1 bg-gray-200">
-                            <div class="absolute h-full w-1/2 bg-green-500 flex items-center justify-end">
-                              <div class="rounded-full w-3 h-3 bg-white shadow"></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="flex justify-between text-xs font-semibold text-gray-500 px-4 py-2">
-                          <div>
-                            1:50
-                          </div>
-                          <div class="flex space-x-3 p-2">
-                            <button class="focus:outline-none">
-                              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>
-                            </button>
-                            <button class="rounded-full w-8 h-8 flex items-center justify-center pl-0.5 ring-2 ring-gray-100 focus:outline-none">
-                              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                            </button>
-                            <button class="focus:outline-none">
-                              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
-                            </button>
-                          </div>
-                          <div>11</div>
                         </div>
                         <ul class="text-xs sm:text-base divide-y border-t cursor-default">
                           <li *ngFor="let audio of audioList" class="flex items-center space-x-3 hover:bg-[#15817cef]">
@@ -114,7 +99,7 @@
                               Verset {{audio.numberVerse}}
                             </div>
                             <div class="text-xs text-gray-400">
-                              0:15
+                              {{audio.duration}}
                             </div>
                             <button class="focus:outline-none pr-4 group">
                               <svg class="w-4 h-4 group-hover:text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5"/></svg>
@@ -129,7 +114,8 @@
                 <div class="drop drop-1"></div>
                 <div class="drop drop-2"></div>
                 <div class="drop drop-3"></div>
-                <div class="drop drop-4"></div>
+                <div class="drop drop-4 ">
+                </div>
                 <div class="drop drop-5"></div>
                 <div class="drop drop-6"></div>
               </div>

@@ -78,13 +78,16 @@ export class AudioRecordingService {
 
   //Fct utilitaire
   private toString(value: number) {
-    let val2 = ""
+    var val2 = ""
     if (!value){
         val2 = "00";  
     } 
     if (value < 10){
         val2 = "0" + value;
-    } 
+    }
+    if(value > 9){
+      val2 = value.toString();
+    }
     return val2;
   }
 
