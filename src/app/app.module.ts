@@ -5,19 +5,27 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
+import { HomeComponent } from './_teacher/home/home.component';
+import { HomestudentsComponent } from './_students/homestudents/homestudents.component';
+import { FeedstudentsComponent } from './_students/feedstudents/feedstudents.component';
+import { StatsstudentsComponent } from './_students/statsstudents/statsstudents.component';
+import { NavbarstudentsComponent } from './_students/navbarstudents/navbarstudents.component';
+import { AudioRecordingService } from './_students/homestudents/audio-recording.service';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HomestudentsComponent, FeedstudentsComponent, StatsstudentsComponent, NavbarstudentsComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     RouterModule,
+    FormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: [AudioRecordingService],
   exports: [],
   bootstrap: [AppComponent]
 })

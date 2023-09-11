@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NavbarComponent} from "../core/layout/navbar/navbar.component";
+import {NavbarComponent} from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-statistiques',
