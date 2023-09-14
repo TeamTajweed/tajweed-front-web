@@ -10,112 +10,119 @@
     <!-- si un etudiant est selectionner alors le modal avec les audio s'ouvrira   -->
   </div>
 
-
   <div *ngIf="selectedStudent?.name" class="w-full">
-
     <div
-      class="flex md:justify-between flex-wrap justify-center  border-2 border-gray-200 mb-10 md:p-5 rounded-md shadow-lg p-3 w-full"
+      class="flex md:justify-between flex-wrap justify-center border-2 border-gray-200 mb-10 md:p-5 rounded-md shadow-lg p-3 w-full"
     >
-
-      <div
-        class="flex items-center justify-center" 
-      >
-        <p class="NameStudent text-center md:text-base text-sm bg-gray-300 border-none rounded-md md:py-3 md:px-8  py-3 px-5 md:mb-0 my-2">{{ selectedStudent?.name }}</p>
+      <div class="flex items-center justify-center">
+        <p
+          class="NameStudent text-center md:text-base text-sm bg-gray-300 border-none rounded-md md:py-3 md:px-8 py-3 px-5 md:mb-0 my-2"
+        >
+          {{ selectedStudent?.name }}
+        </p>
       </div>
 
       <button
-        class="bg-yellow-100 border-none cursor-pointer md:mr-8  mr-6 ml-6 py-3 px-5 rounded flex items-center md:text-base text-sm  md:mb-0 my-2"
-        (click)="showQuran = !showQuran; updateSelectedPage(selectedStudent);"
+        class="bg-yellow-100 border-none cursor-pointer md:mr-8 mr-6 ml-6 py-3 px-5 rounded flex items-center md:text-base text-sm md:mb-0 my-2"
+        (click)="showQuran = !showQuran; updateSelectedPage(selectedStudent)"
+        (click)="scrollToAnchor(selectedStudent?.DebutVerset)"
       >
         <i class="pi pi-angle-right pr-2" *ngIf="!showQuran"></i>
         <i class="pi pi-angle-down pr-2" *ngIf="showQuran"></i>
         Qur'an
-      </button>   
-        <div>
-          
+      </button>
+      <div>
         <ng-container>
-          <p class="date bg-blue-300 rounded-md md:py-3 md:px-8 text-center md:text-base text-sm py-3 px-5 my-2"><span>Le </span>{{ selectedStudent.date }}</p>
+          <p
+            class="date bg-blue-300 rounded-md md:py-3 md:px-8 text-center md:text-base text-sm py-3 px-5 my-2"
+          >
+            <span>Le </span>{{ selectedStudent.date }}
+          </p>
         </ng-container>
       </div>
-
     </div>
-  
-
-
 
     <!-- container contenant le container de tout les audios et le contenair du Qur'an -->
     <div class="md:flex md:flex-row flex-col">
       <!-- container de toute la partie audio -->
       <div
-        class="containerValidations flex flex-col items-center px-1 md:px-0" style=" background: rgb(255,255,255);
-        background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(59,130,246,1) 100%);"
-        [ngClass]="{ 'w-full': !showQuran, 'md:w-1/2 sm:w-full md:mb-0 mb-10 justify-between'  : showQuran }"
-        >
+        class="containerValidations flex flex-col items-center px-1 md:px-0"
+        style="
+          background: rgb(255, 255, 255);
+          background: linear-gradient(
+            0deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(59, 130, 246, 1) 100%
+          );
+        "
+        [ngClass]="{
+          'w-full': !showQuran,
+          'md:w-1/2 sm:w-full md:mb-0 mb-10 justify-between': showQuran
+        }"
+      >
         <!-- ci dessous les audio étudiants-->
 
-        
         <div class="w-full">
-        
-        <ng-container *ngFor="let audio of selectedStudent.audio">
-          
-          <!-- ci dessous div contenant tout l audio student -->
-          <div
-            class="mt-5 mr-20 rounded-tl-none rounded-tr-3xl rounded-bl-3xl rounded-br-3xl w-10/12 flex justify-around items-center bg-gray-300"
-          >
-            <div class="w-full flex flex-col items-center pt-2">
-              <div class="flex justify-around items-center w-full">
-                <p class="font-semibold md:text-base text-sm">
-                  Vocal <span>{{ audio.id }}</span>
-                </p>
-                <progress
-                  min="0"
-                  max="100"
-                  value="0"
-                  class="bg-green-200 w-4/12"
-                >
-                  70%
-                </progress>
-                <!-- ci dessous le boutton pause pour l'audio student -->
-                <button class="bg-gray-300 border-none cursor-pointer">
-                  <i class="pi pi-caret-right"></i>
-                </button>
-                <!-- ci dessous le boutton play pour l'audio student , je l'ai mit en commentaire en attendant de mettre les audio en dynamique-->
-                <!-- <button class="bg-gray-300 border-none cursor-pointer">
-                <i class="pi pi-caret-right"></i>
+          <ng-container *ngFor="let audio of selectedStudent.audio">
+            <!-- ci dessous div contenant tout l audio student -->
+            <div
+              class="mt-5 mr-20 rounded-tl-none rounded-tr-3xl rounded-bl-3xl rounded-br-3xl w-10/12 flex justify-around items-center bg-gray-300"
+            >
+              <div class="w-full flex flex-col items-center pt-2">
+                <div class="flex justify-around items-center w-full">
+                  <p class="font-semibold md:text-base text-sm">
+                    Vocal <span>{{ audio.id }}</span>
+                  </p>
+                  <progress
+                    min="0"
+                    max="100"
+                    value="0"
+                    class="bg-green-200 w-4/12"
+                  >
+                    70%
+                  </progress>
+                  <!-- ci dessous le boutton pause pour l'audio student -->
+                  <button class="bg-gray-300 border-none cursor-pointer">
+                    <i class="pi pi-caret-right"></i>
+                  </button>
+                  <!-- ci dessous le boutton pause pour l'audio student , je l'ai mit en commentaire en attendant de mettre les audio en dynamique-->
+                  <!-- <button class="bg-gray-300 border-none cursor-pointer">
+                <i class="pi pi-caret-pause"></i>
               </button> -->
+                </div>
+                <div class="flex justify-around w-full">
+                  <button
+                    class="cursor-pointer border-none my-1 md:my-1.5 text-red-600 bg-gray-300 md:text-base text-sm"
+                  >
+                    Refuser
+                  </button>
+                  <p>|</p>
+                  <button
+                    class="cursor-pointer border-none my-1 md:my-1.5 bg-gray-300 md:text-base text-sm"
+                  >
+                    Semi-Valider
+                  </button>
+                  <p>|</p>
+                  <button
+                    class="cursor-pointer border-none my-1 md:my-1.5 bg-gray-300 md:text-base text-sm"
+                  >
+                    Valider
+                  </button>
+                </div>
               </div>
-              <div class="flex justify-around w-full">
-                <button
-                  class="cursor-pointer border-none my-1 md:my-1.5 text-red-600 bg-gray-300 md:text-base text-sm"
-                >
-                  Refuser
-                </button>
-                <p>|</p>
-                <button
-                  class="cursor-pointer border-none my-1 md:my-1.5 bg-gray-300 md:text-base text-sm"
-                >
-                  Semi-Valider
-                </button>
-                <p>|</p>
-                <button
-                  class="cursor-pointer border-none my-1 md:my-1.5 bg-gray-300 md:text-base text-sm"
-                >
-                  Valider
-                </button>
-              </div>
+              <!-- ci dessous le boutton du micro pour l'audio sutdent -->
+              <button class="bg-gray-300 border-none cursor-pointer mr-8 ml-6">
+                <i class="pi pi-fast-forward"></i>
+              </button>
             </div>
-            <!-- ci dessous le boutton du micro pour l'audio sutdent -->
-            <button class="bg-gray-300 border-none cursor-pointer mr-8 ml-6">
-              <i class="pi pi-fast-forward"></i>
-            </button>
-          </div>
-        </ng-container>
+          </ng-container>
+
+
+          <!-- ci dessous les audios Teachers , j'attend le service pour enregistrer les audios pour le rendre dynamique dans ma prochaine branch -->
 
 
 
-        <!-- ci dessous les audios Teachers -->
-
-        <!-- <ng-container *ngFor="let audio of audiosTeacher"> -->
+          <!-- <ng-container *ngFor="let audio of audiosTeacher"> -->
           <!-- ci dessous div contenant tout l audio teacher -->
           <!-- <div
             class="containerTeacherCompleteAudi mt-5 ml-20 rounded-tl-3xl rounded-tr-none rounded-bl-3xl rounded-br-3xl w-10/12 flex justify-around items-center bg-blue-300"
@@ -128,8 +135,8 @@
                   Vocal <span>{{ audio.id }}</span>
                 </p>
                 <progress min="0" max="100" value="70">0%</progress> -->
-                <!-- ci dessous boutton play pour laudio teacher -->
-                <!-- <button class="buttonPlayTeacher bg-blue-300">
+          <!-- ci dessous boutton play pour laudio teacher -->
+          <!-- <button class="buttonPlayTeacher bg-blue-300">
                   <i class="pi pi-caret-right border-none cursor-pointer"></i>
                 </button>
               </div>
@@ -141,29 +148,35 @@
                 </button>
               </div>
             </div> -->
-            <!-- ci dessous le boutton du micro pour l'audio teacher -->
-            <!-- <button class="bg-blue-300 border-none cursor-pointer ml-8 mr-6">
+          <!-- ci dessous le boutton du micro pour l'audio teacher -->
+          <!-- <button class="bg-blue-300 border-none cursor-pointer ml-8 mr-6">
               <i class="pi pi-microphone"></i>
             </button>
           </div>
         </ng-container>-->
-      
-      </div> 
-        
+        </div>
 
-     
-
-
-        <div class="flex justify-center items-center w-full mt-10 bg-white border-blue-100 border-2">
-          <button class="rounded-full px-5 py-4 shadow-lg border-blue-300 border-2 bg-white"><i class="pi pi-microphone text-blue-600"></i></button>
+        <div
+          class="flex justify-center items-center w-full mt-10 bg-white border-blue-100 border-2"
+        >
+          <button
+            class="rounded-full px-5 py-4 shadow-lg border-blue-300 border-2 bg-white"
+          >
+            <i class="pi pi-microphone text-blue-600"></i>
+          </button>
         </div>
       </div>
       <!-- debut du container du Qur'an et la logique d'affichage -->
       <div *ngIf="!showQuran">
-        <!-- Contenu de la première div -->
+        <!-- Contenu vide , display:none si l'utilisateur ne click pas pour voir le Qur'an -->
       </div>
 
-      <div [ngClass]="{ 'hidden': !showQuran, 'w-full md:w-1/2 md:pl-3 ': showQuran }">
+      <div
+        [ngClass]="{
+          hidden: !showQuran,
+          'w-full md:w-1/2 md:pl-3 ': showQuran
+        }"
+      >
         <div
           *ngIf="showQuran"
           style="border: 2px solid #dbc37d"
@@ -171,92 +184,40 @@
         >
           <!-- Contenu du Coran -->
           <img src="/assets/images/frise3.jpg" class="w-full" />
-          
           <div *ngFor="let sourate of Coran" style="background-color: #f9f8f3">
             <ng-container *ngIf="sourate.ayahs[0].page === selectedPage">
-
-              <!-- <div class="flex  mb-2 pl-2">
-              <a *ngIf="selectedStudent.DebutVerset >= 30" (click)="scrollToAnchor(selectedStudent?.DebutVerset)" class="px-3 py-1 bg-yellow-100 cursor-pointer border-zinc-300 border-2 rounded" style="font-size: x-small;">Avancer vers le verset {{ selectedStudent.DebutVerset }}</a>
-            </div> -->
-              
-             <p
+              <p
                 class="text-center mb-10 pt-3 text-2xl"
                 style="background-color: #f9f8f3"
               >
+              <!-- affichage du nom de la sourate -->
                 {{ sourate.name }}
               </p>
               <ul style="background-color: #f9f8f3">
-
-
-
-                <!-- <li
+                <li
                   *ngFor="let ayah of sourate.ayahs; let i = index"
                   class="text-center text-2xl pb-1 bg-color cursor-pointer pr-1"
                   (click)="toggleBackgroundColor(i, ayah.number)"
-                  [ngClass]="{ 'bg-red-300':  totalSourate[i] && totalSourate[i][ayah.number]}"
-                  >   -->
-                  <!-- *ngIf="ayah.numberInSurah >= selectedStudent.DebutVerset" -->
-                  
-                  <!-- <span style="display: none">{{ ayah.number }}</span>
-                  <span class="mr-10 text-xs">v. {{ ayah.numberInSurah }}</span
-                  >{{ ayah.text }}
-                  <div class="flex justify-center">
-                    <hr class="w-6/12 my-3.5 rounded-md" />
-                  </div>
-                </li> -->
-
-
-
-                
-                
-                
-                <!-- <li
-                  *ngFor="let ayah of sourate.ayahs; let i = index"
-                  class="text-center text-2xl pb-1 bg-color cursor-pointer pr-1"
-                  (click)="toggleBackgroundColor(i, ayah.number)"
-                  [ngClass]="{ 'bg-red-300':  totalSourate[i] && totalSourate[i][ayah.number]}" -->
-                 
-                  <!-- *ngIf="ayah.numberInSurah >= selectedStudent.DebutVerset" -->
-                  
-                  <!-- <span style="display: none">{{ ayah.number }}</span>
-                  <span class="mr-10 text-xs" [id]="'verse' + ayah.numberInSurah">v. {{ ayah.numberInSurah }}</span>
+                  [ngClass]="{
+                    'bg-red-300':
+                      totalSourate[i] && totalSourate[i][ayah.number]
+                  }"
+                >
+                <!-- non affichage du numéro unique des versets mais je le stock ici pour le selectionner quand je click dessus pour la correction -->
+                  <span style="display: none">{{ ayah.number }}</span>
+                  <span
+                    class="mr-10 text-xs"
+                    [id]="'verse' + ayah.numberInSurah"
+                    >
+                    <!-- affichage du numéro des versets -->
+                    v. {{ ayah.numberInSurah }}</span
+                  >
+                  <!-- affichage des versets -->
                   {{ ayah.text }}
                   <div class="flex justify-center">
                     <hr class="w-6/12 my-3.5 rounded-md" />
                   </div>
-                </li> -->
-                
-
-                                  
-                
-         
-                
-                        
-                
-               
-                
-
-
-<li
-  *ngFor="let ayah of sourate.ayahs; let i = index"
-  class="text-center text-2xl pb-1 bg-color cursor-pointer pr-1"
-  [ngClass]="{ 'bg-red-300':  totalSourate[i] && totalSourate[i][ayah.number]}"
-  [style.display]="ayah.numberInSurah < selectedStudent.DebutVerset ? 'none' : 'block'"
->
-  <ng-container *ngIf="ayah.numberInSurah >= selectedStudent.DebutVerset">
-    <span style="display: none">{{ ayah.number }}</span>
-    <span class="mr-10 text-xs">v. {{ ayah.numberInSurah }}</span 
-    >{{ ayah.text }}
-    <div class="flex justify-center">
-      <hr class="w-6/12 my-3.5 rounded-md" />
-    </div>
-  </ng-container>
-</li>
-
-
-
-
-
+                </li>
               </ul>
             </ng-container>
           </div>
