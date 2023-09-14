@@ -25,8 +25,6 @@ export const routerConfig: Routes = [
   //WildCards
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
   { path: '**', redirectTo: '/landing', pathMatch: 'full'},
-
-
 ];
 
 @NgModule({

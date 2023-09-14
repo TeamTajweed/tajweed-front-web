@@ -9,7 +9,7 @@ export class QuranService {
 
   constructor(private http: HttpClient) { }
 
-  getLanguages(): Observable<any> {
+  getDataQuran(): Observable<any> {
     const apiUrl = 'http://api.alquran.cloud/v1/quran/quran-uthmani';
     return this.http.get(apiUrl);
   }
