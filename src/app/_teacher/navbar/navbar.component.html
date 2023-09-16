@@ -1,14 +1,10 @@
-<div class="card"  [class.shadow-lg]="isConnected">
-    <p-menubar [model]="items">
-        <ng-template pTemplate="start">
-            <div class="flex items-center ml-1 mt-1">
-            <img src="assets/images/LogoBarreNavProvisoireBleu.png"  class="mr-2 h-14 w-14" />
-            <p class="ml-1 font-medium">TajweedPro</p>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="end" *ngIf="!isConnected">
-            <p-button label="S'inscrire" styleClass="p-button-outlined p-button-info py-2 mr-3"></p-button>
-            <p-button label="Se connecter" styleClass="p-button-info py-2 mr-2"></p-button>
-        </ng-template>
-    </p-menubar>
+<div class="card" class="shadow-lg" [class.shadow-lg]="isConnected">
+    <div class="flex md:flex-row flex-col items-center md:justify-start md:items-center px-3 md:pb-2 md:pt-3">
+        
+        <img src="assets/images/logoInstitutTabib2.png"  class="mr-2 h-14 w-24" /> 
+        <p-menubar [model]="items">
+        </p-menubar>
+    </div>         
 </div>
+
+      

@@ -1,62 +1,85 @@
-import { Component,Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { QuranService } from '../../quran.service';
 import { CommonModule } from '@angular/common';
 
+
 @Component({
-  selector: 'app-validation',
-  templateUrl: './validation.component.html',
-  styleUrls: ['./validation.component.scss'],
-  imports: [
-    CommonModule
-  ],
-  standalone: true
+  selector: "app-validation",
+  templateUrl: "./validation.component.html",
+  styleUrls: ["./validation.component.scss"],
+  imports: [CommonModule],
+  standalone: true,
 })
-export class ValidationComponent {
-
-  @Input() selectedStudent: any;  
-
+export class ValidationComponent implements OnInit {
+  @Input() selectedStudent: any;
   audiosStudent: any[] = [];
-
   audiosTeacher: any[] = [];
+  Coran: any[] = [];
+  selectedSurahText: string | undefined;
+  showQuran: boolean = false;
+  totalSourate: boolean[][] = [];
+  selectedStudentId: string | null = null;
+  students: any[] = [];
 
-  //Le code commenté va etre utilisé une fois que le WS sera implémenté en attendant on mock la liste des audios
-  //constructor(private studentService: CountryService) {}
-  // la mise en place dynamique des éléments reste à voir avec l'équipe afin de mettre au clair le modele de donnée pour les dates , heures , ect.
+  ayah: any = null;
+  selectedPage: number = 1;
+  selectedVerset: string = "";
+  selectedSourateName: string = "";
+
+  constructor(private quranService: QuranService) {}
+
   ngOnInit() {
-      
-      this.audiosStudent = [
-        {
-          name: "AbdAllah",
-          id: "1",
-          date:"1 Janvier 2023"
-        },
-        {
-          name: "Adam",
-          id: "2",
-          
-        },
-        {
-          name: "Yassir",
-          id: "3",
-          
-        }
-      ];
-      this.audiosTeacher = [
-        {
-          name: "AbdAllah",
-          id: "1",
-          
-        },
-        {
-          name: "Adam",
-          id: "2",
-          
-        },
-        {
-          name: "Yassir",
-          id: "3",
-          
-        }
-      ];
+    this.getDataQuran();
   }
-  
+
+  getDataQuran() {
+    this.quranService.getDataQuran().subscribe((data: any) => {
+      this.Coran = data.data.surahs;
+      this.totalSourate = this.Coran.map((sourate) => []);
+    });
+  }
+  showSurahText(sourate: any) {
+    this.selectedSurahText = sourate.text;
+  }
+  toggleBackgroundColor(sourateIndex: number, ayahIndex: number) {
+    if (!this.totalSourate[sourateIndex]) {
+      this.totalSourate[sourateIndex] = [];
+    }
+    this.totalSourate[sourateIndex][ayahIndex] =
+      !this.totalSourate[sourateIndex][ayahIndex];
+    console.log("Numéro du verset cliqué :", ayahIndex);
+  }
+  // Initialisation de la fonction pour pouvoir l'importer de home component dans validation component
+  showStudentCard(student: any) {}
+  //fonction pour faire matcher la page saisi par l'étudiant et la page du Qur'an de l'api
+  updateSelectedPage(student: any): void {
+    const matchingSourate = this.Coran.find(
+      (sourate) => sourate.englishName === student.sourate
+    );
+
+    if (matchingSourate) {
+      this.selectedPage = matchingSourate.ayahs[0].page;
+    }
+  }
+  //fonction pour faire matcher le verset débutant l'audio saisi par l'étudiant et les verset du Qur'an de l'api
+  updateSelectVerset(student: any): void {
+    const matchingVerset = this.Coran.find((sourate: any) =>
+      sourate.ayahs.some(
+        (ayah: any) => ayah.numberInSurah === student.DebutVerset
+      )
+    );
+
+    if (matchingVerset) {
+      this.selectedVerset = matchingVerset.ayahs[0];
+    }
+  }
+  // fonction du boutton pour aller directement au verset rentrer par l'étudiant
+  scrollToAnchor(verseNumber: number): void {
+    const elementId = "verse" + verseNumber;
+    const targetElement = document.getElementById(elementId);
+
+    if (targetElement) {
+      targetElement.scrollIntoView();
+    }
+  }
 }

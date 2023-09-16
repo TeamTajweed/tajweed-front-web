@@ -1,7 +1,16 @@
-:host::ng-deep .p-card {
-    background-color: #93C5FD;
-    margin-top:10px; 
+.containerValidation {
+    max-height: 560px;
+    overflow-y: scroll;
+    border-radius: 5px;
+    border: 2px solid rgb(225, 225, 225);
+ }
+
+@media (max-width:765px){
+  .containerValidation   
+  {
+  max-width: 310px !important;
+  overflow-x: scroll !important;
 }
-:host::ng-deep .p-autocomplete-dropdown {
-    background-color: #3B82F6;
 }
+
+

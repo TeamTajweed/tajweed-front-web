@@ -1,99 +1,66 @@
 <app-navbar></app-navbar>
+
 <!-- ci-dessous voici le container qui contient le container notification et le  container validation sur la page d'accueil-->
-<div
-  class="flex justify-around items-start mt-14"
->
-<!-- ci dessous voici le container notification visible grace au shadow sur la page d'accueil , il contient la search-bar et le block de notifications -->
-  <div class="grow-0 flex flex-col items-center mb-10 shadow-2xl rounded-md border border-solid border-gray-200 py-14 px-12">
-    <div style="margin-bottom: 20px; display: flex; justify-content: center">
-      <!-- ci dessous la search-bar autoComplete -->
-      <p-autoComplete
-        [(ngModel)]="selectedStudent"
-        [dropdown]="true"
-        [suggestions]="filteredStudents"
-        (completeMethod)="filterStudents($event)"
-        (click)="showStudentCard(selectedStudent)"
-        field="name"
-        [disabled]="students.length === 0"
-      ></p-autoComplete>
+<div class="flex md:flex-row flex-col">
+  <!-- ci dessous voici le container notification visible grace au shadow sur la page d'accueil , il contient la search-bar et le block de notifications -->
+  <div
+    class="flex flex-col items-center shadow-xl rounded-md border border-solid border-gray-200 pb-9 px-10 pt-5"
+  >
+    <!-- ci dessous le block de notifications avec une condition pour l'affichage -->
+    <div
+      class="mt-3 text-center text-red-950 flex items-center pb-7"
+      *ngIf="students.length > 0"
+    >
+      <i class="fa-regular fa-bell text-yellow-500"></i>
+      <p class="text-sm ml-2">
+        {{ this.students.length }} étudiant(s) ont envoyé des audio.
+      </p>
     </div>
-<!-- ci dessous voici une condition au cas ou la search-bar serait valider sans étudiant , avec une valeur vide. -->
-    <div class="noStudentSelectedMessage" *ngIf="showNoStudentMessage">
-      <p>Veuillez sélectionner un étudiant.</p>
-      <br />
+
+    <div class="containerValidation flex-col bg-gray-100 md:px-5">
+      <ng-container *ngIf="displayStudentCard; else allCards"> </ng-container>
     </div>
-<!-- ci dessous le block de notifications avec une condition pour l'affichage -->
-    <ng-container *ngIf="displayStudentCard; else allCards">
-      <p-card header="" subheader="" [style]="{ width: '460px' }" class="mt-5">
-        <ng-template pTemplate="header">
-          <div class="flex items-center pt-5">
-            <img
-              alt="Coran avec de la lumière"
-              src="/assets/images/Avatar.png"
-              [style]="{ width: '50px', height: '50px' }"
-              class="ml-5"
-            />
-            <p class="ml-3 font-bold">Vocal <span>1</span></p>
-          </div>
-        </ng-template>
-        <div class="flex justify-start">
-          <p>{{ selectedStudent.name }}</p>
-          <p class="ml-3">3 voc</p>
-          <p class="ml-3">Le <span>1 Janvier 2023</span> à <span>23h</span></p>
-        </div>
-        <div class="flex justify-start">
-          <p>Al Fathia</p>
-          <p class="ml-3">-</p>
-          <p class="ml-3"><span>1</span> à <span>3</span></p>
-        </div>
-        <ng-template pTemplate="footer">
-          <p-button
-            label="ECOUTER L'AUDIO"
-            icon="pi pi-angle-right"
-            styleClass="p-button-info"
-          ></p-button>
-        </ng-template>
-      </p-card>
-    </ng-container>
     <ng-template #allCards>
       <ng-container *ngIf="students.length > 0; else noNotifications">
         <ng-container *ngFor="let student of students">
-          <p-card
-            header=""
-            subheader=""
-            [style]="{ width: '460px' }"
-            class="mt-5"
+          <!-- Nouvelle card avec une div , sans primeNg -->
+          <div
+            class="bg-blue-300 w-72 mt-5 rounded-md flex flex-col items-start justify-between py-4 px-4"
+            [class.bg-gray-300]="selectedStudentId === student.id"
           >
-            <ng-template pTemplate="header">
-              <div class="flex items-center pt-5">
-                <img
-                  alt="Coran avec de la lumière"
-                  src="/assets/images/Avatar.png"
-                  [style]="{ width: '50px', height: '50px' }"
-                  class="ml-5"
-                />
-                <p class="ml-3 font-bold">Vocal <span>1</span></p>
+            <div class="flex items-center mb-3">
+              <div class="bg-gray-300 border-blue-600 rounded-full px-3 py-2">
+                <i class="pi pi-user text-blue-600"></i>
               </div>
-            </ng-template>
-            <div class="flex justify-start">
-              <p>{{ student.name }}</p>
-              <p class="ml-3">3 voc</p>
-              <p class="ml-3">Le <span></span> à <span>23h</span></p>
+              <p class="md:text-base text-sm pl-3">{{ student.name }}</p>
             </div>
-            <div class="flex justify-start">
-              <p>Al Fathia</p>
-              <p class="ml-3">-</p>
-              <p class="ml-3"><span>1</span> à <span>3</span></p>
+
+            <div class="flex flex-col justify-start w-full">
+              <div class="flex justify-between">
+                <p class="text-sm">{{ student.audio.length }} audio(s)</p>
+                <p class="text-sm">
+                  {{ student.sourate }}<span class="text-sm"> : </span
+                  ><span> {{ student.DebutVerset }}</span> à
+                  <span>{{ student.FinVerset }}</span>
+                </p>
+              </div>
+              <p class="text-sm mb-3">
+                Le <span>{{ student.date }}</span> à
+                <span>{{ student.heure }}</span>
+              </p>
             </div>
-            <ng-template pTemplate="footer">
-              <p-button
-                label="ECOUTER L'AUDIO"
-                icon="pi pi-angle-right"
-                styleClass="p-button-info"
-                (click)="showStudentCard(student)"
-              ></p-button>
-            </ng-template>
-          </p-card>
+
+            <button
+              class="bg-blue-600 py-2 pl-5 pr-4 text-white flex items-center rounded"
+              [class.hidden]="selectedStudentId === student.id"
+              (click)="
+                showStudentCard(student); updateSelectedPage(selectedStudent)
+              "
+            >
+              <span class="text-sm">ÉCOUTER</span
+              ><i class="pi pi-angle-right pl-3"></i>
+            </button>
+          </div>
         </ng-container>
       </ng-container>
       <ng-template #noNotifications>
@@ -101,5 +68,9 @@
       </ng-template>
     </ng-template>
   </div>
-  <app-validation [selectedStudent]="selectedStudent"></app-validation>
+
+  <app-validation
+    [selectedStudent]="selectedStudent"
+    ngClass="w-full"
+  ></app-validation>
 </div>

@@ -4,6 +4,7 @@ import {NgIf} from "@angular/common";
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
+import { CommonModule } from '@angular/common'
 
 @Component({
     selector: 'app-navbar',
@@ -14,7 +15,8 @@ import { ButtonModule } from 'primeng/button';
         RouterLink,
         RouterLinkActive,
         MenubarModule,
-        ButtonModule
+        ButtonModule,
+        CommonModule
     ],
     standalone: true
 })
