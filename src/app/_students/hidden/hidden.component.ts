@@ -1,12 +1,34 @@
 import { Component } from '@angular/core';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { AudioRecordingService } from '../../core/services/audio-recording.service';
+import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
+import { AudioRecordingService } from 'src/app/core/services/audio-recording.service';
+
 @Component({
-  selector: 'app-homestudents',
-  templateUrl: './homestudents.component.html',
-  styleUrls: ['./homestudents.component.scss']
+  selector: 'app-hidden',
+  templateUrl: './hidden.component.html',
+  styleUrls: ['./hidden.component.scss']
 })
-export class HomestudentsComponent {
+export class HiddenComponent {
+  firstStep = true;
+  secondStep = false;
+
+    // Fonctions de gestion du wizard
+    setFirstStep() {
+      if (this.firstStep) {
+      }
+      else{
+        this.secondStep = false;
+        this.firstStep = true;
+      }
+    }
+
+    setSecondStep() {
+      if (this.secondStep) {
+      }
+      else{
+        this.firstStep = false;
+        this.secondStep = true;
+      }
+    }
 
   //DropDowns (remplissage des listes déroulantes)
   sourates: sourah[] | undefined;
@@ -88,6 +110,14 @@ export class HomestudentsComponent {
     audio.src = audioUrl;
     audio.load();
     audio.play();
+  }
+
+  clearAllAudios() {
+    //Ne fonctionne pas check pourquoi
+    this.clearRecordedData()
+    this.blobUrl = null;
+    this.audioRecordingService.resetTimer();
+    this.audioList.length = 0;
   }
 
   async addRecordToRecords() {

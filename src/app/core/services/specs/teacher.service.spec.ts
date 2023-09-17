@@ -1,16 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AudioService } from './audio.service';
+import { TeacherService } from '../teacher.service';
 
-describe('AudioService', () => {
-  let service: AudioService;
+describe('TeacherService', () => {
+  let service: TeacherService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AudioService);
+    service = TestBed.inject(TeacherService);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 });
+//control shif p

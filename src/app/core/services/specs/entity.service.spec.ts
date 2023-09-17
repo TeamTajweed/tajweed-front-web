@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { QuranService } from './quran.service';
+import { EntityService } from '../entity.service';
 
-describe('QuranService', () => {
-  let service: QuranService;
+describe('EntityService', () => {
+  let service: EntityService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(QuranService);
+    service = TestBed.inject(EntityService);
   });
 
   it('should be created', () => {
