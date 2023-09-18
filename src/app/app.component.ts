@@ -9,7 +9,7 @@ import 'flowbite';
 
 export class AppComponent {
   title = "tajweed-front-web";
-  isLoggedAsTeacher = true;
+  isLoggedAsTeacher = false;
   isLoggedAsStudent = true;
 }
 
