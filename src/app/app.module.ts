@@ -9,13 +9,13 @@ import { HomeComponent } from './_teacher/home/home.component';
 import { HomestudentsComponent } from './_students/homestudents/homestudents.component';
 import { FeedstudentsComponent } from './_students/feedstudents/feedstudents.component';
 import { StatsstudentsComponent } from './_students/statsstudents/statsstudents.component';
-import { NavbarstudentsComponent } from './_students/navbarstudents/navbarstudents.component';
-import { AudioRecordingService } from './_students/homestudents/audio-recording.service';
+import { AudioRecordingService } from './core/services/audio-recording.service';
 import { FormsModule } from '@angular/forms';
+import { HiddenComponent } from './_students/hidden/hidden.component';
 
 
 @NgModule({
-  declarations: [AppComponent, HomestudentsComponent, FeedstudentsComponent, StatsstudentsComponent, NavbarstudentsComponent],
+  declarations: [AppComponent, HomestudentsComponent, FeedstudentsComponent, StatsstudentsComponent, HiddenComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

@@ -9,22 +9,3 @@
    overflow-y: scroll;  
    border-radius: 5px; 
 }
-.masquer {
-   display: none;
- }
- 
- .afficher {
-   display: block;
- }
- /* Styles CSS pour le conteneur de versets */
-.verse-container {
-   height: 300px; /* Ajustez la hauteur à votre convenance */
-   overflow-y: auto; /* Activer le défilement vertical */
-   scrollbar-width: none; /* Masquer les défileurs Firefox */
-   -ms-overflow-style: none; /* Masquer les défileurs Internet Explorer */
- }
- 
- .verse-container::-webkit-scrollbar {
-   width: 0 !important; /* Masquer les défileurs Chrome et Safari */
- }
- 

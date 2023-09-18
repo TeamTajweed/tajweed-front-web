@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from '@angular/router';
+import 'flowbite';
 
 
 @Component({
@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 
 export class AppComponent {
   title = "tajweed-front-web";
+  isLoggedAsTeacher = false;
+  isLoggedAsStudent = true;
 }
 
 

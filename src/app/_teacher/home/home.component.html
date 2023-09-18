@@ -1,5 +1,3 @@
-<app-navbar></app-navbar>
-
 <!-- ci-dessous voici le container qui contient le container notification et le  container validation sur la page d'accueil-->
 <div class="flex md:flex-row flex-col">
   <!-- ci dessous voici le container notification visible grace au shadow sur la page d'accueil , il contient la search-bar et le block de notifications -->
@@ -17,7 +15,7 @@
       </p>
     </div>
 
-    <div class="containerValidation flex-col bg-gray-100 md:px-5">
+    <div class="overflow-auto rounded flex-col bg-gray-100 md:px-5">
       <ng-container *ngIf="displayStudentCard; else allCards"> </ng-container>
     </div>
     <ng-template #allCards>

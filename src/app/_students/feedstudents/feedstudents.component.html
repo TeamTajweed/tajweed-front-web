@@ -1,38 +1,25 @@
-<div class="h-screen w-full relative flex overflow-hidden">  
-    <div class="w-full h-full flex flex-col justify-between">
-
-      <!-- Header -->
-      <header class="h-28 w-full flex items-center relative justify-end px-5 space-x-10">
-        <app-navbarstudents></app-navbarstudents>
-      </header>
-  
-      <!-- Main -->
-      <main class="max-w-full h-full flex relative overflow-y-hidden">
-        <!-- Container -->
-        <div class="h-full w-full m-4 flex flex-wrap items-start justify-start rounded-tl grid-flow-col auto-cols-max gap-4 bg-[url('https://institut-tabib.com/wp-content/uploads/2022/01/stone-texture-scaled.jpg')]">
-        
-          <!-- Container -->
-          <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow opacity-25 bg-blue-400"></div>
-          <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-blue-400"></div>
-          <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-blue-400"></div>
-          <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-blue-400"></div>
-          <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-blue-400"></div>
-          <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-blue-400"></div>
-          <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-blue-400"></div>
-          <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-blue-400"></div>
-          <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-blue-400"></div>
-          <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-blue-400"></div>
-          <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-blue-400"></div>
-          <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-blue-400"></div>
-          <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-blue-400"></div>
-          <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-blue-400"></div>
-          <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-blue-400"></div>
-          <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-blue-400"></div>
-          <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-blue-400"></div>
-          <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-blue-400"></div>
-          <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-blue-400"></div>
-        </div>
-      </main>
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-wrap w-full mb-20">
+      <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900"></h1>
+        <img class=" rounded w-full  mb-6" src="../../assets/images/Salam.png" alt="content">
+        <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+      </div>
+      <p class="lg:w-1/2 w-full leading-relaxed text-white">Si tu sais lire le Coran mais que tu n’es pas sûr de tes prononciations…
+        Que tu vois plein de couleurs dans le mushaf mais tu ne sais pas à quoi cela correspond…
+        Ou que tu écoutes les récitateurs psalmodier le Coran mais tu ne sais pas comment ni pourquoi ils le font…
+        Si tu veux acquérir cette science bénéfique et propager cette lumière au sein de ta famille et tes proches… </p>
     </div>
-  
+    <div class="flex flex-wrap -m-4">
+      <div *ngFor="let publication of publications" class="xl:w-1/4 md:w-1/2 p-4">
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <img class="h-40 rounded w-full object-cover object-center mb-6" src="../../assets/images/logoInstitutTabib1.png" alt="content">
+          <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">{{publication.level}}</h3>
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{publication.title}}</h2>
+          <p class="leading-relaxed text-base">{{publication.content}}</p>
+        </div>
+      </div>
+    </div>
   </div>
+</section>
