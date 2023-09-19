@@ -1,8 +1,21 @@
+<app-navbar></app-navbar>
+
+
+
+
+
 <!-- ci-dessous voici le container qui contient le container notification et le  container validation sur la page d'accueil-->
 <div class="flex md:flex-row flex-col">
-  <!-- ci dessous voici le container notification visible grace au shadow sur la page d'accueil , il contient la search-bar et le block de notifications -->
+
+
+<!--   
+  <div class="flex flex-row GD">
+    <div class="left-sidebar" [style.width]="sidebarWidth">
+   -->
+  
+  <!-- ci dessous voici le container notification visible grace au shadow sur la page d'accueil , il contient le block de notifications -->
   <div
-    class="flex flex-col items-center shadow-xl rounded-md border border-solid border-gray-200 pb-9 px-10 pt-5"
+  class="flex flex-col items-center shadow-xl rounded-md border border-solid border-gray-200 pb-9 px-10 pt-5"
   >
     <!-- ci dessous le block de notifications avec une condition pour l'affichage -->
     <div
@@ -52,20 +65,31 @@
               class="bg-blue-600 py-2 pl-5 pr-4 text-white flex items-center rounded"
               [class.hidden]="selectedStudentId === student.id"
               (click)="
-                showStudentCard(student); updateSelectedPage(selectedStudent)
+              showStudentCard(student); updateSelectedPage(selectedStudent)
               "
-            >
+              >
               <span class="text-sm">ÉCOUTER</span
-              ><i class="pi pi-angle-right pl-3"></i>
-            </button>
-          </div>
+                ><i class="pi pi-angle-right pl-3"></i>
+              </button>
+            </div>
+          </ng-container>
         </ng-container>
-      </ng-container>
-      <ng-template #noNotifications>
-        <p class="text-center mt-3">Il n'y a pas de nouvelles notifications.</p>
+        <ng-template #noNotifications>
+          <p class="text-center mt-3">Il n'y a pas de nouvelles notifications.</p>
+        </ng-template>
       </ng-template>
-    </ng-template>
+    </div>
+  
+  
+  
+  <!-- </div>
+  <div class="toggle-button" (click)="toggleSidebar()">
+    <i *ngIf="sidebarWidth === '90%'" class="fa-solid fa-chevron-left"></i>
+    <i *ngIf="sidebarWidth === '20%'" class="fa-solid fa-chevron-right"></i>
   </div>
+  </div> -->
+    
+    
 
   <app-validation
     [selectedStudent]="selectedStudent"

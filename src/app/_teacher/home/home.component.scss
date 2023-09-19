@@ -14,3 +14,41 @@
 }
 
 
+
+.toggle-button {
+  display: none;
+  width:0px;
+  height:0px;
+}
+
+.left-sidebar {
+  width:0%;
+}
+.GD {
+margin: 0%;
+padding: 0%;
+}
+
+
+
+
+/* Masquez la barre latérale lorsque la largeur de la fenêtre est inférieure à 600px */
+@media (max-width: 599px) {
+  .toggle-button {
+    background-color: rgb(238, 87, 87);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 25px;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+  border-radius: 0 50% 50% 0;  
+  z-index: 1;
+    display: block;
+  }
+  .left-sidebar{
+    display: block;
+  }
+}

@@ -465,4 +465,12 @@ export class HomeComponent implements OnInit {
       this.buttonDisplayed = true;
     }
   }
+
+  //left-sidebar pour le responsive
+  sidebarWidth: string = '90%'; // Largeur initiale du sidebar
+
+  toggleSidebar() {
+    // Bascule la largeur entre 90% et 20% à chaque clic
+    this.sidebarWidth = this.sidebarWidth === '90%' ? '20%' : '90%';
+  }
 }
