@@ -10,6 +10,7 @@ import { FeedstudentsComponent } from './_students/feedstudents/feedstudents.com
 import { StatsstudentsComponent } from './_students/statsstudents/statsstudents.component';
 import { HiddenComponent } from './_students/hidden/hidden.component';
 import { SigninComponent } from './_shared/signin/signin.component';
+import { AuthGuard } from './core/helpers/auth.guard';
 
 
 export const routerConfig: Routes = [
@@ -18,14 +19,14 @@ export const routerConfig: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: SigninComponent },
     //Logged as teacher routes
-  { path: 'homeTeacher', component: HomeComponent },
-  { path: 'shareContent', component: PublicationsComponent },
-  { path: 'searchProfiles', component: StatistiquesComponent },
+  { path: 'homeTeacher', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'shareContent', component: PublicationsComponent, canActivate: [AuthGuard]  },
+  { path: 'searchProfiles', component: StatistiquesComponent, canActivate: [AuthGuard]  },
   //Logged as student routes
-  { path: 'homeStudent', component: HomestudentsComponent },
-  { path: 'profile', component: StatsstudentsComponent },
-  { path: 'feed', component: FeedstudentsComponent },
-  { path: 'hidden', component: HiddenComponent },
+  { path: 'homeStudent', component: HomestudentsComponent, canActivate: [AuthGuard]  },
+  { path: 'profile', component: StatsstudentsComponent, canActivate: [AuthGuard]  },
+  { path: 'feed', component: FeedstudentsComponent, canActivate: [AuthGuard]  },
+  { path: 'hidden', component: HiddenComponent, canActivate: [AuthGuard]  },
   //WildCards
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
   { path: '**', redirectTo: '/landing', pathMatch: 'full'},

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
-import { AudioRecordingService } from 'src/app/core/services/audio-recording.service';
+import { AudioRecordingService } from 'src/app/core/services/audio.recording.service';
 
 @Component({
   selector: 'app-hidden',

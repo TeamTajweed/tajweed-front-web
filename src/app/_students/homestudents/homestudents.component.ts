@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { AudioRecordingService } from '../../core/services/audio-recording.service';
+import { AudioRecordingService } from '../../core/services/audio.recording.service';
 @Component({
   selector: 'app-homestudents',
   templateUrl: './homestudents.component.html',
