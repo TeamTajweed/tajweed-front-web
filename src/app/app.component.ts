@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import 'flowbite';
+import { User } from "./core/models/user.model";
+import { AccountService } from "./core/services/account.service";
 
 
 @Component({
@@ -9,8 +11,19 @@ import 'flowbite';
 
 export class AppComponent {
   title = "tajweed-front-web";
-  isLoggedAsTeacher = true;
+  user: User | null | undefined;
+
+  constructor(private accountService: AccountService) {
+    this.user = this.accountService.userValue;
+  }
+  
+  logout(){
+    this.accountService.logout();
+  }
+
+  isLoggedAsTeacher = false;
   isLoggedAsStudent = true;
+  
 }
 
 

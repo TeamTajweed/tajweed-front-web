@@ -7,7 +7,7 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class LoginService {
-
+  
   constructor(private http: HttpClient) { }
 
   user$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);

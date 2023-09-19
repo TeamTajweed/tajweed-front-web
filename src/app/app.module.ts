@@ -1,32 +1,34 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { HomeComponent } from './_teacher/home/home.component';
 import { HomestudentsComponent } from './_students/homestudents/homestudents.component';
 import { FeedstudentsComponent } from './_students/feedstudents/feedstudents.component';
 import { StatsstudentsComponent } from './_students/statsstudents/statsstudents.component';
-import { NavbarstudentsComponent } from './_students/navbarstudents/navbarstudents.component';
-import { AudioRecordingService } from './core/services/audio-recording.service';
-import { FormsModule } from '@angular/forms';
+import { AudioRecordingService } from './core/services/audio.recording.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HiddenComponent } from './_students/hidden/hidden.component';
+import { FakeBackendInterceptor } from './core/helpers/fakeBackend';
+import { AlertComponent } from './_shared/alert/alert.component';
 
 
 @NgModule({
-  declarations: [AppComponent, HomestudentsComponent, FeedstudentsComponent, StatsstudentsComponent, NavbarstudentsComponent, HiddenComponent],
+  declarations: [AppComponent, HomestudentsComponent, FeedstudentsComponent, StatsstudentsComponent, HiddenComponent, AlertComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [AudioRecordingService],
+  providers: [AudioRecordingService,     
+    {provide: HTTP_INTERCEPTORS, useClass: FakeBackendInterceptor, multi: true}],
   exports: [],
   bootstrap: [AppComponent]
 })

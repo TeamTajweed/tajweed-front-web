@@ -1,107 +1,52 @@
-<div class="h-screen w-full relative flex overflow-hidden">  
-    <div class="w-full h-full flex flex-col justify-between">
+<section class="text-gray-600 body-font">
+  <div class="container mx-auto flex px-5 py-12 items-center justify-center flex-col">
+    <div class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded">
+      <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+        <div class="flex justify-between mb-5">
+          <div class="grid gap-4 grid-cols-2">
+            <div>
+              <h5 class="inline-flex items-center text-gray-500 dark:text-gray-400 leading-none font-normal mb-2">Progression</h5>
+            </div>
 
-      <!-- Main -->
-      <main class="max-w-full h-full flex relative overflow-y-hidden bg-[url('/assets/images/profilBG.jpg')]">
-        <!-- Container -->
-        <div class="h-full w-full m-4 flex flex-wrap items-start justify-start rounded-tl grid-flow-col auto-cols-max gap-4">
-        
-          <div class="bubble bubble-one glassmorphism-effect"></div>
-          <div class="bubble bubble-two glassmorphism-effect"></div>
-          <div class="bubble bubble-three glassmorphism-effect"></div>
-          <div class="bubble bubble-four glassmorphism-effect"></div>
-          <div class="container glassmorphism-effect padding-box">
-            <section class="glassmorphism-effect padding-box">
-              <div class="title">
-                <p>Mahdy Mercurio</p>
-                <p>Futur Hafidh In Shaa Allah</p>
-              </div>
-              <div class="goals pb-5">
-                <div class="glassmorphism-effect">
-                </div>
-                <label class="text-white">Statistiques</label>
-              </div>
-              <div class="goals pb-5">
-                <div class="glassmorphism-effect">
-                </div>
-                <label class="text-white">Objectifs</label>
-              </div>
-              <div class="goals pb-5">
-                <div class="glassmorphism-effect">
-                </div>
-                <label class="text-white">Réglages</label>
-              </div>
-            </section>
-            <section class="main-content glassmorphism-effect padding-box">
-              <div class="title">
-                <p>Statistiques</p>
-                <p></p>
-              </div>
-              <div>
-                <div>
-                  <p>Lundi</p>
-                  <div class="card">
-                    <div class="glassmorphism-effect">
-                    </div>
-                    <div class="glassmorphism-effect">
-                      <label class="text-white">Audio envoyé !!</label>
-                      <label class="text-white">7:00am</label>
-                      <label class="text-white">Sourate Al Falaq</label>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <p>Mardi</p>
-                  <div class="card margin-bottom-card">
-                    <div class="glassmorphism-effect">
-                    </div>
-                    <div class="glassmorphism-effect">
-                      <label class="text-white">Audio envoyé !!</label>
-                      <label class="text-white">9:00am</label>
-                      <label class="text-white">Sourate Al Ikhlass</label>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <p>Mercredi</p>
-                  <div class="card margin-bottom-card">
-                    <div class="glassmorphism-effect">
-                    </div>
-                    <div class="glassmorphism-effect">
-                      <label class="text-white">Audio Non Envoyé !! </label>
-                      <label class="text-white">Attention à l'assiduité !!</label>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <p>Jeudi</p>
-                  <div class="card margin-bottom-card">
-                    <div class="glassmorphism-effect">
-                    </div>
-                    <div class="glassmorphism-effect">
-                      <label class="text-white">Audio envoyé !!</label>
-                      <label class="text-white">6:00am</label>
-                      <label class="text-white">Sourate An Nasr</label>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <p>Vendredi</p>
-                  <div class="card">
-                    <div class="glassmorphism-effect">
-                    </div>
-                    <div class="glassmorphism-effect">
-                      <label class="text-white">Audio envoyé !!</label>
-                      <label class="text-white">11:00am</label>
-                      <label class="text-white">Sourate An Insan</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
+          </div>
+          <!-- DropDown de choix de la période -->
+          <div>
+            <button id="dropdownDefaultButton"
+              data-dropdown-toggle="lastDaysdropdown"
+              data-dropdown-placement="bottom" type="button" class="px-3 py-2 inline-flex items-center text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Semaine<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+          </svg></button>
+          <div id="lastDaysdropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                  <li>
+                    <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mois</a>
+                  </li>
+                  <li>
+                    <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Année</a>
+                  </li>
+                </ul>
+            </div>
           </div>
         </div>
-      </main>
+        <div id="line-chart"></div>
+        <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between mt-2.5">
+          <div class="pt-5">      
+            <a (click)="addStudents()" class="px-5 py-2.5 text-sm font-medium text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              <i class="fa-regular fa-square-plus fa-lg pr-1" style="color: #f7f7f7;"></i>
+              Ajouter des Toullab
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-  
+    <div class="text-center lg:w-2/3 w-full">
+      <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">وَأَنزَلْنَآ إِلَيْكَ ٱلْكِتَٰبَ بِٱلْحَقِّ مُصَدِّقًا لِّمَا بَيْنَ يَدَيْهِ مِنَ ٱلْكِتَٰبِ وَمُهَيْمِنًا عَلَيْهِ فَٱحْكُم بَيْنَهُم بِمَآ أَنزَلَ ٱللَّهُ وَلَا تَتَّبِعْ أَهْوَآءَهُمْ عَمَّا جَآءَكَ مِنَ ٱلْحَقِّ لِكُلٍّ جَعَلْنَا مِنكُمْ شِرْعَةً وَمِنْهَاجًا وَلَوْ شَآءَ ٱللَّهُ لَجَعَلَكُمْ أُمَّةً وَٰحِدَةً وَلَٰكِن لِّيَبْلُوَكُمْ فِى مَآ ءَاتَىٰكُمْ فَٱسْتَبِقُوا۟ ٱلْخَيْرَٰتِ إِلَى ٱللَّهِ مَرْجِعُكُمْ جَمِيعًا فَيُنَبِّئُكُم بِمَا كُنتُمْ فِيهِ تَخْتَلِفُونَ
+
+      </h1>
+      <p class="mb-8 leading-relaxed">Et sur toi (Muhammad) Nous avons fait descendre le Livre avec la vérité, pour confirmer le Livre qui était là avant lui et pour prévaloir sur lui. Juge donc parmi eux d'après ce qu'Allah a fait descendre. Ne suis pas leurs passions, loin de la vérité qui t'est venue. A chacun de vous Nous avons assigné une législation et un plan à suivre. Si Allah avait voulu, certes Il aurait fait de vous tous une seule communauté. Mais Il veut vous éprouver en ce qu'Il vous donne. Concurrencez donc dans les bonnes oeuvres. C'est vers Allah qu'est votre retour à tous; alors Il vous informera de ce en quoi vous divergiez .</p>
+      <div class="flex justify-center">
+        <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Coucou</button>
+      </div>
+    </div>
   </div>
+</section>
