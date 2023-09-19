@@ -20,7 +20,6 @@ export class AppComponent {
   logout(){
     this.accountService.logout();
   }
-
   isLoggedAsTeacher = false;
   isLoggedAsStudent = true;
   
