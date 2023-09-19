@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {NavbarComponent} from "../../_teacher/navbar/navbar.component";
 import {ValidationComponent} from "../../_teacher/validation/validation.component";
 
 import {FormsModule} from "@angular/forms";
@@ -22,7 +21,6 @@ interface AutoCompleteCompleteEvent {
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.scss"],
   imports: [
-    NavbarComponent,
     ValidationComponent,
     FormsModule,
     CardModule,
