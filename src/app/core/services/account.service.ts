@@ -27,9 +27,8 @@ export class AccountService {
         this._sessionDisable.next(true);
     }
 
-    enableSession() {
-        this.sessionDisable = false;
-        this._sessionDisable.next(false);
+    getUserStatus(): Observable<any>{
+        return this.userSubject.asObservable();
     }
     
     public get userValue() {

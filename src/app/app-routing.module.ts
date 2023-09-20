@@ -1,3 +1,4 @@
+import { AboutAppComponent } from './_shared/about-app/about-app.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './_shared/login/login.component';
@@ -11,6 +12,7 @@ import { StatsstudentsComponent } from './_students/statsstudents/statsstudents.
 import { HiddenComponent } from './_students/hidden/hidden.component';
 import { SigninComponent } from './_shared/signin/signin.component';
 import { AuthGuard } from './core/helpers/auth.guard';
+import { AboutusComponent } from './_shared/aboutus/aboutus.component';
 
 
 export const routerConfig: Routes = [
@@ -18,6 +20,8 @@ export const routerConfig: Routes = [
   { path: 'landing', component: LandingComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: SigninComponent },
+  { path: 'aboutUs', component: AboutusComponent },
+  { path: 'aboutApp', component: AboutAppComponent },
     //Logged as teacher routes
   { path: 'homeTeacher', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'shareContent', component: PublicationsComponent, canActivate: [AuthGuard]  },

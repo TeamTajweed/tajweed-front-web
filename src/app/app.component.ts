@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import 'flowbite';
 import { User } from "./core/models/user.model";
 import { AccountService } from "./core/services/account.service";
+import { Subscription } from "rxjs";
 
 
 @Component({
@@ -9,37 +10,22 @@ import { AccountService } from "./core/services/account.service";
   templateUrl: 'app.component.html'
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent {
   title = "tajweed-front-web";
   user: User | null | undefined;
-  test = false;
+  subscription: Subscription | undefined;
+  isLogged = false;
   constructor(private accountService: AccountService) {
     this.user = this.accountService.userValue;
+    this.subscription = this.accountService.getUserStatus().subscribe(result => {
+      this.isLogged = result != null;
+    })
   }
-  
+
   logout(){
     this.accountService.logout();
   }
   isLoggedAsTeacher = false;
   isLoggedAsStudent = true;
-
-  ngOnInit() {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-        // Subscribe to the observable
-        this.accountService._sessionDisable.subscribe((boolean) => {
-          this.test = boolean;
-        });
-  }
   
 }
-
-
-
-
-
-
-
-
-
-
