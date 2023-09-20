@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,13 +8,7 @@ import { AlertService } from 'src/app/core/services/alert.service';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss'],
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    CommonModule
-  ],
-  standalone: true
+  styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit{
   form!: FormGroup;

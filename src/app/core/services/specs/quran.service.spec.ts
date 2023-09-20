@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { QuranService } from '../../../quran.service';
+import { QuranService } from '../quran.service';
 
 describe('QuranService', () => {
   let service: QuranService;

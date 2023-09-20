@@ -6,17 +6,13 @@ import { first } from 'rxjs';
 import { AccountService } from 'src/app/core/services/account.service';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { LoginService } from 'src/app/core/services/login.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    CommonModule
-  ],
-  standalone: true
+  styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent {
   form!: FormGroup;
   loading = false;
