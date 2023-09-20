@@ -1,14 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { QuranService } from '../../quran.service';
-import { CommonModule } from '@angular/common';
+import { QuranService } from '../../core/services/quran.service';
 
 
 @Component({
   selector: "app-validation",
   templateUrl: "./validation.component.html",
-  styleUrls: ["./validation.component.scss"],
-  imports: [CommonModule],
-  standalone: true,
+  styleUrls: ["./validation.component.scss"]
 })
 export class ValidationComponent implements OnInit {
   @Input() selectedStudent: any;

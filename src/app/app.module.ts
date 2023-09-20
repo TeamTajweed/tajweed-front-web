@@ -1,3 +1,8 @@
+import { AccountService } from './core/services/account.service';
+import { StatistiquesComponent } from './_teacher/statistiques/statistiques.component';
+import { PublicationsComponent } from './_teacher/publications/publications.component';
+import { HomeComponent } from './_teacher/home/home.component';
+import { LoginComponent } from './_shared/login/login.component';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,10 +18,28 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HiddenComponent } from './_students/hidden/hidden.component';
 import { FakeBackendInterceptor } from './core/helpers/fakeBackend';
 import { AlertComponent } from './_shared/alert/alert.component';
+import { CommonModule } from '@angular/common';
+import { SigninComponent } from './_shared/signin/signin.component';
+import { LandingComponent } from './_shared/landing/landing.component';
+import { ValidationComponent } from './_teacher/validation/validation.component';
 
 
 @NgModule({
-  declarations: [AppComponent, HomestudentsComponent, FeedstudentsComponent, StatsstudentsComponent, HiddenComponent, AlertComponent],
+  declarations: [
+    AppComponent,
+    HomestudentsComponent,
+    FeedstudentsComponent,
+    StatsstudentsComponent,
+    HiddenComponent,
+    AlertComponent,
+    LoginComponent,
+    SigninComponent,
+    LandingComponent,
+    HomeComponent,
+    PublicationsComponent,
+    StatistiquesComponent,
+    ValidationComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -24,11 +47,15 @@ import { AlertComponent } from './_shared/alert/alert.component';
     AppRoutingModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [AudioRecordingService,     
-    {provide: HTTP_INTERCEPTORS, useClass: FakeBackendInterceptor, multi: true}],
+  providers: [
+    AudioRecordingService,     
+    {provide: HTTP_INTERCEPTORS, useClass: FakeBackendInterceptor, multi: true},
+    AccountService
+  ],
   exports: [],
   bootstrap: [AppComponent]
 })

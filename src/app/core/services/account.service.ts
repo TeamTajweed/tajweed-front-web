@@ -11,6 +11,8 @@ const apiUrl = 'http://localhost:4000';
 export class AccountService {
     private userSubject: BehaviorSubject<User | null>;
     public user: Observable<User | null>;
+    private sessionDisable: boolean | undefined;
+    public _sessionDisable = new BehaviorSubject<boolean>(false);
 
     constructor(
         private router: Router,
@@ -20,6 +22,16 @@ export class AccountService {
         this.user = this.userSubject.asObservable();
     }
 
+    disableSession() {
+        this.sessionDisable = true;
+        this._sessionDisable.next(true);
+    }
+
+    enableSession() {
+        this.sessionDisable = false;
+        this._sessionDisable.next(false);
+    }
+    
     public get userValue() {
         return this.userSubject.value;
     }

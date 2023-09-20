@@ -9,10 +9,10 @@ import { AccountService } from "./core/services/account.service";
   templateUrl: 'app.component.html'
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = "tajweed-front-web";
   user: User | null | undefined;
-
+  test = false;
   constructor(private accountService: AccountService) {
     this.user = this.accountService.userValue;
   }
@@ -23,6 +23,15 @@ export class AppComponent {
 
   isLoggedAsTeacher = false;
   isLoggedAsStudent = true;
+
+  ngOnInit() {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+        // Subscribe to the observable
+        this.accountService._sessionDisable.subscribe((boolean) => {
+          this.test = boolean;
+        });
+  }
   
 }
 

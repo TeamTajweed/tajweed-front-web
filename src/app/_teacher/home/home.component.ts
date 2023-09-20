@@ -6,7 +6,7 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { QuranService } from '../../quran.service';
+import { QuranService } from '../../core/services/quran.service';
 
 
 
@@ -19,16 +19,7 @@ interface AutoCompleteCompleteEvent {
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.scss"],
-  imports: [
-    ValidationComponent,
-    FormsModule,
-    CardModule,
-    ButtonModule,
-    CommonModule,
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  standalone: true,
+  styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
   @ViewChild(ValidationComponent)
