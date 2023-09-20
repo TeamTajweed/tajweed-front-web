@@ -12,14 +12,13 @@ export class AuthGuard {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const user = this.accountService.userValue;
-        console.log(user);
         if (user) {
             // il a le droit on laisse passer
             return true;
         }
 
         // On redirige gentillement l'user vers le login
-        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+        this.router.navigate(['/landing'], { queryParams: { returnUrl: state.url }});
         return false;
     }
 }

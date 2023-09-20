@@ -22,6 +22,7 @@ import { CommonModule } from '@angular/common';
 import { SigninComponent } from './_shared/signin/signin.component';
 import { LandingComponent } from './_shared/landing/landing.component';
 import { ValidationComponent } from './_teacher/validation/validation.component';
+import { AboutAppComponent } from './_shared/about-app/about-app.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { ValidationComponent } from './_teacher/validation/validation.component'
     HomeComponent,
     PublicationsComponent,
     StatistiquesComponent,
-    ValidationComponent
+    ValidationComponent,
+    AboutAppComponent,
   ],
   imports: [
     BrowserModule,
