@@ -1,96 +1,100 @@
 <app-navbar></app-navbar>
 
-
-
-
-
 <!-- ci-dessous voici le container qui contient le container notification et le  container validation sur la page d'accueil-->
 <div class="flex md:flex-row flex-col">
+  <!-- container pour le toggle left sidebar -->
+  <div class="flex flex-row">
+    <div class="flex items-center">
+      <!-- fin du container du toggle left sidebar le reste du code avec la fonction se situe plus bas dans le code l.82 -->
 
+      <!-- ci dessous voici le container notification visible grace au shadow sur la page d'accueil , il contient le block de notifications -->
+      <div
+        class="flex flex-col items-center shadow-xl rounded-md border border-solid border-gray-200 pb-9 px-10 pt-5 left-sidebar"
+        [style.width]="sidebarWidth"
+      >
+        <!-- ci dessous le block de notifications avec une condition pour l'affichage -->
+        <div
+          class="mt-3 text-center text-red-950 flex items-center pb-7"
+          *ngIf="students.length > 0"
+        >
+          <i class="fa-regular fa-bell text-yellow-500"></i>
+          <p class="text-sm ml-2">
+            {{ this.students.length }} étudiant(s) ont envoyé des audio.
+          </p>
+        </div>
 
-<!--   
-  <div class="flex flex-row GD">
-    <div class="left-sidebar" [style.width]="sidebarWidth">
-   -->
-  
-  <!-- ci dessous voici le container notification visible grace au shadow sur la page d'accueil , il contient le block de notifications -->
-  <div
-  class="flex flex-col items-center shadow-xl rounded-md border border-solid border-gray-200 pb-9 px-10 pt-5"
-  >
-    <!-- ci dessous le block de notifications avec une condition pour l'affichage -->
-    <div
-      class="mt-3 text-center text-red-950 flex items-center pb-7"
-      *ngIf="students.length > 0"
-    >
-      <i class="fa-regular fa-bell text-yellow-500"></i>
-      <p class="text-sm ml-2">
-        {{ this.students.length }} étudiant(s) ont envoyé des audio.
-      </p>
-    </div>
-
-    <div class="overflow-auto rounded flex-col bg-gray-100 md:px-5">
-      <ng-container *ngIf="displayStudentCard; else allCards"> </ng-container>
-    </div>
-    <ng-template #allCards>
-      <ng-container *ngIf="students.length > 0; else noNotifications">
-        <ng-container *ngFor="let student of students">
-          <!-- Nouvelle card avec une div , sans primeNg -->
-          <div
-            class="bg-blue-300 w-72 mt-5 rounded-md flex flex-col items-start justify-between py-4 px-4"
-            [class.bg-gray-300]="selectedStudentId === student.id"
-          >
-            <div class="flex items-center mb-3">
-              <div class="bg-gray-300 border-blue-600 rounded-full px-3 py-2">
-                <i class="pi pi-user text-blue-600"></i>
-              </div>
-              <p class="md:text-base text-sm pl-3">{{ student.name }}</p>
-            </div>
-
-            <div class="flex flex-col justify-start w-full">
-              <div class="flex justify-between">
-                <p class="text-sm">{{ student.audio.length }} audio(s)</p>
-                <p class="text-sm">
-                  {{ student.sourate }}<span class="text-sm"> : </span
-                  ><span> {{ student.DebutVerset }}</span> à
-                  <span>{{ student.FinVerset }}</span>
-                </p>
-              </div>
-              <p class="text-sm mb-3">
-                Le <span>{{ student.date }}</span> à
-                <span>{{ student.heure }}</span>
-              </p>
-            </div>
-
-            <button
-              class="bg-blue-600 py-2 pl-5 pr-4 text-white flex items-center rounded"
-              [class.hidden]="selectedStudentId === student.id"
-              (click)="
-              showStudentCard(student); updateSelectedPage(selectedStudent)
-              "
-              >
-              <span class="text-sm">ÉCOUTER</span
-                ><i class="pi pi-angle-right pl-3"></i>
-              </button>
-            </div>
+        <div class="containerValidation flex-col bg-gray-100 md:px-5">
+          <ng-container *ngIf="displayStudentCard; else allCards">
           </ng-container>
-        </ng-container>
-        <ng-template #noNotifications>
-          <p class="text-center mt-3">Il n'y a pas de nouvelles notifications.</p>
-        </ng-template>
-      </ng-template>
-    </div>
-  
-  
-  
-  <!-- </div>
-  <div class="toggle-button" (click)="toggleSidebar()">
-    <i *ngIf="sidebarWidth === '90%'" class="fa-solid fa-chevron-left"></i>
-    <i *ngIf="sidebarWidth === '20%'" class="fa-solid fa-chevron-right"></i>
-  </div>
-  </div> -->
-    
-    
+        </div>
+        <ng-template #allCards>
+          <ng-container *ngIf="students.length > 0; else noNotifications">
+            <ng-container *ngFor="let student of students">
+              <!-- Nouvelle card avec une div , sans primeNg -->
+              <div
+                class="bg-blue-300 w-72 mt-5 rounded-md flex flex-col items-start justify-between py-4 px-4"
+                [class.bg-gray-300]="selectedStudentId === student.id"
+              >
+                <div class="flex items-center mb-3">
+                  <div
+                    class="bg-gray-300 border-blue-600 rounded-full px-3 py-2"
+                  >
+                    <i class="pi pi-user text-blue-600"></i>
+                  </div>
+                  <p class="md:text-base text-sm pl-3">{{ student.name }}</p>
+                </div>
 
+                <div class="flex flex-col justify-start w-full">
+                  <div class="flex justify-between">
+                    <p class="text-sm">{{ student.audio.length }} audio(s)</p>
+                    <p class="text-sm">
+                      {{ student.sourate }}<span class="text-sm"> : </span
+                      ><span> {{ student.DebutVerset }}</span> à
+                      <span>{{ student.FinVerset }}</span>
+                    </p>
+                  </div>
+                  <p class="text-sm mb-3">
+                    Le <span>{{ student.date }}</span> à
+                    <span>{{ student.heure }}</span>
+                  </p>
+                </div>
+
+                <button
+                  class="bg-blue-600 py-2 pl-5 pr-4 text-white flex items-center rounded"
+                  [class.hidden]="selectedStudentId === student.id"
+                  (click)="
+                    showStudentCard(student);
+                    updateSelectedPage(selectedStudent)
+                  "
+                >
+                  <span class="text-sm">ÉCOUTER</span
+                  ><i class="pi pi-angle-right pl-3"></i>
+                </button>
+              </div>
+            </ng-container>
+          </ng-container>
+          <ng-template #noNotifications>
+            <p class="text-center mt-3">
+              Il n'y a pas de nouvelles notifications.
+            </p>
+          </ng-template>
+        </ng-template>
+      </div>
+      <!-- fonction pour le toogle left sidebar avec une condition d'affichage d'icon selon la width -->
+      <div class="toggle-button" (click)="toggleSidebar()">
+        <i
+          *ngIf="sidebarWidth === '100%'"
+          class="fa-solid fa-chevron-left text-xs text-white"
+        ></i>
+        <i
+          *ngIf="sidebarWidth === '20%'"
+          class="fa-solid fa-chevron-right text-xs text-white"
+        ></i>
+      </div>
+      <!-- fin  toggle left sidebar -->
+    </div>
+  </div>
+<!-- component de validation des audio , pour les écouter , corriger et voir le Qur an -->
   <app-validation
     [selectedStudent]="selectedStudent"
     ngClass="w-full"

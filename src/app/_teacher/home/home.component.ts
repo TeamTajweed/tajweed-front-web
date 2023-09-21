@@ -5,10 +5,9 @@ import {FormsModule} from "@angular/forms";
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { QuranService } from '../../core/services/quran.service';
-
-
+import { ElementRef, Renderer2 } from '@angular/core';
 
 
 interface AutoCompleteCompleteEvent {
@@ -31,7 +30,9 @@ export class HomeComponent implements OnInit {
   buttonDisplayed: boolean = false;
   displayStudentCard = false;
 
-  constructor(private quranService: QuranService) {}
+  // constructor(private quranService: QuranService) {}
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
+
 
   ngOnInit() {
     this.getStudents();
@@ -449,7 +450,7 @@ export class HomeComponent implements OnInit {
   //importation  de la function updateSelectedPage de validation component pour pouvoir m'en servir dans showStudentCard
   updateSelectedPage(student: any): void {
   }
-//fonction pour afficher les notififactions 
+//fonction pour afficher les notififactions des élèves qui ont envoyer des audios
   showStudentCard(student: any) {
     if (student) {
       this.selectedStudent = student;
@@ -466,11 +467,26 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  //left-sidebar pour le responsive
-  sidebarWidth: string = '90%'; // Largeur initiale du sidebar
 
-  toggleSidebar() {
+
+  //left-sidebar pour le responsive
+  sidebarWidth: string = '100%'; // Largeur initiale du sidebar
+
+   // fonction pour le toggle left-sidebar pour le responsive
+   toggleSidebar() {
     // Bascule la largeur entre 90% et 20% à chaque clic
-    this.sidebarWidth = this.sidebarWidth === '90%' ? '20%' : '90%';
-  }
+    this.sidebarWidth = this.sidebarWidth === '20%' ? '100%' : '20%';
+  
+    // Vous pouvez également gérer la visibilité et la hauteur de left-sidebar ici
+    const leftSidebar = this.el.nativeElement.querySelector('.left-sidebar');
+    
+    if (this.sidebarWidth === '20%') {
+      // Masquer left-sidebar
+      this.renderer.setStyle(leftSidebar, 'display', 'none');
+      
+    } else {
+      // Afficher left-sidebar
+      this.renderer.setStyle(leftSidebar, 'display', 'block');
+    }
+  } 
 }
