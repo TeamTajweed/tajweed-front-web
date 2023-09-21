@@ -1,11 +1,34 @@
 .containerValidations {
-   max-height: 457px;
+   max-height: 397px;
+   min-height:397px;
    overflow-y: scroll;
-   border-radius: 5px;
-   border: 2px solid rgb(225, 225, 225);
+   border-radius: 5px 5px 0px 0px;
 }
 .containerSourate  {
    max-height: 457px;
    overflow-y: scroll;  
    border-radius: 5px; 
+}
+.recording-circle {
+   background-color: red;
+   width: 1em;
+   height: 1em;
+   border-radius: 50%;
+   margin-right: 0.25em;
+   animation: pulse 1s infinite; /* Utilisez une durée de 1 seconde pour une pulsation plus rapide */
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0,5;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
