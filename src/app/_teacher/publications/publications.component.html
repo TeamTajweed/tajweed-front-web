@@ -1,0 +1,150 @@
+<app-navbar></app-navbar>
+
+<!-- ci-dessous voici le container qui contient le container pour visionner l'annonce et le container de formulaire pour deposer l'annonce -->
+<div class="flex md:flex-row flex-col w-full">
+  <!-- container pour visionner l'annonce -->
+  <div
+    class="flex flex-col shadow-xl rounded-md border border-solid border-gray-200 pb-9 px-10 pt-9 w-9/12"
+  >
+  <div class="flex justify-start mb-10">
+    <p class="bg-white text-center py-1 rounded-md px-4">Aperçu avant la mise en ligne :</p>
+  </div>
+    <div class="flex flex-wrap w-full justify-center">
+      <!-- card de l'annonce -->
+      <div class="bg-gray-100 p-6 rounded-lg w-8/12">
+        <div class="rounded object-cover object-center mb-6 w-full">
+          <img
+            class=""
+            [src]="imagePath"
+            alt="content"
+          />
+        </div>
+        <h3
+          class="tracking-widest text-indigo-500 text-xs font-medium title-font"
+        >
+        <span *ngIf="isDebutantChecked">Débutant </span>
+        <span *ngIf="isIntermediaireChecked">Intermédiaire </span>
+        <span *ngIf="isAvanceChecked">Avancé </span>
+        </h3>
+        <h2 class="text-lg text-gray-900 font-medium title-font mb-4">
+          {{ titre.value }}
+        </h2>
+        <p class="leading-relaxed text-base">
+          {{ message.value }}
+        </p>
+      </div>
+      <!-- fin de la card -->
+    </div>
+  </div>
+  <!-- ci dessous voici le container entier du component formulaire , il est visible grace au box-shadow -->
+  <div
+    class="shadow-xl rounded-md border border-solid border-gray-200 py-9 md:px-10 px-5 w-6/12"
+  >
+    <!-- formulaire -->
+    <form>
+      <div class="flex flex-col bg-white border border-gray-200 p-6 rounded-md">
+        <div class="mb-6 ">
+          <label
+            for="base-input"
+            class="block mb-4 text-sm font-medium text-gray-900 dark:text-white"
+            >Titre de la piblication :</label
+          >
+          <input
+            #titre 
+            (keyup)="0"
+            type="text"
+            id="base-input"
+            class="shadow-md bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
+        </div>
+        <!-- checkbox -->
+        <p class="text-sm">Niveau :</p>
+        <div class="flex justify-around mb-10 mt-4">
+          <div class="flex items-center">
+            <input
+              id="checkboxDebutant"
+              type="checkbox"
+              value="Débutant"
+              class="shadow-md w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              (change)="updateCheckboxValues($event, 'Débutant')"
+            />
+            <label
+              for="checkbox-1"
+              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >Débutant</label
+            >
+          </div>
+          <div class="flex items-center">
+            <input
+              id="checkboxIntermediaire"
+              type="checkbox"
+              value="Intermédiaire"
+              class="shadow-md w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              (change)="updateCheckboxValues($event, 'Intermédiaire')"
+            />
+            <label
+              for="checkbox-2"
+              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >Intermédiaire</label
+            >
+          </div>
+          <div class="flex items-center">
+            <input
+              id="checkboxAvance"
+              type="checkbox"
+              value="Avancé"
+              class="shadow-md w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              (change)="updateCheckboxValues($event, 'Avancé')"
+            />
+            <label
+              for="checkbox-2"
+              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >Avancé</label
+            >
+          </div>
+        </div>
+
+
+
+<!-- Pour uploader (drowzone) -->
+        <div class="flex items-center justify-center w-full mb-10 shadow-lg">
+          <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+              <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                <i class="fa-solid fa-cloud-arrow-up fa-xl mb-5" style="color: #0b5be5;"></i>
+                  <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+              </div>
+              <input id="dropzone-file" type="file"  class="hidden" (change)="onFileChange($event)"  />
+          </label>
+      </div> 
+      
+
+
+
+        <div class="mb-6 shadow-md">
+          <label
+            for="message"
+            class="block mb-4 text-sm font-medium text-gray-900 dark:text-white"
+            >Votre message :</label
+          >
+          <textarea
+          #message 
+          (keyup)="0"
+            id="message"
+            rows="4"
+            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Leave a comment..."
+          ></textarea>
+        </div>
+        <div class="flex flex-row justify-center">
+          <button
+            type="button"
+            class="shadow-md text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-7 py-2.5 text-center mr-2 mb-2"
+          >
+            VALIDER
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

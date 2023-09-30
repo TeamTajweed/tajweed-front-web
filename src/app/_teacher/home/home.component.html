@@ -14,12 +14,12 @@
       >
         <!-- ci dessous le block de notifications avec une condition pour l'affichage -->
         <div
-          class="mt-3 text-center text-red-950 flex items-center pb-7"
+          class="mt-3 text-center text-red-950 flex items-center mb-7  border-gray-200 border bg-white px-5 py-2 rounded-md"
           *ngIf="students.length > 0"
         >
           <i class="fa-regular fa-bell text-yellow-500"></i>
           <p class="text-sm ml-2">
-            {{ this.students.length }} étudiant(s) ont envoyé des audio.
+            <span class="bg-yellow-100 rounded-full p-1">{{ this.students.length }}</span> étudiant(s) ont envoyé des audio.
           </p>
         </div>
 

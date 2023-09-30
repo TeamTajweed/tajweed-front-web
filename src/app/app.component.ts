@@ -3,6 +3,7 @@ import 'flowbite';
 import { User } from "./core/models/user.model";
 import { AccountService } from "./core/services/account.service";
 import { Subscription } from "rxjs";
+import { initFlowbite } from 'flowbite';
 
 
 @Component({
@@ -21,7 +22,9 @@ export class AppComponent {
       this.isLogged = result != null;
     })
   }
-
+  ngOnInit(): void {
+    initFlowbite();
+  }
   logout(){
     this.accountService.logout();
   }
