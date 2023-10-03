@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { Institute } from '../models/institute.model';
 import { HttpHeaders } from '@angular/common/http';
 
-// à finir controller coter back
+
 @Injectable({
   providedIn: 'root'
 })
 export class InstituteService {
   readonly API_URL = "http://localhost:3000";
   readonly ENDPOINT_INSTITUTES = "/institute";
+
 
   constructor(private httpClient: HttpClient) { }
 
