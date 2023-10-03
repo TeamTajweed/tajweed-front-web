@@ -1,22 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs'; 
-import { Audio } from '../models/audio.model';
+import { Publication } from '../models/publication.model';
 import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AudioService {
+export class PublicationService {
   readonly API_URL = "http://localhost:3000";
-  readonly ENDPOINT_AUDIOS = "/AUDIO";
+  readonly ENDPOINT_PUBLICATIONS = "/PUBLICATION";
 
   constructor(private httpClient: HttpClient) { }
 
-  
-  getAudios(options?: { headers?: HttpHeaders }): Observable<Audio[]> {
-    return this.httpClient.get<Audio[]>(this.API_URL + this.ENDPOINT_AUDIOS, options);
+  getPublications(options?: { headers?: HttpHeaders }): Observable<Publication[]> {
+    return this.httpClient.get<Publication[]>(this.API_URL + this.ENDPOINT_PUBLICATIONS, options);
   }
 }
-
 

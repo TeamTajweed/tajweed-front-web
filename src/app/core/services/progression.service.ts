@@ -1,19 +1,19 @@
 import {inject, Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs'; 
-import { Teacher } from '../models/teacher.model';
+import { Progression } from '../models/progression.model';
 import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TeacherService {
+export class ProgressionService {
   private readonly API_URL: string = "http://localhost:3000";
-  private readonly ENDPOINT_TEACHERS:string = "/teacher";
+  private readonly ENDPOINT_PROGRESSIONS:string = "/PROGRESSION";
 
   httpClient: HttpClient = inject(HttpClient);
  
-  getTeachers(options?: { headers?: HttpHeaders }): Observable<Teacher[]> {
-    return this.httpClient.get<Teacher[]>(this.API_URL + this.ENDPOINT_TEACHERS, options);
+  getProgressions(options?: { headers?: HttpHeaders }): Observable<Progression[]> {
+    return this.httpClient.get<Progression[]>(this.API_URL + this.ENDPOINT_PROGRESSIONS, options);
   }
 }

@@ -1,31 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs'; 
-import { Student } from '../models/student.model';
+import { Institute } from '../models/institute.model';
 import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class StudentService {
+export class InstituteService {
   readonly API_URL = "http://localhost:3000";
-  readonly ENDPOINT_STUDENTS = "/students";
+  readonly ENDPOINT_INSTITUTES = "/INSTITUTE";
 
   constructor(private httpClient: HttpClient) { }
-  
-  getStudents(options?: { headers?: HttpHeaders }): Observable<Student[]> {
-    return this.httpClient.get<Student[]>(this.API_URL + this.ENDPOINT_STUDENTS, options);
-  
+
+  getInstitutes(options?: { headers?: HttpHeaders }): Observable<Institute[]> {
+    return this.httpClient.get<Institute[]>(this.API_URL + this.ENDPOINT_INSTITUTES, options);
   }
 }
-
-
-
-
-
-
-
-
-
-
-

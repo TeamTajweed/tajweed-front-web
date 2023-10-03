@@ -1,6 +1,10 @@
 export interface Student {
     id: string;
-    name: string;
-    progress: string;
+    username: string;
+    isPublic: boolean;
+    isActive: boolean;
+    idInstitute: number;
     email: string;
+    userType: string;
+    password: string;
   }
