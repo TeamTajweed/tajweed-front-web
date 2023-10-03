@@ -8,4 +8,5 @@ export interface Notification {
     verseStart: number;
     verseEnd: number;
     nbAudio: number;
+
   }

@@ -11,6 +11,7 @@ export class InstituteService {
   readonly API_URL = "http://localhost:3000";
   readonly ENDPOINT_INSTITUTES = "/institute";
 
+
   constructor(private httpClient: HttpClient) { }
 
   getInstitutes(options?: { headers?: HttpHeaders }): Observable<Institute[]> {

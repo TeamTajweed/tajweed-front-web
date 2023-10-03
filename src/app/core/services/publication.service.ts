@@ -11,6 +11,7 @@ export class PublicationService {
   readonly API_URL = "http://localhost:3000";
   readonly ENDPOINT_PUBLICATIONS = "/publications";
 
+
   constructor(private httpClient: HttpClient) { }
 
   getPublications(options?: { headers?: HttpHeaders }): Observable<Publication[]> {
