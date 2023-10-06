@@ -7,4 +7,5 @@ export interface Notification {
     surate: string;
     verseStart: number;
     verseEnd: number;
+    nbAudio: number;
   }

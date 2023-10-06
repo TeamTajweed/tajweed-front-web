@@ -9,7 +9,7 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class PublicationService {
   readonly API_URL = "http://localhost:3000";
-  readonly ENDPOINT_PUBLICATIONS = "/PUBLICATION";
+  readonly ENDPOINT_PUBLICATIONS = "/publications";
 
   constructor(private httpClient: HttpClient) { }
 

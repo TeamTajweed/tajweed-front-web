@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { StudentService } from '../../core/services/student.service';
-import { Student } from '../../core/models/student.model';
+import { TeacherService } from '../../core/services/teacher.service';
+import { Teacher } from '../../core/models/teacher.model';
 
 
 @Component({
@@ -9,19 +9,19 @@ import { Student } from '../../core/models/student.model';
     styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit{
-    students: Student[] = [];
+    teachers: Teacher[] = [];
 
-    constructor(private studentService: StudentService) { }
+    constructor(private teacherService: TeacherService) { }
   
     ngOnInit() {
-      this.getStudents();
+      this.getTeachers();
     }
   
-    getStudents() {
-      this.studentService.getStudents().subscribe(
-        students => {
-          this.students = students;
-          console.log(this.students); // Affichez les étudiants dans la console
+    getTeachers() {
+      this.teacherService.getTeachers().subscribe(
+        teachers => {
+          this.teachers = teachers;
+          console.log(this.teachers); // Affichez les teachers dans la console
         },
         error => {
           console.error('Une erreur s\'est produite lors de la récupération des étudiants:', error);

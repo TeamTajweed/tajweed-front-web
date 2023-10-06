@@ -3,14 +3,14 @@
   class="shadow-xl rounded-md border border-solid border-gray-200 pb-9 pt-9 md:px-10 px-5 w-full"
 >
   <!-- si le professeur n'a pas encore choisit un étudiant alors le message ci dessous sera afficher -->
-  <div *ngIf="!selectedStudent?.name">
-    <p *ngIf="!selectedStudent?.name" class="text-center px-10 py-5">
+  <div *ngIf="!selectedStudent?.username">
+    <p *ngIf="!selectedStudent?.username" class="text-center px-10 py-5">
       Veuillez sélectionner un étudiant pour écouter ses vocaux...
     </p>
     <!-- si un etudiant est selectionner alors le modal avec les audio s'ouvrira   -->
   </div>
 
-  <div *ngIf="selectedStudent?.name" class="w-full">
+  <div *ngIf="selectedStudent?.username" class="w-full">
     <div
       class="flex md:justify-between flex-wrap justify-center border-2 border-gray-200 mb-10 md:p-7 rounded-md shadow-lg p-3 w-full"
     >
@@ -18,15 +18,16 @@
         <p
           class="NameStudent text-center md:text-base text-sm bg-gray-300 border-none rounded-md md:py-3 md:px-5"
         >
-          {{ selectedStudent?.name }}
+          {{ selectedStudent?.username }}
         </p>
       </div>
       <!-- bouton pour afficher le Qur an -->
       <button
         class="bg-yellow-100 border-none cursor-pointer md:mr-8 mr-6 md:ml-8 ml-6 md:py-3 md:px-5 rounded flex items-center md:text-base text-sm"
         (click)="showQuran = !showQuran; updateSelectedPage(selectedStudent)"
-        (click)="scrollToAnchor(selectedStudent?.DebutVerset)"
+        (click)="scrollToAnchor(selectedStudent?.notifications[0].verseStart)"
       >
+      <!-- (selectedStudent?.DebutVerset) -->
         <i class="pi pi-angle-right pr-2" *ngIf="!showQuran"></i>
         <i class="pi pi-angle-down pr-2" *ngIf="showQuran"></i>
         Qur'an
@@ -36,7 +37,7 @@
           <p
             class="date bg-blue-300 rounded-md text-center md:text-base text-sm md:py-3 md:px-5"
           >
-            <span>Le </span>{{ selectedStudent.date }}
+            <span>Le </span>{{ selectedStudent?.notifications[0].createdAt }}
           </p>
         </ng-container>
       </div>
@@ -66,9 +67,9 @@
           <!-- ci dessous les audio étudiants-->
 
           <div class="w-full">
-            <ng-container
-              *ngFor="let audio of selectedStudent.audio; let i = index"
-            >
+
+            <ng-container *ngFor="let audioIndex of getArrayOfSize(selectedStudent.notifications[0].nbAudio); let i = index">
+    
               <!-- ci dessous div contenant tout l audio student -->
               <div
                 class="mt-5 mr-20 rounded-tl-none rounded-tr-3xl rounded-bl-3xl rounded-br-3xl w-10/12 flex justify-around items-center bg-gray-300"
@@ -85,9 +86,9 @@
                     </div>
                     <!-- ci dessous le boutton play pour l'audio student -->
                     <button
-                      (click)="playAudio(audio.url!)"
-                      class="buttonPlayTeacher bg-gray-300 px-2 py-0.5 rounded-full border-2 border-black hover:text-green-500 hover:border-green-500"
-                      *ngIf="!isAudioPlaying[audio.url!]"
+                     (click)="playAudio(audioIndex!)"
+                    class="buttonPlayTeacher bg-gray-300 px-2 py-0.5 rounded-full border-2 border-black hover:text-green-500 hover:border-green-500"
+                    *ngIf="!isAudioPlaying[audioIndex!]"
                     >
                       <i
                         class="fa-solid fa-play border-none cursor-pointer"
@@ -95,9 +96,9 @@
                     </button>
                     <!-- ci dessous le boutton pause pour l'audio student -->
                     <button
-                      (click)="pauseAudio()"
-                      class="buttonPauseTeacher bg-yellow-100 px-2 py-0.5 rounded-full border-2 border-black"
-                      *ngIf="isAudioPlaying[audio.url!]"
+                    (click)="pauseAudio()"
+                    class="buttonPauseTeacher bg-gray-300 px-2 py-0.5 rounded-full border-2 border-black"
+                    *ngIf="isAudioPlaying[audioIndex!]"  
                     >
                       <i
                         class="fa-solid fa-pause border-none cursor-pointer"

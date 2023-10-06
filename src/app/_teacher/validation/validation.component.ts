@@ -20,6 +20,7 @@ export class ValidationComponent implements OnInit {
   totalSourate: boolean[][] = [];
   selectedStudentId: string | null = null;
   students: any[] = [];
+  
 
   ayah: any = null;
   selectedPage: number = 1;
@@ -33,8 +34,6 @@ export class ValidationComponent implements OnInit {
   teste: any;
   audioList: AudioforTransit[] = [];
   currentVerse: number = 0;
-  //  ajout de Guillaume pour la fonctionnalitée pause
-  // Dans validation.component.ts
   currentlyPlayingAudio: HTMLAudioElement | null = null;
   isAudioPlaying: { [key: string]: boolean } = {}; 
 
@@ -80,19 +79,22 @@ export class ValidationComponent implements OnInit {
   showStudentCard(student: any) {}
   //fonction pour faire matcher la page saisi par l'étudiant et la page du Qur'an de l'api
   updateSelectedPage(student: any): void {
-    const matchingSourate = this.Coran.find(
-      (sourate) => sourate.englishName === student.sourate
-    );
-
-    if (matchingSourate) {
-      this.selectedPage = matchingSourate.ayahs[0].page;
+    if (student.notifications && student.notifications.length > 0) {
+      const matchingSourate = this.Coran.find(
+        (sourate) => sourate.number === student.notifications[0].surate
+      );
+  
+      if (matchingSourate) {
+        this.selectedPage = matchingSourate.ayahs[0].page;
+      }
     }
   }
+  
   //fonction pour faire matcher le verset débutant l'audio saisi par l'étudiant et les verset du Qur'an de l'api
   updateSelectVerset(student: any): void {
     const matchingVerset = this.Coran.find((sourate: any) =>
       sourate.ayahs.some(
-        (ayah: any) => ayah.numberInSurah === student.DebutVerset
+        (ayah: any) => ayah.numberInSurah === student.notifications[0].verseStart
       )
     );
 
@@ -316,6 +318,9 @@ calculateProgress(index: number): number {
     audioForTransit.duration = this.recordedTime;
     this.audioList?.push(audioForTransit);
     this.currentVerse++;
+  }
+  getArrayOfSize(n: number): any[] {
+    return new Array(n);
   }
 }
 class AudioforTransit{
