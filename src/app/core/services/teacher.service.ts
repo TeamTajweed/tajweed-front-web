@@ -12,6 +12,7 @@ export class TeacherService {
   private readonly ENDPOINT_TEACHERS:string = "/teachers";
 
 
+
   httpClient: HttpClient = inject(HttpClient);
  
   getTeachers(options?: { headers?: HttpHeaders }): Observable<Teacher[]> {

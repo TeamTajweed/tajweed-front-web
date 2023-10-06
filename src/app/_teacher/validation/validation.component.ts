@@ -18,6 +18,7 @@ export class ValidationComponent implements OnInit {
   totalSourate: boolean[][] = [];
   selectedStudentId: string | null = null;
   students: any[] = [];
+  
 
   ayah: any = null;
   selectedPage: number = 1;
@@ -96,12 +97,14 @@ export class ValidationComponent implements OnInit {
     }
   }
 
+
   //fonction pour faire matcher le verset débutant l'audio saisi par l'étudiant et les verset du Qur'an de l'api
   updateSelectVerset(student: any): void {
     const matchingVerset = this.Coran.find((sourate: any) =>
       sourate.ayahs.some(
         (ayah: any) =>
           ayah.numberInSurah === student.notifications[0].verseStart
+
       )
     );
 
@@ -327,6 +330,7 @@ export class ValidationComponent implements OnInit {
     this.audioList?.push(audioForTransit);
     this.currentVerse++;
   }
+
 
   getArrayOfSize(n: number): any[] {
     return new Array(n);

@@ -12,6 +12,7 @@ export class PublicationService {
   readonly ENDPOINT_PUBLICATIONS = "/publications";
 
 
+
   constructor(private httpClient: HttpClient) { }
 
   getPublications(options?: { headers?: HttpHeaders }): Observable<Publication[]> {

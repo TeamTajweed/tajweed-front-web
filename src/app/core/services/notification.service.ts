@@ -6,12 +6,14 @@ import { HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
   readonly API_URL = "http://localhost:3000";
   readonly ENDPOINT_NOTIFICATIONS = "/notifications";
+
 
 
   constructor(private httpClient: HttpClient) { }

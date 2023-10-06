@@ -16,6 +16,7 @@ import { Notification as AppNotification } from "../../core/models/notification.
 import { sourates } from "../../_students/homestudents/homestudents.component";
 import { ChangeDetectorRef } from "@angular/core";
 
+
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
   query: string;
@@ -26,6 +27,7 @@ interface AutoCompleteCompleteEvent {
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.scss"],
 })
+
 export class HomeComponent implements OnInit {
   @ViewChild(ValidationComponent) validationComponent!: ValidationComponent;
   students: Student[] = [];
