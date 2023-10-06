@@ -10,7 +10,10 @@ import { HttpHeaders } from '@angular/common/http';
 export class PublicationService {
   readonly API_URL = "http://localhost:3000";
   readonly ENDPOINT_PUBLICATIONS = "/publications";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 97ceacaa (home page dynamic with backend)
 
   constructor(private httpClient: HttpClient) { }
 

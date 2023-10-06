@@ -11,8 +11,6 @@ export class TeacherService {
   private readonly API_URL: string = "http://localhost:3000";
   private readonly ENDPOINT_TEACHERS:string = "/teachers";
 
-
-
   httpClient: HttpClient = inject(HttpClient);
  
   getTeachers(options?: { headers?: HttpHeaders }): Observable<Teacher[]> {

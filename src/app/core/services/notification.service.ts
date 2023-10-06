@@ -4,7 +4,10 @@ import { Observable } from 'rxjs';
 import { Notification } from '../models/notification.model';
 import { HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs';
+<<<<<<< HEAD
 
+=======
+>>>>>>> 97ceacaa (home page dynamic with backend)
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +15,10 @@ import { map } from 'rxjs';
 export class NotificationService {
   readonly API_URL = "http://localhost:3000";
   readonly ENDPOINT_NOTIFICATIONS = "/notifications";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 97ceacaa (home page dynamic with backend)
 
   constructor(private httpClient: HttpClient) { }
   

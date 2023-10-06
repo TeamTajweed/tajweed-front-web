@@ -4,14 +4,21 @@ import { Observable } from 'rxjs';
 import { Institute } from '../models/institute.model';
 import { HttpHeaders } from '@angular/common/http';
 
+<<<<<<< HEAD
 
+=======
+// à finir controller coter back
+>>>>>>> 97ceacaa (home page dynamic with backend)
 @Injectable({
   providedIn: 'root'
 })
 export class InstituteService {
   readonly API_URL = "http://localhost:3000";
   readonly ENDPOINT_INSTITUTES = "/institute";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 97ceacaa (home page dynamic with backend)
 
   constructor(private httpClient: HttpClient) { }
 
