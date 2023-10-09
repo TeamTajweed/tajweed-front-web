@@ -16,7 +16,6 @@ import { Notification as AppNotification } from "../../core/models/notification.
 import { sourates } from "../../_students/homestudents/homestudents.component";
 import { ChangeDetectorRef } from "@angular/core";
 
-
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
   query: string;
@@ -27,7 +26,6 @@ interface AutoCompleteCompleteEvent {
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.scss"],
 })
-
 export class HomeComponent implements OnInit {
   @ViewChild(ValidationComponent) validationComponent!: ValidationComponent;
   students: Student[] = [];
@@ -141,6 +139,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
+
   //fonction pour le responsive
   toggleSidebar() {
     this.sidebarWidth = this.sidebarWidth === "20%" ? "100%" : "20%";
@@ -149,7 +148,6 @@ export class HomeComponent implements OnInit {
       this.renderer.setStyle(leftSidebar, "display", "none");
     } else {
       this.renderer.setStyle(leftSidebar, "display", "block");
-
     }
   }
 }

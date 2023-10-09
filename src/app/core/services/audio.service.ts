@@ -11,10 +11,6 @@ import { map } from 'rxjs';
 export class AudioService {
   readonly API_URL = "http://localhost:3000";
   readonly ENDPOINT_AUDIOS = "/audios";
-<<<<<<< HEAD
-
-=======
->>>>>>> 97ceacaa (home page dynamic with backend)
 
   constructor(private httpClient: HttpClient) { }
 

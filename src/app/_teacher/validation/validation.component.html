@@ -74,7 +74,6 @@
                 let i = index
               "
             >
-
               <!-- ci dessous div contenant tout l audio student -->
               <div
                 class="mt-5 mr-20 rounded-tl-none rounded-tr-3xl rounded-bl-3xl rounded-br-3xl w-10/12 flex justify-around items-center bg-gray-300"
@@ -94,7 +93,6 @@
                       (click)="playAudio(audioIndex!)"
                       class="buttonPlayTeacher bg-gray-300 px-2 py-0.5 rounded-full border-2 border-black hover:text-green-500 hover:border-green-500"
                       *ngIf="!isAudioPlaying[audioIndex!]"
-
                     >
                       <i
                         class="fa-solid fa-play border-none cursor-pointer"
@@ -105,7 +103,6 @@
                       (click)="pauseAudio()"
                       class="buttonPauseTeacher bg-gray-300 px-2 py-0.5 rounded-full border-2 border-black"
                       *ngIf="isAudioPlaying[audioIndex!]"
-
                     >
                       <i
                         class="fa-solid fa-pause border-none cursor-pointer"
