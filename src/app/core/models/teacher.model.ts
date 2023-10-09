@@ -1,7 +1,9 @@
 export interface Teacher {
     id: string;
-    entity: string;
-    name: string;
+    username: string;
+    isactive: boolean;
+    idInstitute: number;
     email: string;
-    resume: string;
+    password: string;
+    userType: string;
   }

@@ -8,7 +8,7 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class StudentService {
-  readonly API_URL = "http://localhost:8080";
+  readonly API_URL = "http://localhost:3000";
   readonly ENDPOINT_STUDENTS = "/students";
 
   constructor(private httpClient: HttpClient) { }
