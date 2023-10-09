@@ -27,7 +27,7 @@
         (click)="showQuran = !showQuran; updateSelectedPage(selectedStudent)"
         (click)="scrollToAnchor(selectedStudent?.notifications[0].verseStart)"
       >
-      <!-- (selectedStudent?.DebutVerset) -->
+        <!-- (selectedStudent?.DebutVerset) -->
         <i class="pi pi-angle-right pr-2" *ngIf="!showQuran"></i>
         <i class="pi pi-angle-down pr-2" *ngIf="showQuran"></i>
         Qur'an
@@ -67,9 +67,14 @@
           <!-- ci dessous les audio étudiants-->
 
           <div class="w-full">
-
-            <ng-container *ngFor="let audioIndex of getArrayOfSize(selectedStudent.notifications[0].nbAudio); let i = index">
-    
+            <ng-container
+              *ngFor="
+                let audioIndex of getArrayOfSize(
+                  selectedStudent.notifications[0].nbAudio
+                );
+                let i = index
+              "
+            >
               <!-- ci dessous div contenant tout l audio student -->
               <div
                 class="mt-5 mr-20 rounded-tl-none rounded-tr-3xl rounded-bl-3xl rounded-br-3xl w-10/12 flex justify-around items-center bg-gray-300"
@@ -86,9 +91,9 @@
                     </div>
                     <!-- ci dessous le boutton play pour l'audio student -->
                     <button
-                     (click)="playAudio(audioIndex!)"
-                    class="buttonPlayTeacher bg-gray-300 px-2 py-0.5 rounded-full border-2 border-black hover:text-green-500 hover:border-green-500"
-                    *ngIf="!isAudioPlaying[audioIndex!]"
+                      (click)="playAudio(audioIndex!)"
+                      class="buttonPlayTeacher bg-gray-300 px-2 py-0.5 rounded-full border-2 border-black hover:text-green-500 hover:border-green-500"
+                      *ngIf="!isAudioPlaying[audioIndex!]"
                     >
                       <i
                         class="fa-solid fa-play border-none cursor-pointer"
@@ -96,9 +101,9 @@
                     </button>
                     <!-- ci dessous le boutton pause pour l'audio student -->
                     <button
-                    (click)="pauseAudio()"
-                    class="buttonPauseTeacher bg-gray-300 px-2 py-0.5 rounded-full border-2 border-black"
-                    *ngIf="isAudioPlaying[audioIndex!]"  
+                      (click)="pauseAudio()"
+                      class="buttonPauseTeacher bg-gray-300 px-2 py-0.5 rounded-full border-2 border-black"
+                      *ngIf="isAudioPlaying[audioIndex!]"
                     >
                       <i
                         class="fa-solid fa-pause border-none cursor-pointer"
@@ -275,42 +280,36 @@
         >
           <!-- Contenu du Coran -->
           <img src="/assets/images/frise3.jpg" class="w-full" />
-          <div *ngFor="let sourate of Coran" style="background-color: #f9f8f3">
-            <ng-container *ngIf="sourate.ayahs[0].page === selectedPage">
-              <p
-                class="text-center mb-10 pt-3 text-2xl"
-                style="background-color: #f9f8f3"
+          <div style="background-color: #f9f8f3" *ngIf="selectedSourate">
+            <p
+              class="text-center mb-10 pt-3 text-2xl"
+              style="background-color: #f9f8f3"
+            >
+              <!-- affichage du nom de la sourate -->
+              {{ selectedSourate.name }}
+            </p>
+            <ul style="background-color: #f9f8f3">
+              <li
+                *ngFor="let ayah of selectedSourate.ayahs; let i = index"
+                class="text-center text-2xl pb-1 bg-color cursor-pointer pr-1"
+                (click)="toggleBackgroundColor(i, ayah.number)"
+                [ngClass]="{
+                  'bg-red-300': totalSourate[i] && totalSourate[i][ayah.number]
+                }"
               >
-                <!-- affichage du nom de la sourate -->
-                {{ sourate.name }}
-              </p>
-              <ul style="background-color: #f9f8f3">
-                <li
-                  *ngFor="let ayah of sourate.ayahs; let i = index"
-                  class="text-center text-2xl pb-1 bg-color cursor-pointer pr-1"
-                  (click)="toggleBackgroundColor(i, ayah.number)"
-                  [ngClass]="{
-                    'bg-red-300':
-                      totalSourate[i] && totalSourate[i][ayah.number]
-                  }"
-                >
-                  <!-- non affichage du numéro unique des versets mais je le stock ici pour le selectionner quand je click dessus pour la correction -->
-                  <span style="display: none">{{ ayah.number }}</span>
-                  <span
-                    class="mr-10 text-xs"
-                    [id]="'verse' + ayah.numberInSurah"
-                  >
-                    <!-- affichage du numéro des versets -->
-                    v. {{ ayah.numberInSurah }}</span
-                  >
-                  <!-- affichage des versets -->
-                  {{ ayah.text }}
-                  <div class="flex justify-center">
-                    <hr class="w-6/12 my-3.5 rounded-md" />
-                  </div>
-                </li>
-              </ul>
-            </ng-container>
+                <!-- non affichage du numéro unique des versets mais je le stock ici pour le selectionner quand je click dessus pour la correction -->
+                <span style="display: none">{{ ayah.number }}</span>
+                <span class="mr-10 text-xs" [id]="'verse' + ayah.numberInSurah">
+                  <!-- affichage du numéro des versets -->
+                  v. {{ ayah.numberInSurah }}
+                </span>
+                <!-- affichage des versets -->
+                {{ ayah.text }}
+                <div class="flex justify-center">
+                  <hr class="w-6/12 my-3.5 rounded-md" />
+                </div>
+              </li>
+            </ul>
           </div>
           <img src="/assets/images/frise4.jpg" class="w-full" />
         </div>
