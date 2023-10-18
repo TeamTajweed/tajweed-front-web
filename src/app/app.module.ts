@@ -15,7 +15,6 @@ import { FeedstudentsComponent } from './_students/feedstudents/feedstudents.com
 import { StatsstudentsComponent } from './_students/statsstudents/statsstudents.component';
 import { AudioRecordingService } from './core/services/audio.recording.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { HiddenComponent } from './_students/hidden/hidden.component';
 import { FakeBackendInterceptor } from './core/helpers/fakeBackend';
 import { AlertComponent } from './_shared/alert/alert.component';
@@ -24,6 +23,10 @@ import { SigninComponent } from './_shared/signin/signin.component';
 import { LandingComponent } from './_shared/landing/landing.component';
 import { ValidationComponent } from './_teacher/validation/validation.component';
 import { AboutAppComponent } from './_shared/about-app/about-app.component';
+import { DonutComponent } from './_teacher/donut/donut.component';
+import { ChartModule } from 'primeng/chart';
+
+
 
 
 @NgModule({
@@ -42,6 +45,7 @@ import { AboutAppComponent } from './_shared/about-app/about-app.component';
     StatistiquesComponent,
     ValidationComponent,
     AboutAppComponent,
+    DonutComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,8 @@ import { AboutAppComponent } from './_shared/about-app/about-app.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    ChartModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

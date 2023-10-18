@@ -17,12 +17,6 @@ import { sourates } from "../../_students/homestudents/homestudents.component";
 import { ChangeDetectorRef } from "@angular/core";
 
 
-
-interface AutoCompleteCompleteEvent {
-  originalEvent: Event;
-  query: string;
-}
-
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
