@@ -16,7 +16,7 @@ export class DonutComponent {
         const textColor = documentStyle.getPropertyValue('--text-color');
 
         this.data = {
-            labels: [ 'Mémorisation Validé', 'Reste à apprendre', 'Mémorisation à revoir'],
+            labels: [ 'Mémorisation Validé   ', 'Reste à apprendre     ', 'Mémorisation à revoir'],
             datasets: [
                 {
                     data: [40, 30, 30],
@@ -32,6 +32,9 @@ export class DonutComponent {
                     labels: {
                         usePointStyle: true,
                         color: 'black',
+                        font: {
+                            size: 15,
+                        }
                     }
                 }
             }

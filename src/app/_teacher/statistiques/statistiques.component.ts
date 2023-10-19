@@ -4,6 +4,12 @@ import { TraceAudio } from 'src/app/core/models/traceAudio.model';
 import { StudentService } from 'src/app/core/services/student.service';
 import { Student } from 'src/app/core/models/student.model';
 
+
+interface AutoCompleteCompleteEvent {
+    originalEvent: Event;
+    query: string;
+}
+
 @Component({
     selector: 'app-statistiques',
     templateUrl: './statistiques.component.html',
@@ -14,6 +20,9 @@ export class StatistiquesComponent implements OnInit {
     options: any;                                // Options de configuration pour le graphique.
     students: Student[] = [];                    // Liste des étudiants.
     selectedStudentId: number | null = null;     // ID de l'étudiant sélectionné.
+    selectedStudent: any;
+    filteredStudents: any[] = [];
+    mois = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 
     // Accès direct aux styles du document pour récupérer les couleurs, etc.
     private readonly documentStyle: CSSStyleDeclaration = getComputedStyle(document.documentElement);
@@ -28,30 +37,47 @@ export class StatistiquesComponent implements OnInit {
         this.getStudents();
         this.loadTraceAudiosForCurrentMonth();
     }
-// Graphique intégrer avec PrimeNG
+    // Graphique intégrer avec PrimeNG
     private initializeChart(): void {
         this.data = {
-            labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            labels: this.mois,
             datasets: [{
-                label: 'Nombre de jour absent dans le mois',
+                label: 'Nombre de jour présent dans le mois',
                 data: Array(12).fill(0),
                 fill: false,
                 borderColor: this.documentStyle.getPropertyValue('--blue-600'),
                 tension: 0.4
             }]
         };
-
-        this.options = {
-            maintainAspectRatio: false,
-            aspectRatio: 0.6,
-            plugins: {
-                legend: {
-                    labels: { color: 'black' }
+    this.options = {
+        maintainAspectRatio: false,
+        aspectRatio: 0.6,
+        plugins: {
+            tooltip: {
+                titleFont: {
+                    size: 15
+                },
+                bodyFont: {
+                    size: 15
                 }
             },
+            legend: {
+                labels: {
+                    color: 'black',
+                    font: {
+                        size: 15  
+                    }
+                }
+            }
+        },
             scales: {
                 x: {
-                    ticks: { color: 'black' },
+                    ticks: { color: 'black',
+                    font: {
+                        size: 15
+                    }
+                
+                  },
                     grid: {
                         color: this.documentStyle.getPropertyValue('--surface-border'),
                         drawBorder: false
@@ -62,7 +88,10 @@ export class StatistiquesComponent implements OnInit {
                     max: 31,
                     ticks: {
                         stepSize: 1,
-                        color: 'black'
+                        color: 'black',
+                        font: {
+                            size: 15
+                        }
                     },
                     grid: {
                         color: this.documentStyle.getPropertyValue('--surface-border'),
@@ -72,7 +101,45 @@ export class StatistiquesComponent implements OnInit {
             }
         };
     }
-//Charge les traces audio pour le mois en cours.
+
+
+    // Récupère la liste des étudiants.
+    getStudents(): void {
+        this.studentService.getStudents().subscribe(students => {
+            this.students = students;
+        });
+    }
+
+    //Filtre la liste des étudiants
+    filterName(event: { query: string }) {
+        let query = event.query;
+        this.filteredStudents = this.students.filter(student => {
+            return student.username.toLowerCase().includes(query.toLowerCase());
+        });
+    }
+    // Gestionnaire d'événement déclenché lorsque qu'un étudiant est sélectionné.
+    onStudentSelected(event: any): void {
+        this.selectedStudentId = this.selectedStudent.id;
+        this.updateChartForSelectedStudent();
+    }
+    //Met à jour le graphique pour l'étudiant actuellement sélectionné. 
+    updateChartForSelectedStudent(): void {
+        const debutAnnee = new Date();
+        debutAnnee.setFullYear(debutAnnee.getFullYear() - 1);
+        debutAnnee.setHours(0, 0, 0, 0);
+    
+        const finAnnee = new Date();
+        finAnnee.setHours(23, 59, 59, 999);
+    
+        this.traceAudioService.getTraceAudiosByDateRange(debutAnnee.toISOString(), finAnnee.toISOString())
+            .subscribe((traces: TraceAudio[]) => {
+                this.updateChartData(traces, this.selectedStudentId);
+            });
+    }
+    
+    
+    
+    //Charge les traces audio pour le mois en cours.
     private loadTraceAudiosForCurrentMonth(): void {
         const [debutMois, finMois] = this.getCurrentMonthDateRange();
 
@@ -81,7 +148,7 @@ export class StatistiquesComponent implements OnInit {
                 this.updateChartData(traces, this.selectedStudentId);
             });
     }
-//Renvoie la plage de dates pour le mois en cours.
+    //Renvoie la plage de dates pour le mois en cours.
     private getCurrentMonthDateRange(): [Date, Date] {
         const debutMois = new Date();
         debutMois.setDate(1);
@@ -94,11 +161,11 @@ export class StatistiquesComponent implements OnInit {
 
         return [debutMois, finMois];
     }
-// Met à jour les données du graphique basé sur les traces audio et l'ID de l'étudiant.
+    // Met à jour les données du graphique basé sur les traces audio et l'ID de l'étudiant.
     updateChartData(traces: TraceAudio[], studentId: number | null): void {
         if (studentId === null) return;
 
-        const absencesParMois = this.calculateMonthlyAbsences(traces, studentId);
+        const absencesParMois = this.calculateMonthlyPresence(traces, studentId);
 
         this.data = {
             labels: this.data.labels,
@@ -108,44 +175,17 @@ export class StatistiquesComponent implements OnInit {
             }]
         };
     }
-// Calcule le nombre d'absences par mois pour un étudiant donné basé sur les traces audio.
-    private calculateMonthlyAbsences(traces: TraceAudio[], studentId: number): number[] {
-        const absencesParMois = Array(12).fill(0);
-    
+    // Calcule le nombre de présence par mois pour un étudiant donné basé sur les traces audio.
+    private calculateMonthlyPresence(traces: TraceAudio[], studentId: number): number[] {
+        const presenceParMois = Array(12).fill(0);
+        
         traces.forEach(trace => {
             if (trace.idStudent === studentId) {
                 const month = new Date(trace.dateOfAudio).getMonth();
-                absencesParMois[month]++;
+                presenceParMois[month]++;
             }
         });
-    
-        for (let i = 0; i < 12; i++) {
-            const daysInMonth = new Date(new Date().getFullYear(), i + 1, 0).getDate();
-            absencesParMois[i] = daysInMonth - absencesParMois[i];
-        }
-    
-        return absencesParMois;
-    }
-    
-// Récupère la liste des étudiants.
-    getStudents(): void {
-        this.studentService.getStudents().subscribe(students => {
-            this.students = students;
-        });
-    }
-// Gère le changement de sélection de l'étudiant, met à jour le graphique en conséquence.
-    onStudentChange(event: any): void {
-        const studentId = Number((event.target as HTMLSelectElement).value);
-        const debutAnnee = new Date();
-        debutAnnee.setFullYear(debutAnnee.getFullYear() - 1);
-        debutAnnee.setHours(0, 0, 0, 0);
-
-        const finAnnee = new Date();
-        finAnnee.setHours(23, 59, 59, 999);
-
-        this.traceAudioService.getTraceAudiosByDateRange(debutAnnee.toISOString(), finAnnee.toISOString())
-            .subscribe((traces: TraceAudio[]) => {
-                this.updateChartData(traces, studentId);
-            });
-    }
+        
+        return presenceParMois;
+    }   
 }
