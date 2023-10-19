@@ -12,6 +12,5 @@ export interface Student {
     password: string;
     notifications: AppNotification[];
     audios: AppAudio[];
-
-
+    
   }

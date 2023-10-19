@@ -3,7 +3,7 @@ export interface Notification {
     createdAt: Date;
     idAudio: number;
     idStudent: number;
-    idInstitue: number;
+    idInstitute: number;
     surate: string;
     verseStart: number;
     verseEnd: number;
