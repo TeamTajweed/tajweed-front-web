@@ -16,7 +16,7 @@ export class DonutComponent {
         const textColor = documentStyle.getPropertyValue('--text-color');
 
         this.data = {
-            labels: [ 'Mémorisation Validé   ', 'Reste à apprendre     ', 'Mémorisation à revoir'],
+            labels: [ 'Mémorisation Validée   ', 'Reste à apprendre     ', 'Mémorisation à revoir'],
             datasets: [
                 {
                     data: [40, 30, 30],
