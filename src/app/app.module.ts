@@ -25,6 +25,7 @@ import { ValidationComponent } from './_teacher/validation/validation.component'
 import { AboutAppComponent } from './_shared/about-app/about-app.component';
 import { DonutComponent } from './_teacher/donut/donut.component';
 import { ChartModule } from 'primeng/chart';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 
 
@@ -57,6 +58,7 @@ import { ChartModule } from 'primeng/chart';
     ReactiveFormsModule,
     CommonModule,
     ChartModule,
+    AutoCompleteModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
