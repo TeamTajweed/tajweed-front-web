@@ -4,21 +4,21 @@
 <div class="flex md:flex-row flex-col w-full">
   <!-- container pour visionner l'annonce -->
   <div
-    class="flex flex-col items-center shadow-xl rounded-md border border-solid border-gray-200 pb-9 px-10 pt-9 w-8/12"
+    class="flex flex-col items-center shadow-xl rounded-md border border-solid border-gray-200 pb-9 px-10 pt-9 md:w-8/12 w-full"
   >
     <div class="flex justify-start mb-10">
-      <p class="bg-white text-center py-1 rounded-md px-4">
+      <p class="bg-white text-center py-1 rounded-md px-4 md:text-base text-sm">
         Aperçu avant la mise en ligne :
       </p>
     </div>
 
     <!-- card de l'annonce -->
-    <div class="bg-gray-100 p-6 rounded-lg w-6/12 break-words">
+    <div class="bg-gray-100 p-6 rounded-lg md:w-6/12 break-words w-11/12">
       <div class="rounded object-cover object-center mb-6 w-full">
         <img class="" [src]="imagePath" alt="content" />
       </div>
       <h3
-        class="tracking-widest text-indigo-500 text-xs font-medium title-font"
+        class="tracking-widest text-indigo-500 md:text-xs font-medium title-font"
       >
         <span *ngIf="isDebutantChecked">Débutant </span>
         <span *ngIf="isIntermediaireChecked">Intermédiaire </span>
@@ -35,7 +35,7 @@
   </div>
   <!-- ci dessous voici le container entier du component formulaire , il est visible grace au box-shadow -->
   <div
-    class="shadow-xl rounded-md border border-solid border-gray-200 py-9 md:px-10 px-5 w-6/12"
+    class="shadow-xl rounded-md border border-solid border-gray-200 py-9 md:px-10 px-5 md:w-4/12 w-full"
   >
     <!-- formulaire -->
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
@@ -56,8 +56,8 @@
           />
         </div>
         <!-- checkbox -->
-        <p class="text-sm">Niveau :</p>
-        <div class="flex justify-around mb-10 mt-4">
+        <p class="text-sm mt-2">Niveau :</p>
+        <div class="flex justify-around mb-10 mt-6">
           <div class="flex items-center">
             <input
               id="checkboxDebutant"
@@ -70,8 +70,8 @@
             />
             <label
               for="checkbox-1"
-              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >Débutant</label
+              class="ml-2 md:text-sm font-medium text-gray-900 dark:text-gray-300 mr-2 text-xs"
+              >Débutant </label
             >
           </div>
           <div class="flex items-center">
@@ -86,8 +86,8 @@
             />
             <label
               for="checkbox-2"
-              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >Intermédiaire</label
+              class="ml-2 md:text-sm font-medium text-gray-900 dark:text-gray-300 mr-2 text-xs"
+              >Intermédiaire </label
             >
           </div>
           <div class="flex items-center">
@@ -102,7 +102,7 @@
             />
             <label
               for="checkbox-2"
-              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              class="ml-2 md:text-sm font-medium text-gray-900 dark:text-gray-300 text-xs"
               >Avancé</label
             >
           </div>
