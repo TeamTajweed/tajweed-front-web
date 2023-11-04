@@ -45,11 +45,12 @@ export class StatistiquesComponent implements OnInit {
                 label: 'Nombre de jour présent dans le mois',
                 data: Array(12).fill(0),
                 fill: false,
-                borderColor: this.documentStyle.getPropertyValue('--blue-600'),
+                borderColor: this.documentStyle.getPropertyValue('--yellow-500'),
                 tension: 0.4
             }]
         };
     this.options = {
+        responsive: true,
         maintainAspectRatio: false,
         aspectRatio: 0.6,
         plugins: {
